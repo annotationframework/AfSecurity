@@ -106,7 +106,7 @@ table.openid-loginbox-inner tbody td {
 
 td.openid-loginbox-title {
 	border:0;
-	background: #CC3300;
+	background: #FFCC00;
 	/*
 	border-bottom: 1px #cc3300 solid;
 	border-top-left-radius:22px;
@@ -123,7 +123,7 @@ td.openid-loginbox-title {
 td.openid-loginbox-title table {
 	width: 100%;
 	font-size: 18px;
-	color: white;
+	color: black;
 	border:0;
 }
 .openid-loginbox-useopenid {
