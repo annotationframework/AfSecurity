@@ -18,24 +18,24 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.mindinformatics.ann.framework.module.security.groups
+package org.mindinformatics.ann.framework.module.security.systems
 
+import grails.validation.Validateable
 
 /**
 * @author Paolo Ciccarese <paolo.ciccarese@gmail.com>
 */
-class Group {
+@Validateable
+class System {
 
 	String id;
+	String apikey;
 	String name;
 	String shortName;
 	String description;
-
-	GroupPrivacy privacy;
 	
 	boolean enabled
-	boolean locked
-	 
+	
 	int membersCounter;
 
 	/*
@@ -58,8 +58,6 @@ class Group {
 	
 	static mapping = {
 		id generator:'uuid', sqlType: "varchar(36)"
-		table 'agroup'
-		version false
 	}
 	
 	static transients = [
@@ -68,8 +66,11 @@ class Group {
 	
 	static constraints = {
 		id maxSize: 36
-		name (nullable:false, blank: false, unique: true, maxSize:255)
+		name (nullable:false, blank: false, maxSize:255)
 		shortName  (nullable:true, blank: true, maxSize:100)
 		description (nullable:false, blank:true, maxSize:1024)
+		apikey (nullable:false, blank: false, unique: true, maxSize:255)
 	}
+	
+	
 }

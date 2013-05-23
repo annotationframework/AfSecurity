@@ -18,58 +18,28 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.mindinformatics.ann.framework.module.security.groups
-
+package org.mindinformatics.ann.framework.module.security.utils
 
 /**
 * @author Paolo Ciccarese <paolo.ciccarese@gmail.com>
 */
-class Group {
+enum UserStatus {
+	CREATED_USER("Created"),
+	ACTIVE_USER("Active"),
+	LOCKED_USER("Locked"),
+	DISABLED_USER("Disabled")
 
-	String id;
-	String name;
-	String shortName;
-	String description;
+	UserStatus(String value) {
+		this.value = value
+	}
+	
+	boolean isStatusValid(String status) {
+		return status.equals(CREATED_USER.value) ||
+			status.equals(ACTIVE_USER.value) ||
+			status.equals(LOCKED_USER.value) ||
+			status.equals(DISABLED_USER.value);
+	}
 
-	GroupPrivacy privacy;
-	
-	boolean enabled
-	boolean locked
-	 
-	int membersCounter;
-
-	/*
-	String getStatus() {
-		return GroupUtils.getStatusValue(this);
-	}
-	
-	String getStatusUuid() {
-		return GroupUtils.getStatusUuid(this);
-	}
-	
-	String getStatusLabel() {
-		return GroupUtils.getStatusLabel(this);
-	}
-	*/
-	
-	String getUri() {
-		return "urn:group:uuid:"+id;
-	}
-	
-	static mapping = {
-		id generator:'uuid', sqlType: "varchar(36)"
-		table 'agroup'
-		version false
-	}
-	
-	static transients = [
-		'membersCounter'
-	]
-	
-	static constraints = {
-		id maxSize: 36
-		name (nullable:false, blank: false, unique: true, maxSize:255)
-		shortName  (nullable:true, blank: true, maxSize:100)
-		description (nullable:false, blank:true, maxSize:1024)
-	}
+	private final String value
+	public String value() { return value }
 }

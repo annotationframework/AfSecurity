@@ -18,63 +18,69 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.mindinformatics.ann.framework.module.security.users
+package org.mindinformatics.ann.framework.module.dashboard
 
-import java.util.Date;
-import org.mindinformatics.ann.framework.module.security.OpenID
+import grails.validation.Validateable
+
 
 /**
- * @author Paolo Ciccarese <paolo.ciccarese@gmail.com>
- */
-class User {
+* Object command for User validation and creation.
+*
+* @author Paolo Ciccarese <paolo.ciccarese@gmail.com>
+*/
+@Validateable
+class UserEditCommand {
 
-	private static final int NAME_MAX_SIZE = 255;
+	def springSecurityService;
 	
-	String id
-	String username
-	String password
+	public static final Integer NAME_MAX_SIZE = 255;
 	
-	// User's data
-	String email
+	// Users status values
+	//---------------------
+	String status
+	
+	//Users' data
 	String title
 	String firstName
 	String middleName
 	String lastName
 	String displayName
-	String country
+	String email
 	String affiliation
+	String country
 	
-	Date dateCreated, lastUpdated
+	//Account credentials
+	String id
+	String username
 	
-	boolean enabled
-	boolean accountExpired
-	boolean accountLocked
-	boolean passwordExpired
-	
-	static hasMany = [openIds: OpenID]
-
 	static constraints = {
-		id maxSize: 36
-		email blank: false, unique: true, email: true
-		username blank: false, unique: true
-		password blank: false
-		
-		//User's data
+		//Users' data
 		title (nullable: true, blank: true, maxSize:NAME_MAX_SIZE)
 		firstName (blank: false, maxSize:NAME_MAX_SIZE)
 		middleName (nullable: true, blank: true, maxSize:NAME_MAX_SIZE)
 		lastName (blank: false, maxSize:NAME_MAX_SIZE)
-		displayName (blank: false, maxSize:NAME_MAX_SIZE)
-		affiliation (nullable: true, blank: true, maxSize:NAME_MAX_SIZE)
-		country (nullable: true, blank: true, maxSize:NAME_MAX_SIZE)
+		displayName (blank: true, maxSize:NAME_MAX_SIZE)
+		email (blank: false, email: true,  maxSize:NAME_MAX_SIZE)
+		affiliation (blank: true, maxSize:NAME_MAX_SIZE)
+		country (blank: true, maxSize:NAME_MAX_SIZE)
+		//Account credentials
+		id (blank: false)
+		username (blank: false, maxSize:NAME_MAX_SIZE)
 	}
-
-	static mapping = {
-		password column: '`password`'
-		id generator:'uuid', sqlType: "varchar(36)"
+	
+	boolean isEnabled() {
+		return status.equals(UserStatus.ACTIVE_USER.value());
 	}
-
-	Set<Role> getAuthorities() {
-		UserRole.findAllByUser(this).collect { it.role } as Set
+	
+	boolean isDisabled() {
+		return status.equals(UserStatus.DISABLED_USER.value());
+	}
+	
+	boolean isCreated() {
+		return status.equals(UserStatus.CREATED_USER.value());
+	}
+	
+	boolean isLocked() {
+		return status.equals(UserStatus.LOCKED_USER.value());
 	}
 }

@@ -18,58 +18,35 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.mindinformatics.ann.framework.module.security.groups
+package org.mindinformatics.ann.framework.module.dashboard
+
+import grails.validation.Validateable
 
 
 /**
+* Object command for User validation and creation.
+*
 * @author Paolo Ciccarese <paolo.ciccarese@gmail.com>
 */
-class Group {
+@Validateable
+class UserResetPasswordCommand {
 
-	String id;
-	String name;
-	String shortName;
-	String description;
+	def springSecurityService;
+	
+	public static final Integer NAME_MAX_SIZE = 255;
 
-	GroupPrivacy privacy;
-	
-	boolean enabled
-	boolean locked
-	 
-	int membersCounter;
-
-	/*
-	String getStatus() {
-		return GroupUtils.getStatusValue(this);
-	}
-	
-	String getStatusUuid() {
-		return GroupUtils.getStatusUuid(this);
-	}
-	
-	String getStatusLabel() {
-		return GroupUtils.getStatusLabel(this);
-	}
-	*/
-	
-	String getUri() {
-		return "urn:group:uuid:"+id;
-	}
-	
-	static mapping = {
-		id generator:'uuid', sqlType: "varchar(36)"
-		table 'agroup'
-		version false
-	}
-	
-	static transients = [
-		'membersCounter'
-	]
+	//Account credentials
+	String password
+	String passwordConfirmation
 	
 	static constraints = {
-		id maxSize: 36
-		name (nullable:false, blank: false, unique: true, maxSize:255)
-		shortName  (nullable:true, blank: true, maxSize:100)
-		description (nullable:false, blank:true, maxSize:1024)
+		//Account credentials
+		password (blank: false, minSize:6, maxSize:NAME_MAX_SIZE)
+		passwordConfirmation (blank: false, minSize:6, maxSize:NAME_MAX_SIZE)
 	}
+	
+	
+	boolean isPasswordValid() {
+		return password.equals(passwordConfirmation);
+	}	
 }
