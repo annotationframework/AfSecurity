@@ -1,3 +1,4 @@
+<%@ page import="org.mindinformatics.ann.framework.module.security.utils.GroupUtils" %>
 <div id="request" class="sectioncontainer">
 <div class="dialog">
 	<div class="title">Groups List - total# ${groups.size()}</div>
@@ -39,7 +40,7 @@
 		     		<td><g:formatDate format="MM/dd/yyyy hh:mm" date="${group.dateCreated}"/></td>
 		     		<td><g:formatDate format="MM/dd/yyyy hh:mm" date="${group.lastUpdated}"/></td>
 		     		<td>
-			     		${group.statusLabel}
+			     		${GroupUtils.getStatusLabel(group)}
 		     		</td>
 		     		<td>
 		     			<g:each in="${groupsCount}" var="groupCount">
@@ -65,23 +66,23 @@
 								<span class="button">
 									<g:actionSubmit class="edit" action="editGroup" value="${message(code: 'default.button.edit.account.label', default: 'Edit')}" />
 								</span>
-								<g:if test="${group.status == 'G_LOCKED'}">
+								<g:if test="${GroupUtils.getStatusValue(group) == 'G_LOCKED'}">
 									<span class="button">
 										<g:actionSubmit class="unlock" action="unlockGroup" value="${message(code: 'default.button.unlock.account.label', default: 'Unlock')}" />
 									</span>
 								</g:if>
-								<g:elseif test="${group.status != 'G_LOCKED'}">
+								<g:elseif test="${GroupUtils.getStatusValue(group) != 'G_LOCKED'}">
 									<span class="button">
 										<g:actionSubmit class="lock" action="lockGroup" value="${message(code: 'default.button.lock.account.label', default: 'Lock')}"
 										onclick="return confirm('${message(code: 'default.button.lock.account.confirm.message', default: 'Are you sure you want to lock the group: '+group.shortName+' ?')}');" />
 									</span>
 								</g:elseif>
-								<g:if test="${group.status == 'G_DISABLED'}">
+								<g:if test="${GroupUtils.getStatusValue(group) == 'G_DISABLED'}">
 									<span class="button">
 										<g:actionSubmit class="enable" action="enableGroup" value="${message(code: 'default.button.enable.account.label', default: 'Enable')}" />
 									</span>
 								</g:if>
-								<g:elseif test="${group.status != 'G_DISABLED'}">
+								<g:elseif test="${GroupUtils.getStatusValue(group) != 'G_DISABLED'}">
 									<span class="button">
 										<g:actionSubmit class="disable" action="disableGroup" value="${message(code: 'default.button.disable.account.label', default: 'Disable')}" 
 											onclick="return confirm('${message(code: 'default.button.disable.account.confirm.message', default: 'Are you sure you want to disable the group: '+group.shortName+' ?')}');" />

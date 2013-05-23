@@ -20,6 +20,8 @@
  */
 package org.mindinformatics.ann.framework.module.security.groups
 
+import java.util.Date;
+
 
 /**
 * @author Paolo Ciccarese <paolo.ciccarese@gmail.com>
@@ -38,6 +40,8 @@ class Group {
 	 
 	int membersCounter;
 
+	Date dateCreated, lastUpdated
+	
 	/*
 	String getStatus() {
 		return GroupUtils.getStatusValue(this);
