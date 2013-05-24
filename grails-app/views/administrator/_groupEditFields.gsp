@@ -5,6 +5,7 @@ Parameters list
 Stylesheet
  1) fieldError | background and font color in erroneous text fields
 --%>
+<%@ page import="org.mindinformatics.ann.framework.module.security.utils.GroupUtils" %>
 <%@ page import="org.mindinformatics.ann.framework.module.security.utils.DefaultGroupStatus" %>
 <%@ page import="org.mindinformatics.ann.framework.module.security.utils.DefaultGroupPrivacy" %>
 <tr>
@@ -102,17 +103,17 @@ Stylesheet
 							<g:radio name="status" value="${DefaultGroupStatus.ACTIVE.value()}" checked="checked"/> Enabled
 						</g:if>
 						<g:else>
-							<g:if test="${item.status==DefaultGroupStatus.ACTIVE.value()}">
+							<g:if test="${GroupUtils.getStatusValue(item)==DefaultGroupStatus.ACTIVE.value()}">
 								<g:radio name="status" value="${DefaultGroupStatus.ACTIVE.value()}" checked="checked"/> Enabled
 								<g:radio name="status" value="${DefaultGroupStatus.LOCKED.value()}"/> Locked
 								<g:radio name="status" value="${DefaultGroupStatus.DISABLED.value()}"/> Disabled
 							</g:if>
-							<g:elseif test="${item.status==DefaultGroupStatus.LOCKED.value()}">
+							<g:elseif test="${GroupUtils.getStatusValue(item)==DefaultGroupStatus.LOCKED.value()}">
 								<g:radio name="status" value="${DefaultGroupStatus.ACTIVE.value()}"/> Enabled
 								<g:radio name="status" value="${DefaultGroupStatus.LOCKED.value()}" checked="checked"/> Locked
 								<g:radio name="status" value="${DefaultGroupStatus.DISABLED.value()}"/> Disabled
 							</g:elseif>
-							<g:elseif test="${item.status==DefaultGroupStatus.DISABLED.value()}">
+							<g:elseif test="${GroupUtils.getStatusValue(item)==DefaultGroupStatus.DISABLED.value()}">
 								<g:radio name="status" value="${DefaultGroupStatus.ACTIVE.value()}"/> Enabled
 								<g:radio name="status" value="${DefaultGroupStatus.LOCKED.value()}"/> Locked
 								<g:radio name="status" value="${DefaultGroupStatus.DISABLED.value()}" checked="checked"/> Disabled

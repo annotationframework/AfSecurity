@@ -577,4 +577,43 @@ public class DashboardController {
 			
 		redirect(action:'showUser', params: [id: params.user]);
 	}
+	
+	def editGroup = {
+		def group = Group.findById(params.id)
+		render (view:'editGroup', model:[item: group, action: "edit"])
+	}
+
+	def updateGroup = { GroupEditCommand groupEditCmd ->
+		if(groupEditCmd.hasErrors()) {
+			/* groupCreateCmd.errors.allErrors.each { println it } */
+			render(view:'editGroup', model:[item:groupCreateCmd])
+		} else {
+			def group = Group.findById(params.id)
+			group.name = groupEditCmd.name
+			group.shortName = groupEditCmd.shortName
+			group.description = groupEditCmd.description
+
+			if(groupEditCmd.privacy.equals(DefaultGroupPrivacy.PRIVATE.value())) {
+				group.privacy = GroupPrivacy.findByValue(DefaultGroupPrivacy.PRIVATE.value());
+			} else if(groupEditCmd.privacy.equals(DefaultGroupPrivacy.RESTRICTED.value())) {
+				group.privacy = GroupPrivacy.findByValue(DefaultGroupPrivacy.RESTRICTED.value());
+			} else if(groupEditCmd.privacy.equals(DefaultGroupPrivacy.PUBLIC.value())) {
+				group.privacy = GroupPrivacy.findByValue(DefaultGroupPrivacy.PUBLIC.value());
+			}
+
+			if(groupEditCmd.status.equals(DefaultGroupStatus.ACTIVE.value())) {
+				group.enabled = true
+				group.locked = false
+			} else if(groupEditCmd.status.equals(DefaultGroupStatus.DISABLED.value())) {
+				group.enabled = false
+				group.locked = false
+			} else if(groupEditCmd.status.equals(DefaultGroupStatus.LOCKED.value())) {
+				group.enabled = true
+				group.locked = true
+			}
+
+			render (view:'showGroup', model:[item: group,
+				appBaseUrl: request.getContextPath()])
+		}
+	}
 }
