@@ -27,8 +27,11 @@ Stylesheet
 				</div>
 			</div>
 			<div>
-			<g:link action="manageUsersOfGroup" id="${item.id}">Manage Users</g:link>
-			
+				<span class="button">
+					<g:link class="edit" action="manageUsersOfGroup" id="${item.id}">
+						<img src="${resource(dir: 'images/dashboard', file: 'edit_group.png')}" alt="Manage Groups" style="display: inline" />Manage Users
+					</g:link>
+				</span>
 			</div>
 		</fieldset> 
 	</div>

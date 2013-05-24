@@ -1,7 +1,7 @@
 <%@ page import="org.mindinformatics.ann.framework.module.security.utils.GroupUtils" %>
 <div id="request" class="sectioncontainer">
 <div class="dialog">
-	<div class="title">Groups List - total# ${groups.size()}</div>
+	<div class="title"><img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'groups.png',plugin:'users-module')}"/> Groups List - total# ${groups.size()}</div>
 
 <div class="list">
 	<g:set var="g" value="${group}"/>

@@ -147,12 +147,12 @@
 		  			  	
 	  	</script>
 	  	    	<g:if test="${fieldValue(bean: item, field: 'displayName') == ''}">
-          	<div class="title">User Information </div>
+          	<div class="title"><img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'user.png',plugin:'users-module')}"/>User Information </div>
 		</g:if>
 		<g:else>
-			<div class="title">${user?.displayName}</div>
+			<div class="title"><img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'user.png',plugin:'users-module')}"/> ${user?.displayName}</div>
 		</g:else>
-		<table class="simpleTable">
+		<table class="simpleTableNoBorder"> 
 			<tr>
 				<td valign="top" width="400px"><g:render template="/administrator/showUser" /></td>
 				<td valign="top">

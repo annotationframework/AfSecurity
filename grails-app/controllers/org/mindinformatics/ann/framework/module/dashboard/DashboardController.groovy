@@ -32,6 +32,7 @@ import org.mindinformatics.ann.framework.module.security.utils.DefaultGroupPriva
 import org.mindinformatics.ann.framework.module.security.utils.DefaultGroupRoles
 import org.mindinformatics.ann.framework.module.security.utils.DefaultGroupStatus
 import org.mindinformatics.ann.framework.module.security.utils.DefaultUsersRoles
+import org.mindinformatics.ann.framework.module.security.utils.GroupUtils
 import org.mindinformatics.ann.framework.module.security.utils.UserStatus
 import org.mindinformatics.ann.framework.module.security.utils.UserUtils
 
@@ -423,7 +424,7 @@ public class DashboardController {
 		def groupsStatus = [:]
 		Group.list().each { agroup ->
 			groupsCount.put (agroup.id, UserGroup.findAllWhere(group: agroup).size())
-			groupsStatus.put (agroup.id, agroup.status)
+			groupsStatus.put (agroup.id, GroupUtils.getStatusLabel(agroup))
 		}
 
 		// Search with no ordering
@@ -475,7 +476,7 @@ public class DashboardController {
 		def groupsResults = []
 		groups.each { groupItem ->
 			def groupResult = [id:groupItem.id, name:groupItem.name, shortName: groupItem.shortName,
-						description: groupItem.description, status: groupItem.statusLabel, dateCreated: groupItem.dateCreated]
+						description: groupItem.description, status: GroupUtils.getStatusLabel(groupItem), dateCreated: groupItem.dateCreated]
 			groupsResults << groupResult
 		}
 

@@ -11,7 +11,7 @@ Stylesheet
 <div class="dialog" >
 	<fieldset>
     	<legend>Group Profile </legend>
-		<table style="width: 460px" class="simpleTable">
+		<table class="simpleTable" style="width: 460px; border: 5px solid #fff;">
 			<tbody>
 				<tr>
 					<td valign="top" width="80px"  align="left">

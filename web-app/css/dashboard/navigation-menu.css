@@ -6,6 +6,12 @@
 	min-height: 400px;
 }
 
+#navcontainer h3 { 
+	background-color: #666;
+	color: #fff;
+	padding: 5px;
+}
+
 #navcontainer ul {
 	font-size: 12px;
 	margin-left: 0;
@@ -22,16 +28,20 @@
 	color: #FFCC66;
 }
 
+#navcontainer #navlist {
+	padding-bottom: 8px;	
+}
+
 #navcontainer a {
 	display: block;
 	padding: 4px;
 	width: 225px;
-	background-color: #036;
+	background-color: #eee;
 	border-bottom: 1px solid #eee;
 }
 
 #navcontainer a:link, #navlist a:visited {
- 	color: #EEE;
+ 	color: #666;
  	text-decoration: none;
 }
 

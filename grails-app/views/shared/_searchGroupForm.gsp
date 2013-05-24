@@ -6,7 +6,7 @@
 	     <g:hiddenField name="id" value="${item?.id}" />
 		<div class="dialog" >
 		<div class="title">
-		Groups Search
+		<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'search.png')}"/> Groups Search
 	</div>
 	           	<%-- 
 				<table>
@@ -43,7 +43,7 @@
 						</tr>
 					</tbody>	
 				</table>
-</div>
+		</div>
 		</div>
 	</g:formRemote>
 </div>

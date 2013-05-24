@@ -26,14 +26,14 @@ Stylesheet
 			   		<g:paginate total="1" />
 				</div>
 			</div>
-			<div>
-			<span class="button">
-				<g:link class="edit" controller="adminDashboard" action="manageUserGroups"  id="${user.id}" style="text-decoration: none;"><img src="${resource(dir: 'images/dashboard', file: 'edit_group.png')}" alt="Manage Groups" />Manage Groups</g:link>
-			</span>
-			&nbsp;
-			<span class="button">
-				<g:link controller="adminDashboard" action="addUserGroups" id="${user.id}" style="text-decoration: none;"><img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Groups" />Add Groups</g:link>
-			</span>
+				<div>
+				<span class="button">
+					<g:link class="edit" controller="adminDashboard" action="manageUserGroups"  id="${user.id}" style="text-decoration: none;"><img src="${resource(dir: 'images/dashboard', file: 'edit_group.png')}" alt="Manage Groups" style="display: inline" />Manage Groups</g:link>
+				</span>
+				&nbsp;
+				<span class="button">
+					<g:link controller="adminDashboard" action="addUserGroups" id="${user.id}" style="text-decoration: none;"><img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Groups" style="display: inline" />Add Groups</g:link>
+				</span>
 			</div>
 		</fieldset> 
 	</div>

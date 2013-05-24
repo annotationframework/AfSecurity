@@ -24,15 +24,16 @@ em{color: red;}
 }
 
 #contentcolumn{
-	margin-left: 242px; /*Set left margin to LeftColumnWidth*/
+	margin-left: 262px; /*Set left margin to LeftColumnWidth*/
+	margin-right: 10px;
 }
 
 #leftcolumn{
 	float: left;
-	width: 242px; /*Width of left column*/
+	width: 262px; /*Width of left column*/
 	background: #fff;
 	margin-left: -100%;
-	border-right: 3px #336699 solid;
+	border-right: 0px #336699 solid;
 }
 
 #footer{

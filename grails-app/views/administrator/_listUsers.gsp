@@ -6,7 +6,7 @@
 <div id="request" class="sectioncontainer">
 <div class="dialog">
 	<div class="title">
-		Users <g:if test="${role!=null}">(with Role: ${role.label})</g:if> List - total# ${usersTotal}
+		<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'user.png')}"/> Users <g:if test="${role!=null}">(with Role: ${role.label})</g:if> List - total# ${usersTotal}
 	</div>
 	<div class="list">
 	<table class="tablelist">

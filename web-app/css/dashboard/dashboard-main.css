@@ -237,11 +237,12 @@ td a:link, th a:visited {
 
 .title {
 	padding: 15px;
-	padding-left: 10px;
+	padding-left: 15px;
 	font-size: 18px;
 	font-weight: bold;	
 	background-color: #666;
 	color: #fff;
+	vertical-align: middle;
 	/*border-bottom: 3px #036 solid;*/
 }
 
@@ -296,6 +297,14 @@ td a:link, th a:visited {
 	padding: 5px;
 	background-color: red;	
 	color: white;
+}
+
+table.simpleTableNoBorder {
+	border:0;
+}
+
+table.simpleTableNoBorder td {
+	border:0;
 }
 
 table.simpleTable td {

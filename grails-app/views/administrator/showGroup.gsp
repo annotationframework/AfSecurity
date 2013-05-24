@@ -140,9 +140,9 @@
           	<div class="title">Group Information </div>
 		</g:if>
 		<g:else>
-			<div class="title">${item?.name}</div>
+			<div class="title"><img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'groups.png',plugin:'users-module')}"/> Group: ${item?.name}</div>
 		</g:else>
-		<table>
+		<table class="simpleTableNoBorder">
 			<tr>
 				<td valign="top"><g:render template="/administrator/showGroup" /></td>
 				<td valign="top">

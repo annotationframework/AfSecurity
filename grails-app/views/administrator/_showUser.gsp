@@ -7,10 +7,10 @@ Stylesheet
  1) fieldError | background and font color in erroneous text fields
 --%>
 <div class="sectioncontainer">
-<div class="dialog" >
+<div class="dialog">
     <fieldset>
     	<legend>User Profile </legend>
-		<table>
+		<table class="simpleTable" style="border: 5px solid #fff;">
 			<tbody>
 				<tr class="sprop">
 					<td valign="top" colspan="2"  style="horizontal-align:center;">

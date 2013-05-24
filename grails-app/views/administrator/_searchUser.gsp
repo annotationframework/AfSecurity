@@ -6,8 +6,8 @@
 	     
 	    <div class="dialog" >
 	    <div class="title">
-		User Search
-	</div>
+		<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'search.png')}"/> Users Search
+		</div>
 	    <div style="padding-left: 5px; padding-top: 10px;">
 			<table style="width:840px; border: 1px #ddd solid;" class="simpleTable">
 				<tbody>     
