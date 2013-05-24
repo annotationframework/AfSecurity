@@ -23,6 +23,7 @@ package org.mindinformatics.ann.framework.module.dashboard
 
 import grails.converters.JSON
 
+import org.mindinformatics.ann.framework.module.security.groups.Group
 import org.mindinformatics.ann.framework.module.security.groups.UserGroup
 import org.mindinformatics.ann.framework.module.security.users.User
 
@@ -52,5 +53,16 @@ class AjaxDashboardController {
 		userGroups = UserGroup.findAllByUser(user)
 		JSON.use("deep")
 		render userGroups as JSON;
+	}
+	
+	def groupUsers = {
+		return getGroupUsers(Group.findById(params.id));
+	}
+	
+	def getGroupUsers(def group) {
+		def groupUsers = []
+		groupUsers = UserGroup.findAllByGroup(group)
+		JSON.use("deep")
+		render groupUsers as JSON;
 	}
 }
