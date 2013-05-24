@@ -31,7 +31,7 @@ class UserGroup implements Serializable {
 
 	User user
 	Group group
-	GroupStatus status
+	UserStatusInGroup status
 	
 	Date dateCreated, lastUpdated // Grails automatic timestamping
 	

@@ -24,13 +24,16 @@ import grails.converters.JSON
 
 import org.mindinformatics.ann.framework.module.security.groups.Group
 import org.mindinformatics.ann.framework.module.security.groups.GroupPrivacy
+import org.mindinformatics.ann.framework.module.security.groups.GroupRole
 import org.mindinformatics.ann.framework.module.security.groups.UserGroup
+import org.mindinformatics.ann.framework.module.security.groups.UserStatusInGroup
 import org.mindinformatics.ann.framework.module.security.users.Role
 import org.mindinformatics.ann.framework.module.security.users.User
 import org.mindinformatics.ann.framework.module.security.users.UserRole
 import org.mindinformatics.ann.framework.module.security.utils.DefaultGroupPrivacy
 import org.mindinformatics.ann.framework.module.security.utils.DefaultGroupRoles
 import org.mindinformatics.ann.framework.module.security.utils.DefaultGroupStatus
+import org.mindinformatics.ann.framework.module.security.utils.DefaultUserStatusInGroup
 import org.mindinformatics.ann.framework.module.security.utils.DefaultUsersRoles
 import org.mindinformatics.ann.framework.module.security.utils.GroupUtils
 import org.mindinformatics.ann.framework.module.security.utils.UserStatus
@@ -550,5 +553,28 @@ public class DashboardController {
 			user.accountExpired = false
 			user.accountLocked = true
 		}
+	}
+
+	def addUserGroups = {
+		def user = User.findById(params.id)
+		render (view:'addUserGroups', model:["menuitem" : "searchGroup", 'user': user,
+			appBaseUrl: request.getContextPath()]);
+	}
+	
+	def enrollUserInGroup = {
+		def user = User.findById(params.user)
+		def group = Group.findById(params.group)
+		
+		def ug = new UserGroup(user:user, group:group,
+			status: UserStatusInGroup.findByValue(DefaultUserStatusInGroup.ACTIVE.value()));
+		
+		if(!ug.save(flush: true)) {
+			ug.errors.allErrors.each { println it }
+		} else {
+			ug.roles = []
+			ug.roles.add GroupRole.findByAuthority(DefaultGroupRoles.USER.value())
+		}
+			
+		redirect(action:'showUser', params: [id: params.user]);
 	}
 }
