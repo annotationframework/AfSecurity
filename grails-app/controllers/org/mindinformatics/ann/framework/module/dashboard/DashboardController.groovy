@@ -27,6 +27,7 @@ import org.mindinformatics.ann.framework.module.security.groups.GroupPrivacy
 import org.mindinformatics.ann.framework.module.security.groups.GroupRole
 import org.mindinformatics.ann.framework.module.security.groups.UserGroup
 import org.mindinformatics.ann.framework.module.security.groups.UserStatusInGroup
+import org.mindinformatics.ann.framework.module.security.systems.SystemApi
 import org.mindinformatics.ann.framework.module.security.users.Role
 import org.mindinformatics.ann.framework.module.security.users.User
 import org.mindinformatics.ann.framework.module.security.users.UserRole
@@ -271,6 +272,52 @@ public class DashboardController {
 			
 			redirect (action:'showUser',id: user.id, model: [
 						msgSuccess: 'Passowrd saved successfully']);
+		}
+	}
+	
+	def listSystems = {
+		if (!params.max) params.max = 15
+		if (!params.offset) params.offset = 0
+		if (!params.sort) params.sort = "systemsCount"
+		if (!params.order) params.order = "asc"
+
+		def results = usersUtilsService.listSystems(params.max, params.offset, params.sort, params.order);
+
+		render (view:'listSystems', model:["systems" : results[0], "systemsTotal": SystemApi.count(), "systemsCount": results[1], "menuitem" : "listSystems",
+			appBaseUrl: request.getContextPath()])
+	}
+	
+	def showSystem = {
+		def system = SystemApi.findById(params.id)
+		render (view:'showSystem', model:[item: system,
+			appBaseUrl: request.getContextPath()])
+	}
+	
+	def createSystem = {
+		render (view:'createSystem',  model:[action: "create", "menuitem" : "createGroup"]);
+	}
+
+	def saveSystem = {SystemApiCreateCommand systemCreateCmd->
+		if(systemCreateCmd.hasErrors()) {
+			systemCreateCmd.errors.allErrors.each { println it }
+			render(view:'createUser', model:[item:systemCreateCmd])
+		} else {
+			def system = systemCreateCmd.createSystem()
+			if(system)  {
+				if(!system.save()) {
+					// Failure in saving
+					system.errors.allErrors.each { println it }
+					render(view:'/administrator/createSystem', model:[item:systemCreateCmd,
+								msgError: 'The system has not been saved successfully'])
+				} else {
+					redirect (action:'showSystem', id: system.id, model: [
+								msgSuccess: 'System saved successfully']);
+				}
+			} else {
+				// User already existing
+				render(view:'/administrator/createSystem', model:[item:systemCreateCmd,
+							msgError: 'A system with this name is already existing'])
+			}
 		}
 	}
 	
@@ -578,6 +625,19 @@ public class DashboardController {
 		redirect(action:'showUser', params: [id: params.user]);
 	}
 	
+	def manageUserGroups = {
+		def user = User.findById(params.id)
+		
+		if (!params.max) params.max = 15
+		if (!params.offset) params.offset = 0
+		if (!params.sort) params.sort = "name"
+		if (!params.order) params.order = "asc"
+
+		def results = usersUtilsService.listUserGroups(user, params.max, params.offset, params.sort, params.order);
+
+		render (view:'manageUserGroups', model:["usergroups" : results, "groupsTotal": Group.count(), "menuitem" : "listGroups", "user": user])
+	}
+	
 	def editGroup = {
 		def group = Group.findById(params.id)
 		render (view:'editGroup', model:[item: group, action: "edit"])
@@ -615,5 +675,118 @@ public class DashboardController {
 			render (view:'showGroup', model:[item: group,
 				appBaseUrl: request.getContextPath()])
 		}
+	}
+	
+	def editUserRoleInGroup = {
+		def user = User.findById(params.user)
+		def group = Group.findById(params.id)
+		
+		def ug = UserGroup.findByUserAndGroup(user, group)
+	
+		render (view:'editUserInGroup', model:[action: "edit", usergroup: ug, userRoles: GroupRole.list()])
+	}
+	
+	def updateUserInGroup = {
+		def user = User.findById(params.user)
+		def group = Group.findById(params.group)
+		
+		def ug = UserGroup.findByUserAndGroup(user, group)
+		ug.roles = []
+		
+		updateUserInGroupRole(ug, GroupRole.findByAuthority(DefaultGroupRoles.ADMIN.value()), params.Admin)
+		updateUserInGroupRole(ug, GroupRole.findByAuthority(DefaultGroupRoles.MANAGER.value()), params.Manager)
+		updateUserInGroupRole(ug, GroupRole.findByAuthority(DefaultGroupRoles.CURATOR.value()), params.Curator)
+		updateUserInGroupRole(ug, GroupRole.findByAuthority(DefaultGroupRoles.GUEST.value()), params.Guest)
+		updateUserInGroupRole(ug, GroupRole.findByAuthority(DefaultGroupRoles.USER.value()), params.User)
+		
+		if(params.Admin!='on' && params.Manager!='on' && params.Curator!='on' && params.Guest!='on'
+				 && params.User!='on') {
+			 updateUserInGroupRole(ug, GroupRole.findByAuthority(DefaultGroupRoles.GUEST.value()), 'on')
+		}
+		
+		if(params.redirect)
+			redirect(action:params.redirect, params: [id: params.user])
+		else
+			render (view:'/shared/showUser', model:[item: user])
+	}
+	
+	def updateUserInGroupRole(def userGroup, def role, def value) {
+		if(value=='on') {
+			userGroup.roles.add role
+		}
+	}
+	
+	def getUserRolesInGroup(def user) {
+		// UserInGroupRole (multiple roles are allowed)
+		def userRoles = []
+		def ur = UserRole.findAllByUser(user)
+		println ur
+		ur.each { userRoles.add(it.role)}
+		return userRoles
+	}
+	
+	def lockUserInGroup = {
+		def user = User.findById(params.user)
+		def group = Group.findById(params.id)
+		def usergroup = UserGroup.findByUserAndGroup(user, group);
+		if(usergroup!=null) {
+			usergroup.status = UserStatusInGroup.findByValue(DefaultUserStatusInGroup.LOCKED.value())
+		}
+		if(params.redirect)
+			redirect(action:params.redirect, params: [id: params.user])
+		else
+			render (view:'/shared/showUser', model:[item: user])
+	}
+	
+	def unlockUserinGroup = {
+		def user = User.findById(params.user)
+		def group = Group.findById(params.id)
+		def usergroup = UserGroup.findByUserAndGroup(user, group);
+		if(usergroup!=null) {
+			usergroup.status = UserStatusInGroup.findByValue(DefaultUserStatusInGroup.ACTIVE.value())
+		}
+		if(params.redirect)
+			redirect(action:params.redirect, params: [id: params.user])
+		else
+			render (view:'/shared/showUser', model:[item: user])
+	}
+	
+	def enableUserInGroup = {
+		def user = User.findById(params.user)
+		def group = Group.findById(params.id)
+		def usergroup = UserGroup.findByUserAndGroup(user, group);
+		if(usergroup!=null) {
+			usergroup.status = UserStatusInGroup.findByValue(DefaultUserStatusInGroup.ACTIVE.value())
+		}
+		if(params.redirect)
+			redirect(action:params.redirect, params: [id: params.user])
+		else
+			render (view:'/shared/showUser', model:[item: user])
+	}
+	
+	def disableUserInGroup = {
+		def user = User.findById(params.user)
+		def group = Group.findById(params.id)
+		def usergroup = UserGroup.findByUserAndGroup(user, group);
+		if(usergroup!=null) {
+			usergroup.status = UserStatusInGroup.findByValue(DefaultUserStatusInGroup.SUSPENDED.value())
+		}
+		if(params.redirect)
+			redirect(action:params.redirect, params: [id: params.user])
+		else
+			render (view:'/shared/showUser', model:[item: user])
+	}
+	
+	def removeUserFromGroup = {
+		def user = User.findById(params.user)
+		def group = Group.findById(params.id)
+		def usergroup = UserGroup.findByUserAndGroup(user, group);
+		if(usergroup!=null) {
+			usergroup.delete()
+		}
+		if(params.redirect)
+			redirect(action:params.redirect, params: [id: params.user])
+		else
+			render (view:'/shared/showUser', model:[item: user])
 	}
 }

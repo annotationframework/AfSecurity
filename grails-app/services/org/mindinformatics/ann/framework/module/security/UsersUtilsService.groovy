@@ -22,6 +22,8 @@ package org.mindinformatics.ann.framework.module.security
 
 import org.mindinformatics.ann.framework.module.security.groups.Group
 import org.mindinformatics.ann.framework.module.security.groups.UserGroup
+import org.mindinformatics.ann.framework.module.security.systems.SystemApi
+import org.mindinformatics.ann.framework.module.security.systems.UserSystemApi
 import org.mindinformatics.ann.framework.module.security.users.Role
 import org.mindinformatics.ann.framework.module.security.users.User
 import org.mindinformatics.ann.framework.module.security.users.UserRole
@@ -32,6 +34,86 @@ import org.mindinformatics.ann.framework.module.security.utils.GroupUtils
  * @author Paolo Ciccarese <paolo.ciccarese@gmail.com>
  */
 class UsersUtilsService {
+	
+	
+	def listUserGroups(def user, def _max, def _offset, def sort, def _order) {
+		
+		/*
+		def groups = [];
+		def groupsCount = [:]
+		def groupsStatus = [:]
+		Group.list().each { agroup ->
+			if(UserGroup.findByUserAndGroup(user, agroup)!=null) {
+				groupsCount.put (agroup.id, UserGroup.findAllWhere(group: agroup).size())
+				groupsStatus.put (agroup.id, agroup.status)
+				groups.add (agroup)
+			}
+		}
+
+		if (sort == 'groupsCount') {
+			groupsCount = groupsCount.sort{ a, b -> a.value <=> b.value }
+			if(_order == "desc")
+				groupsCount.each { groupCount ->
+					groups.add Group.findById(groupCount.key);
+				}
+			else
+				groupsCount.reverseEach { groupCount ->
+					groups.add Group.findById(groupCount.key);
+				}
+		} else if (sort == 'status') {
+			groupsStatus = groupsStatus.sort{ a, b -> a.value.compareTo(b.value) }
+			if(_order == "desc")
+				groupsStatus.each { groupStatus ->
+					groups.add Group.findById(groupStatus.key);
+				}
+			else
+				groupsStatus.reverseEach { groupStatus ->
+					groups.add Group.findById(groupStatus.key);
+				}
+		} else {
+		
+			groups = Group.withCriteria {
+				maxResults(_max?.toInteger())
+				firstResult(_offset?.toInteger())
+				order(sort, _order)
+			}
+		}
+		*/
+		
+		def userGroups = [];
+		UserGroup.createCriteria()
+		
+		def searchResult = UserGroup.createCriteria().list(
+			max:_max, offset:_offset) {
+				eq('user', user);
+		}
+		def allUserGroups = searchResult
+		
+		/*
+		def userGroups = [];
+		def groupsCount = [:]
+		def groupsStatus = [:]
+		def allUserGroups = UserGroup.findAllByUser(user);
+		allUserGroups.each { userGroup ->
+			groupsCount.put (userGroup.group, UserGroup.findAllWhere(group: userGroup.group).size())
+			groupsStatus.put (userGroup.group, userGroup.group.status)
+		}
+		
+		if (sort == 'groupsCount') {
+			groupsCount = groupsCount.sort{ a, b -> a.value <=> b.value }
+			if(_order == "desc")
+				groupsCount.each { groupCount ->
+					userGroups.add UserGroup.findByGroup(groupCount.key);
+				}
+			else
+				groupsCount.reverseEach { groupCount ->
+					userGroups.add UserGroup.findByGroup(groupCount.key);
+				}
+		}
+		*/
+		
+		allUserGroups
+	}
 
 	/**
 	 * Returns the list of all the users of the node with pagination
@@ -292,6 +374,49 @@ class UsersUtilsService {
 		}
 		
 		[groups, groupsCount]
+	}
+	
+	def listSystems(def max, def offset, def sort, def _order) {
+		
+		def systems = [];
+		def systemsCount = [:]
+		SystemApi.list().each { system ->
+			systemsCount.put (system.id, UserSystemApi.findAllWhere(system: system).size())
+		}
+		def systemsStatus = [:]
+		SystemApi.list().each { system ->
+			systemsStatus.put (system.id, system.enabled)
+		}
+		
+		if (sort == 'systemsCount') {
+			systemsCount = systemsCount.sort{ a, b -> a.value <=> b.value }
+			if(_order == "desc")
+				systemsCount.each { groupCount ->
+					systems.add SystemApi.findById(groupCount.key);
+				}
+			else
+				systemsCount.reverseEach { groupCount ->
+					systems.add SystemApi.findById(groupCount.key);
+				}
+		} else if (sort == 'status') {
+			systemsStatus = systemsStatus.sort{ a, b -> a.value.compareTo(b.value) }
+			if(_order == "desc")
+				systemsStatus.each { groupStatus ->
+					systems.add Group.findById(groupStatus.key);
+				}
+			else
+				systemsStatus.reverseEach { groupStatus ->
+					systems.add Group.findById(groupStatus.key);
+				}
+		} else {
+			systems = SystemApi.withCriteria {
+				maxResults(max?.toInteger())
+				firstResult(offset?.toInteger())
+				order(sort, _order)
+			}
+		}
+		
+		[systems, systemsCount]
 	}
 	
 	def listGroupUsers(def group, def _max, def _offset, def sort, def _order) {

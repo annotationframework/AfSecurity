@@ -68,7 +68,7 @@
 
 	<body>
 		<div class="title">User Profile Edit </div>
-		<table>
+		<table class="simpleTableNoBorder">
 			<tr>
 				<td valign="top"><g:render template="/shared/editUser" /></td>
 				<%-- td valign="top"><g:render template="/users/editUserGroups" /></td>--%>

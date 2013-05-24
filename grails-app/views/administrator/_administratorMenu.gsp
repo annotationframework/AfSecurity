@@ -1,6 +1,6 @@
 <div id="navcontainer">
 
-<h3>Users Management</h3>
+<h3>Manage Users</h3>
 <ul id="navlist">
 	<li id="active"><g:link controller="administrator" action="listUsers">List Users</g:link></li>
 	<li id="active"><g:link controller="administrator" action="listRoles">List Roles</g:link></li>
@@ -8,18 +8,25 @@
 	<li><g:link controller="administrator" action="createUser">Create User</g:link></li>
 </ul>
 
-<h3>Groups Management</h3>
+<h3>Manage Groups</h3>
 <ul id="navlist">
 	<li id="active"><g:link controller="administrator" action="listGroups">List Groups</g:link></li>
 	<li><g:link controller="administrator" action="searchGroup">Search Groups</g:link></li>
 	<li><g:link controller="administrator" action="createGroup">Create Group</g:link></li>
 </ul>
 
+<h3>Manage Systems</h3>
+<ul id="navlist">
+	<li id="active"><g:link controller="administrator" action="listSystems">List Systems</g:link></li>
+	<li><g:link controller="administrator" action="createSystem">Create System</g:link></li>
+</ul>
+
+<%--
 <h3>Moderation Queue</h3>
 <ul id="navlist">
 	<li><g:link controller="adminDashboard" action="pastAccountsRequests">Past Account Requests</g:link></li>
 	<li><g:link controller="adminDashboard" action="moderateAccountsRequests">Moderate Account Requests</g:link></li>
-	<%--<li><g:link controller="adminDashboard" action="activateUser">Groups Requests</g:link></li>--%>
+	<li><g:link controller="adminDashboard" action="activateUser">Groups Requests</g:link></li>
 </ul>
 
 <h3>Data dump</h3>
@@ -33,7 +40,7 @@
 <li><g:link controller="adminDashboard" action="generalProperties">General Properties</g:link></li>
 <li><g:link controller="adminDashboard" action="sendEmails">Global notification service</g:link></li>
 </ul>
-<%--
+
 <br/>
 <h3>Circles Management</h3>
 <ul id="navlist">

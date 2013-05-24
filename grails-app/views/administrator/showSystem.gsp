@@ -140,14 +140,14 @@
           	<div class="title">Group Information </div>
 		</g:if>
 		<g:else>
-			<div class="title"><img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'groups.png',plugin:'users-module')}"/> Group: ${item?.name}</div>
+			<div class="title"><img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'computer.png',plugin:'users-module')}"/> System Api: ${item?.name}</div>
 		</g:else>
 		<table class="simpleTableNoBorder">
 			<tr>
-				<td valign="top"><g:render template="/administrator/showGroup" /></td>
+				<td valign="top"><g:render template="/administrator/showSystem" /></td>
 				<td valign="top">
 					<%-- g:render template="/users/ajaxShowUserCommunities" / --%>
-    				<g:render template="/shared/ajaxShowGroupUsers" />
+    				<%--<g:render template="/shared/ajaxShowGroupUsers" />--%>
     				<%-- g:render template="/users/ajaxShowUserCircles" / --%>
 				</td>
 			</tr>

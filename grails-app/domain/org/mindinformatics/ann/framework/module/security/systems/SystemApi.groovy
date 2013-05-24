@@ -20,13 +20,15 @@
  */
 package org.mindinformatics.ann.framework.module.security.systems
 
+import java.util.Date;
+
 import grails.validation.Validateable
 
 /**
 * @author Paolo Ciccarese <paolo.ciccarese@gmail.com>
 */
 @Validateable
-class System {
+class SystemApi {
 
 	String id;
 	String apikey;
@@ -37,20 +39,8 @@ class System {
 	boolean enabled
 	
 	int membersCounter;
-
-	/*
-	String getStatus() {
-		return GroupUtils.getStatusValue(this);
-	}
 	
-	String getStatusUuid() {
-		return GroupUtils.getStatusUuid(this);
-	}
-	
-	String getStatusLabel() {
-		return GroupUtils.getStatusLabel(this);
-	}
-	*/
+	Date dateCreated, lastUpdated
 	
 	String getUri() {
 		return "urn:group:uuid:"+id;
