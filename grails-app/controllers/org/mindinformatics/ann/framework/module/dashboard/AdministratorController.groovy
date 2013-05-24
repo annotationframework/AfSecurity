@@ -122,13 +122,13 @@ public class AdministratorController extends DashboardController {
 			user.country = userEditCmd.country
 			
 
-			updateUserRole(user, Role.findByAuthority(DefaultRoles.ADMIN.value()), params.Administrator)
-			updateUserRole(user, Role.findByAuthority(DefaultRoles.MANAGER.value()), params.Manager)
-			updateUserRole(user, Role.findByAuthority(DefaultRoles.USER.value()), params.User)
+			updateUserRole(user, Role.findByAuthority(DefaultUsersRoles.ADMIN.value()), params.Administrator)
+			updateUserRole(user, Role.findByAuthority(DefaultUsersRoles.MANAGER.value()), params.Manager)
+			updateUserRole(user, Role.findByAuthority(DefaultUsersRoles.USER.value()), params.User)
 
 			updateUserStatus(user, params.status)
 
-			render (view:'showUser', model:[item: user, userRoles: getUserRoles(user),
+			render (view:'showUser', model:[user: user, userRoles: getUserRoles(user),
 				appBaseUrl: request.getContextPath()])
 		}
 	}

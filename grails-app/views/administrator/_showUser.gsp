@@ -107,8 +107,7 @@ Stylesheet
 					</td>
 					<td valign="top" colspan="2" align="left">
 						<div>
-							${UserUtils.getStatusLabel(user)}
-							
+							${UserUtils.getStatusLabel(user)}						
 						</div>
 					</td>
 				</tr>
