@@ -38,6 +38,7 @@
 					<g:sortableColumn property="isUser" title="${message(code: 'agentPerson.id.label', default: 'Usr')}" />
 					<g:sortableColumn property="createdOn" title="${message(code: 'agentPerson.id.label', default: 'Member Since')}" />
 					<g:sortableColumn property="status" title="${message(code: 'agentPerson.id.label', default: 'Status')}" />
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody id="content">

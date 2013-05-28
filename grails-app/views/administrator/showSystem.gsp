@@ -144,44 +144,6 @@
 		  				$('#usersContent').html('<tr><td colspan="3">No users</td></tr>');
 			  		}	  			
 			  	});
-
-			  	/*
-			  	$.ajax({
-			  		type: "GET",
-			  		url: "${appBaseUrl}/ajaxDashboard/systemUsers",
-			  	  	context: $("#usersContent"),
-			  	  	data: dataToSend,
-			  	    dataType:'json',
-			  	    contentType: 'application/json; charset=utf-8',
-			  	}).done(function( data ) {
-		  			if(data.length>0) {
-		  				var label = data.length == 1 ? data.length + ' User' : data.length + ' Users';
-		  				$("#usersTitle").html("<b>"+label+"</b>");
-			  			$.each(data, function(i,item){
-			  				$('#usersContent').append('<tr><td><a href="${request.getContextPath()}/administrator/showUser/' + 
-					  				item.user.id + '">' + item.user.displayName + '</a></td><td>' + 
-					  				item.user.email + '</td><td>'+ item.dateCreated + '</td></tr>');
-			  		    });
-		  			} else {
-		  				$('#usersContent').html('<tr><td colspan="3">No users</td></tr>');
-			  		}	  			
-			  	});
-			  	
-				$.ajax({
-			  	  	url: "/UsersManagement/usersAjax/userCircles",
-			  	  	context: $("#circlesContent"),
-			  	  	data: dataToSend,
-			  	  	success: function(data){
-						$("#circlesSpinner").css("display","none");
-						var label = data.length == 1 ? data.length + ' Circle' : data.length + ' Circles';
-						$("#circlesTitle").text(label);
-						$.each(data, function(i,item){
-			  				$('#circlesTable').append('<tr><td><a href="http://tochange.org/' + item.circle.id + '">' + item.circle.name 
-					  				+ '</a></td><td>' + item.role.label + '</td><td>' + item.dateCreated + '</td></tr>');
-			  		    });
-				  	}
-			  	});
-			  	*/
 		  	});
 
 		  
@@ -202,10 +164,6 @@
 					<g:render template="/shared/ajaxShowSystemAdministrators" /><br/>
 					<div>Has access to <span id="groupsTitle" style="display: inline;"></span></div>
     				<g:render template="/shared/ajaxShowSystemGroups" /><br/>
-    				<%-- 
-    				<div>Accessible Users</div>
-    				<g:render template="/shared/ajaxShowSystemUsers" />
-    				--%>
 				</td>
 			</tr>
 		</table>

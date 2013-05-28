@@ -767,6 +767,12 @@ public class DashboardController {
 			user.accountLocked = true
 		}
 	}
+	
+	def addGroupUsers = {
+		def group = Group.findById(params.id)
+		render (view:'addGroupUsers', model:["menuitem" : "searchGroup", 'group': group,
+			appBaseUrl: request.getContextPath()]);
+	}
 
 	def addUserGroups = {
 		def user = User.findById(params.id)
