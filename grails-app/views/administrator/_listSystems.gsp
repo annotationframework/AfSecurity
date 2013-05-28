@@ -15,7 +15,7 @@
 				<g:sortableColumn property="dateCreated" title="${message(code: 'agentPerson.id.label', default: 'Created on')}" />
 				<g:sortableColumn property="lastUpdated" title="${message(code: 'agentPerson.id.label', default: 'Last updated')}" />
 				<g:sortableColumn property="status" title="${message(code: 'agentPerson.id.label', default: 'Status')}" />
-				<g:sortableColumn property="groupsCount" title="${message(code: 'agentPerson.id.label', default: '#Owners')}" />
+				<g:sortableColumn property="groupsCount" title="${message(code: 'agentPerson.id.label', default: '#Admins')}" />
 				<th>Actions</th>
 			</tr>
 		</thead>

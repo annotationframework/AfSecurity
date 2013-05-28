@@ -33,12 +33,12 @@ Stylesheet
 			<div>
 				<span class="button">
 					<g:link class="edit"  controller="administrator" action="manageUsersOfGroup" id="${item.id}" style="text-decoration: none;">
-						<img src="${resource(dir: 'images/dashboard', file: 'edit_group.png')}" alt="Manage Groups" style="display: inline" />Manage System Users
+						<img src="${resource(dir: 'images/dashboard', file: 'edit_group.png')}" alt="Manage Groups" style="display: inline" />Manage System Administrators
 					</g:link>
 					&nbsp;
 					<span class="button">
 						<g:link controller="administrator" action="addSystemUsers" id="${item.id}" style="text-decoration: none;">
-						<img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Users" style="display: inline" />Add System Users</g:link>
+						<img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Users" style="display: inline" />Add System Administrators</g:link>
 					</span>
 				</span>
 			</div>

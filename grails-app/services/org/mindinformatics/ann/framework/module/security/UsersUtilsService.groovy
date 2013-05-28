@@ -382,7 +382,7 @@ class UsersUtilsService {
 		def systems = [];
 		def systemsCount = [:]
 		SystemApi.list().each { system ->
-			systemsCount.put (system.id, system.groups.size())
+			systemsCount.put (system.id, UserSystemApi.findAllWhere(system: system).size())
 		}
 		def systemsStatus = [:]
 		SystemApi.list().each { system ->

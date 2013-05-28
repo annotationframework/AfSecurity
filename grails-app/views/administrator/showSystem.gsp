@@ -175,6 +175,8 @@
 			<tr>
 				<td valign="top"><g:render template="/administrator/showSystem" /></td>
 				<td valign="top">
+					<div>It's administered by <span id="managersTitle" style="display: inline;"></span></div>
+					<g:render template="/shared/ajaxShowSystemAdministrators" /><br/>
 					<div>Has access to <span id="groupsTitle" style="display: inline;"></span></div>
     				<g:render template="/shared/ajaxShowSystemGroups" /><br/>
     				<%-- 
