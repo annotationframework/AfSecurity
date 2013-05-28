@@ -26,6 +26,7 @@ import grails.converters.JSON
 import org.mindinformatics.ann.framework.module.security.groups.Group
 import org.mindinformatics.ann.framework.module.security.groups.UserGroup
 import org.mindinformatics.ann.framework.module.security.systems.SystemApi
+import org.mindinformatics.ann.framework.module.security.systems.UserSystemApi
 import org.mindinformatics.ann.framework.module.security.users.User
 
 
@@ -78,6 +79,14 @@ class AjaxDashboardController {
 		
 		JSON.use("deep")
 		render system.groups as JSON;
+	}
+	
+	def systemAdministrators = {
+		def system = SystemApi.findById(params.id)
+		def userSystem = UserSystemApi.findAllBySystem(system);
+		
+		JSON.use("deep")
+		render userSystem as JSON;
 	}
 	
 	def systemUsers = {

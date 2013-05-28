@@ -122,6 +122,29 @@
 			  		}	  			
 			  	});
 
+				$.ajax({
+			  		type: "GET",
+			  		url: "${appBaseUrl}/ajaxDashboard/systemAdministrators",
+			  	  	context: $("#usersContent"),
+			  	  	data: dataToSend,
+			  	    dataType:'json',
+			  	    contentType: 'application/json; charset=utf-8',
+			  	}).done(function( data ) {
+		  			if(data.length>0) {
+		  				var label = data.length == 1 ? data.length + ' User' : data.length + ' Users';
+		  				$("#usersTitle").html("<b>"+label+"</b>");
+		  				$('#usersContent').html('');
+			  			$.each(data, function(i,item){
+			  				$('#usersContent').append('<tr><td><a href="${request.getContextPath()}/administrator/showUser/' + 
+					  				item.id + '">' + item.name + '</a></td><td>' + 
+					  				(item.enabled?"enabled":"disabled") + '</td><td>-</td></tr>');
+			  		    });
+		  			} else {
+		  				$("#usersTitle").html("<b>0 Users</b>");
+		  				$('#usersContent').html('<tr><td colspan="3">No users</td></tr>');
+			  		}	  			
+			  	});
+
 			  	/*
 			  	$.ajax({
 			  		type: "GET",
@@ -175,7 +198,7 @@
 			<tr>
 				<td valign="top"><g:render template="/administrator/showSystem" /></td>
 				<td valign="top">
-					<div>It's administered by <span id="managersTitle" style="display: inline;"></span></div>
+					<div>It's administered by <span id="usersTitle" style="display: inline;"></span></div>
 					<g:render template="/shared/ajaxShowSystemAdministrators" /><br/>
 					<div>Has access to <span id="groupsTitle" style="display: inline;"></span></div>
     				<g:render template="/shared/ajaxShowSystemGroups" /><br/>

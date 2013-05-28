@@ -8,7 +8,6 @@ Stylesheet
 <div class="sectioncontainer">
 	<div class="dialog" style="width: 660px">
 		<fieldset>
-			<legend><span id="usersTitle">Loading Users</span> <img id="usersSpinner" src="${resource(dir:'images',file:'spinner.gif',plugin:'domeo-dashboard')}" /></legend>
 			<div class="list tablescroll">
 				<table id="usersTable" style="border: 1px solid #ddd;" class="tablelist">
 					<thead>
