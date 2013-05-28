@@ -275,6 +275,44 @@ public class DashboardController {
 		}
 	}
 	
+	def addGroupsToSystem = {
+		def system = SystemApi.findById(params.id)
+		render (view:'addSystemGroups', model:["menuitem" : "searchGroup", system: system,
+			appBaseUrl: request.getContextPath()]);
+	}
+	
+	def addGroupToSystem = {
+		def system = SystemApi.findById(params.system)
+		def group = Group.findById(params.group);
+		
+		system.groups.add(group);
+		
+		redirect (action:'showSystem', id: system.id);
+	}
+	
+	def manageSystemGroups = {
+		def system = SystemApi.findById(params.id)
+		
+		if (!params.max) params.max = 15
+		if (!params.offset) params.offset = 0
+		if (!params.sort) params.sort = "name"
+		if (!params.order) params.order = "asc"
+
+		def results = usersUtilsService.listSystemGroups(system, params.max, params.offset, params.sort, params.order);
+
+		render (view:'manageSystemGroups', model:["systemgroups" : results[0], "numbergroups": system.groups.size(), "systemsCount": results[1], "menuitem" : "listGroups", "system": system])
+	}
+	
+	def regenerateSystemApiKey = {
+		def system = SystemApi.findById(params.id)
+		
+		def key = UUID.randomUUID() as String
+		system.apikey = key;
+		
+		render (view:'showSystem', model:[item: system,
+			appBaseUrl: request.getContextPath()])
+	}
+	
 	def listSystems = {
 		if (!params.max) params.max = 15
 		if (!params.offset) params.offset = 0
@@ -329,6 +367,88 @@ public class DashboardController {
 			render (view:'showSystem', model:[item: group,
 				appBaseUrl: request.getContextPath()])
 		}
+	}
+	
+	def searchSystem = {
+		render (view:'searchSystem', model:["menuitem" : "searchSystem"]);
+	}
+	
+	def performSystemSearch = {
+		def user = injectUserProfile()
+
+		if (!params.max) params.max = 15
+		if (!params.offset) params.offset = 0
+		if (!params.sort) params.sort = "name"
+		if (!params.order) params.order = "asc"
+
+		def groups = [];
+		def groupsCount = [:]
+		def usersCount = [:]
+		def groupsStatus = [:]
+		SystemApi.list().each { agroup ->
+			usersCount.put (agroup.id, agroup.users.size())
+			groupsCount.put (agroup.id, agroup.groups.size())
+			groupsStatus.put (agroup.id, (agroup.enabled?"enabled":"disabled"))
+		}
+
+		// Search with no ordering
+		def groupCriteria = SystemApi.createCriteria();
+		def r = [];
+
+		if(params.name!=null && params.name.trim().length()>0 &&
+		params.shortName!=null && params.shortName.trim().length()>0) {
+			println 'case 1'
+			r = groupCriteria.list {
+				maxResults(params.max?.toInteger())
+				firstResult(params.offset?.toInteger())
+				order(params.sort, params.order)
+				and {
+					like('name', params.name)
+					like('shortName', params.shortName)
+				}
+			}
+		} else if(params.name!=null && params.name.trim().length()>0 &&
+		(params.shortName==null || params.shortName.trim().length()==0)) {
+			println 'case 2'
+			r = groupCriteria.list {
+				maxResults(params.max?.toInteger())
+				firstResult(params.offset?.toInteger())
+				order(params.sort, params.order)
+				like('name', params.name)
+			}
+		} else if((params.name==null || params.name.trim().length()==0) &&
+		params.shortName!=null &&  params.shortName.trim().length()>0) {
+			println 'case 3'
+			r = groupCriteria.list {
+				maxResults(params.max?.toInteger())
+				firstResult(params.offset?.toInteger())
+				order(params.sort, params.order)
+				like('shortName', params.shortName)
+			}
+		} else {
+			println 'case 4'
+			r = groupCriteria.list {
+				maxResults(params.max?.toInteger())
+				firstResult(params.offset?.toInteger())
+				order(params.sort, params.order)
+			}
+		}
+		groups = r.toList();
+		//}
+
+
+		def groupsResults = []
+		groups.each { groupItem ->
+			def groupResult = [id:groupItem.id, name:groupItem.name, shortName: groupItem.shortName,
+						description: groupItem.description, status: (groupItem.enabled?"enabled":"disabled"), dateCreated: groupItem.dateCreated]
+			groupsResults << groupResult
+		}
+
+		def paginationResults = ['offset':params.offset+params.max, 'sort':params.sort, 'order':params.order]
+
+
+		def results = [groups: groupsResults, pagination: paginationResults, groupsCount: groupsCount, usersCount: usersCount]
+		render results as JSON
 	}
 	
 	def showSystem = {
@@ -834,5 +954,20 @@ public class DashboardController {
 			redirect(action:params.redirect, params: [id: params.user])
 		else
 			render (view:'/shared/showUser', model:[item: user])
+	}
+	
+	def removeGroupFromSystem = {
+		println 'removing....'
+		def system = SystemApi.findById(params.system)
+		def group = Group.findById(params.id)
+		
+		println 'before: ' + system.groups.size();
+		system.groups.remove(group)
+		println 'after: ' + system.groups.size();
+		
+		if(params.redirect)
+			redirect(action:params.redirect, params: [id: params.system])
+		else
+			render (view:'showSystem', model:[item: system])
 	}
 }

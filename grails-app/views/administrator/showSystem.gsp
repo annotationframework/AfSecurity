@@ -98,23 +98,52 @@
 				  	}
 			  	});
 			  	*/
+
 			  	$.ajax({
-			  	  	url: "${appBaseUrl}/ajaxDashboard/groupUsers",
+			  		type: "GET",
+			  		url: "${appBaseUrl}/ajaxDashboard/systemGroups",
+			  	  	context: $("#groupsContent"),
+			  	  	data: dataToSend,
+			  	    dataType:'json',
+			  	    contentType: 'application/json; charset=utf-8',
+			  	}).done(function( data ) {
+		  			if(data.length>0) {
+		  				var label = data.length == 1 ? data.length + ' Group' : data.length + ' Groups';
+		  				$("#groupsTitle").html("<b>"+label+"</b>");
+		  				$('#groupsContent').html('');
+			  			$.each(data, function(i,item){
+			  				$('#groupsContent').append('<tr><td><a href="${request.getContextPath()}/administrator/showUser/' + 
+					  				item.id + '">' + item.name + '</a></td><td>' + 
+					  				(item.enabled?"enabled":"disabled") + '</td><td>-</td></tr>');
+			  		    });
+		  			} else {
+		  				$("#groupsTitle").html("(<b>0 Groups</b>)");
+		  				$('#groupsContent').html('<tr><td colspan="3">No groups</td></tr>');
+			  		}	  			
+			  	});
+
+			  	/*
+			  	$.ajax({
+			  		type: "GET",
+			  		url: "${appBaseUrl}/ajaxDashboard/systemUsers",
 			  	  	context: $("#usersContent"),
 			  	  	data: dataToSend,
-			  	  	success: function(data){
-			  			$("#usersSpinner").css("display","none");
-			  			var label = data.length == 1 ? data.length + ' User' : data.length + ' Users';
-			  			$("#usersTitle").html("<b>"+label+"</b>");
+			  	    dataType:'json',
+			  	    contentType: 'application/json; charset=utf-8',
+			  	}).done(function( data ) {
+		  			if(data.length>0) {
+		  				var label = data.length == 1 ? data.length + ' User' : data.length + ' Users';
+		  				$("#usersTitle").html("<b>"+label+"</b>");
 			  			$.each(data, function(i,item){
-			  				$('#usersTable').append('<tr><td><a href="${request.getContextPath()}/administrator/showUser/' + 
+			  				$('#usersContent').append('<tr><td><a href="${request.getContextPath()}/administrator/showUser/' + 
 					  				item.user.id + '">' + item.user.displayName + '</a></td><td>' + 
 					  				item.user.email + '</td><td>'+ item.dateCreated + '</td></tr>');
 			  		    });
-			  					  			
-				  	}
+		  			} else {
+		  				$('#usersContent').html('<tr><td colspan="3">No users</td></tr>');
+			  		}	  			
 			  	});
-			  	/*
+			  	
 				$.ajax({
 			  	  	url: "/UsersManagement/usersAjax/userCircles",
 			  	  	context: $("#circlesContent"),
@@ -146,10 +175,12 @@
 			<tr>
 				<td valign="top"><g:render template="/administrator/showSystem" /></td>
 				<td valign="top">
-					<div>Accessible Groups</div>
+					<div>Has access to <span id="groupsTitle" style="display: inline;"></span></div>
     				<g:render template="/shared/ajaxShowSystemGroups" /><br/>
+    				<%-- 
     				<div>Accessible Users</div>
     				<g:render template="/shared/ajaxShowSystemUsers" />
+    				--%>
 				</td>
 			</tr>
 		</table>

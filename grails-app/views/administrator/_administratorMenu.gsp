@@ -18,6 +18,7 @@
 <h3>Manage Systems</h3>
 <ul id="navlist">
 	<li id="active"><g:link controller="administrator" action="listSystems">List Systems</g:link></li>
+	<li><g:link controller="administrator" action="searchSystem">Search Systems</g:link></li>
 	<li><g:link controller="administrator" action="createSystem">Create System</g:link></li>
 </ul>
 

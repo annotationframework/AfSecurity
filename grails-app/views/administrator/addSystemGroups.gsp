@@ -14,6 +14,7 @@
 	
     <g:javascript library="jquery" plugin="jquery"/>
     
+
     <script type="text/javascript">
 	function setDefaultValue() {
 		var eResults = document.getElementById('results');
@@ -60,8 +61,8 @@
 			eTr.appendChild(eCnt);
 
 			var eLink = document.createElement('a');
-			eLink.href =  '${appBaseUrl}/administrator/enrollUserInGroup?group=' +response.groups[i].id + '&user=' + '${user.id}';
-			eLink.innerHTML = "Enroll"
+			eLink.href =  '${appBaseUrl}/administrator/addGroupToSystem?group=' +response.groups[i].id + '&system=' + '${system.id}';
+			eLink.innerHTML = "Add to system"
 			var eImg = document.createElement('img');
 			//eImg.src = '/DomeoDashboard/static/images/dashboard/add_user.png';
 			var eAct = document.createElement('td');
@@ -73,13 +74,14 @@
 		}
 	}
 	</script>
+
   </head>
 
 	<body>
-	<div class="title">
-		Add User ${user.displayName} to Groups
-	</div>
+		<div class="title">
+			Add Groups to System ${system.name}
+		</div>
 		<g:render template="/shared/addGroupForm" />
-		<g:render template="/shared/addGroupResults" />
+		 <g:render template="/shared/addGroupResults" />
 	</body>
 </html>

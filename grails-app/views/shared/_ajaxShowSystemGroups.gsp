@@ -8,7 +8,6 @@ Stylesheet
 <div class="sectioncontainer">
 	<div class="dialog" style="width: 660px" >
 		<fieldset>
-			<legend><span id="groupsTitle">Loading Groups</span> <img id="groupsSpinner" src="${resource(dir:'images',file:'spinner.gif',plugin:'users-module')}" /></legend>
 			<div class="list tablescroll">
 				<table id="groupsTable" style="border: 1px solid #ddd;" class="tablelist">
 					<thead>
@@ -19,6 +18,11 @@ Stylesheet
 						</tr>
 					</thead>
 					<tbody id="groupsContent">
+						<tr>
+							<td>
+								<img style="display: inline;" id="groupsSpinner" src="${resource(dir:'images/shared',file:'spinner.gif',plugin:'af-shared')}" /> Loading System Groups
+							</td>
+						</tr>
 					</tbody>
 				</table>
 				<div class="paginateButtons">
@@ -26,15 +30,16 @@ Stylesheet
 				</div>
 			</div>
 			<div>
-				<%-- 
 				<span class="button">
-					<g:link class="edit" controller="administrator" action="manageUserGroups"  id="${user.id}" style="text-decoration: none;"><img src="${resource(dir: 'images/dashboard', file: 'edit_group.png')}" alt="Manage Groups" style="display: inline" />Manage Groups</g:link>
+					<g:link class="edit" controller="administrator" action="manageSystemGroups"  id="${item.id}" style="text-decoration: none;">
+						<img src="${resource(dir: 'images/dashboard', file: 'edit_group.png')}" alt="Manage Groups" style="display: inline" />Manage System Groups
+					</g:link>
+					&nbsp;
+					<span class="button">
+						<g:link controller="administrator" action="addGroupsToSystem" id="${item.id}" style="text-decoration: none;">
+						<img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Groups" style="display: inline" />Add System Groups</g:link>
+					</span>
 				</span>
-				&nbsp;
-				<span class="button">
-					<g:link controller="administrator" action="addUserGroups" id="${user.id}" style="text-decoration: none;"><img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Groups" style="display: inline" />Add Groups</g:link>
-				</span>
-				--%>
 			</div>
 		</fieldset> 
 	</div>

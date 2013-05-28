@@ -13,8 +13,8 @@ Stylesheet
 				<table id="usersTable" style="border: 1px solid #ddd;" class="tablelist">
 					<thead>
 						<tr>
-							<g:sortableColumn property="username" title="${message(code: 'agentPerson.id.label', default: 'Username')}" />
-							<g:sortableColumn property="name" title="${message(code: 'agentPerson.id.label', default: 'Name')}" />
+							<g:sortableColumn property="username" title="${message(code: 'agentPerson.id.label', default: 'Name')}" />
+							<g:sortableColumn property="name" title="${message(code: 'agentPerson.id.label', default: 'Email')}" />
 							<g:sortableColumn property="role" title="${message(code: 'agentPerson.id.label', default: 'Role')}" />
 							<th>${message(code: 'agentPerson.id.label', default: 'Mamber Since')}</th>
 						</tr>
@@ -28,9 +28,14 @@ Stylesheet
 			</div>
 			<div>
 				<span class="button">
-					<g:link class="edit" action="manageUsersOfGroup" id="${item.id}">
+					<g:link class="edit" action="manageUsersOfGroup" id="${item.id}" style="text-decoration: none;">
 						<img src="${resource(dir: 'images/dashboard', file: 'edit_group.png')}" alt="Manage Groups" style="display: inline" />Manage Users
 					</g:link>
+				</span>
+				&nbsp;
+				<span class="button">
+					<g:link class="edit" controller="administrator" action="addGroupUsers" id="${item.id}" style="text-decoration: none;">
+						<img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Users" style="display: inline" />Add Group Users</g:link>
 				</span>
 			</div>
 		</fieldset> 

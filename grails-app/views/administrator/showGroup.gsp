@@ -109,7 +109,9 @@
 			  			$.each(data, function(i,item){
 			  				$('#usersTable').append('<tr><td><a href="${request.getContextPath()}/administrator/showUser/' + 
 					  				item.user.id + '">' + item.user.displayName + '</a></td><td>' + 
-					  				item.user.email + '</td><td>'+ item.dateCreated + '</td></tr>');
+					  				item.user.email + '</td><td>'+ 
+					  				getRoles(item.roles) + '</td><td>'+ 
+					  				item.dateCreated + '</td></tr>');
 			  		    });
 			  					  			
 				  	}
@@ -131,6 +133,14 @@
 			  	});
 			  	*/
 		  	});
+
+		  	function getRoles(roles) {
+			  	var res = ""
+				for(var i=0; i<roles.length; i++) {
+					res += roles[i].label
+				}
+				return res;
+			}
 
 		  
 		  			  	

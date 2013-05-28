@@ -46,8 +46,8 @@
 	text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save, .buttons .lock, .buttons .unlock, 
-.buttons .password, .buttons .disable, .buttons .enable, .buttons .deleteUser  {
+.buttons .delete, .buttons .edit, .buttons .reload, .buttons .save, .buttons .lock, .buttons .unlock, 
+.buttons .password, .buttons .disable, .buttons .enable, .buttons .deleteUser, .buttons .deleteSystem, .buttons .deleteGroup  {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 15px;
@@ -61,8 +61,20 @@
 	background-image: url(../../images/dashboard/delete_user.png);
 }
 
+.buttons .deleteGroup {
+	background-image: url(../../images/dashboard/delete_group.png);
+}
+
+.buttons .deleteSystem {
+	background-image: url(../../images/dashboard/computer_delete.png);
+}
+
 .buttons .edit {
 	background-image: url(../../images/dashboard/edit.gif);
+}
+
+.buttons .reload {
+	background-image: url(../../images/dashboard/reload.png);
 }
 
 .buttons .save {

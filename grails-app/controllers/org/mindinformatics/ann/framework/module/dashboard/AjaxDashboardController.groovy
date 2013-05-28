@@ -25,6 +25,7 @@ import grails.converters.JSON
 
 import org.mindinformatics.ann.framework.module.security.groups.Group
 import org.mindinformatics.ann.framework.module.security.groups.UserGroup
+import org.mindinformatics.ann.framework.module.security.systems.SystemApi
 import org.mindinformatics.ann.framework.module.security.users.User
 
 
@@ -65,4 +66,26 @@ class AjaxDashboardController {
 		JSON.use("deep")
 		render groupUsers as JSON;
 	}
+	
+	// SYSTEMS
+	//--------------------------------
+	/*
+	 * Pass through method that extracts the id parameter
+	 * of the user and returns hers UserGroup entities.
+	 */
+	def systemGroups = {
+		def system = SystemApi.findById(params.id)
+		
+		JSON.use("deep")
+		render system.groups as JSON;
+	}
+	
+	def systemUsers = {
+		def system = SystemApi.findById(params.id)
+		
+		JSON.use("deep")
+		render system.users as JSON;
+	}
+	
+
 }

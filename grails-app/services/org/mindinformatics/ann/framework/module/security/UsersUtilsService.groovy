@@ -36,6 +36,7 @@ import org.mindinformatics.ann.framework.module.security.utils.GroupUtils
 class UsersUtilsService {
 	
 	
+
 	def listUserGroups(def user, def _max, def _offset, def sort, def _order) {
 		
 		/*
@@ -381,7 +382,7 @@ class UsersUtilsService {
 		def systems = [];
 		def systemsCount = [:]
 		SystemApi.list().each { system ->
-			systemsCount.put (system.id, UserSystemApi.findAllWhere(system: system).size())
+			systemsCount.put (system.id, system.groups.size())
 		}
 		def systemsStatus = [:]
 		SystemApi.list().each { system ->
@@ -418,6 +419,18 @@ class UsersUtilsService {
 		
 		[systems, systemsCount]
 	}
+	
+	def listSystemGroups(def system, def _max, def _offset, def sort, def _order) {
+		
+		
+		def groupsCount = [:]
+		system.groups.each { agroup ->
+			groupsCount.put (agroup.id, UserGroup.findAllWhere(group: agroup).size())
+		}
+		
+		[system.groups, groupsCount]
+	}
+	
 	
 	def listGroupUsers(def group, def _max, def _offset, def sort, def _order) {
 		def users = User.list();
