@@ -146,9 +146,10 @@
 			<tr>
 				<td valign="top"><g:render template="/administrator/showSystem" /></td>
 				<td valign="top">
-					<%-- g:render template="/users/ajaxShowUserCommunities" / --%>
-    				<%--<g:render template="/shared/ajaxShowGroupUsers" />--%>
-    				<%-- g:render template="/users/ajaxShowUserCircles" / --%>
+					<div>Accessible Groups</div>
+    				<g:render template="/shared/ajaxShowSystemGroups" /><br/>
+    				<div>Accessible Users</div>
+    				<g:render template="/shared/ajaxShowSystemUsers" />
 				</td>
 			</tr>
 		</table>

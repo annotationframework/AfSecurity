@@ -20,9 +20,10 @@
  */
 package org.mindinformatics.ann.framework.module.security.systems
 
-import java.util.Date;
-
 import grails.validation.Validateable
+
+import org.mindinformatics.ann.framework.module.security.groups.Group
+import org.mindinformatics.ann.framework.module.security.users.User
 
 /**
 * @author Paolo Ciccarese <paolo.ciccarese@gmail.com>
@@ -31,16 +32,33 @@ import grails.validation.Validateable
 class SystemApi {
 
 	String id;
-	String apikey;
 	String name;
 	String shortName;
 	String description;
 	
+	User createdBy;
+	Date dateCreated, lastUpdated
+	
+	/**
+	 * Api key to be used by the external application to get to the
+	 * annotation framework node data.
+	 */
+	String apikey;
+	/**
+	 * System access can be disabled.
+	 */
 	boolean enabled
 	
-	int membersCounter;
-	
-	Date dateCreated, lastUpdated
+	/**
+	 * If true it allows the external application to get to all the 
+	 * public data of the annotation framework node.
+	 */
+	boolean accessToPublicData
+	/**
+	 * Grants access to the data belonging to specified groups and
+	 * users.
+	 */
+	static hasMany = [groups: Group, users: User]
 	
 	String getUri() {
 		return "urn:group:uuid:"+id;
@@ -50,17 +68,13 @@ class SystemApi {
 		id generator:'uuid', sqlType: "varchar(36)"
 	}
 	
-	static transients = [
-		'membersCounter'
-	]
-	
 	static constraints = {
 		id maxSize: 36
+		
+		apikey (nullable:false, blank: false, unique: true, maxSize:255)
+		
 		name (nullable:false, blank: false, maxSize:255)
 		shortName  (nullable:true, blank: true, maxSize:100)
 		description (nullable:false, blank:true, maxSize:1024)
-		apikey (nullable:false, blank: false, unique: true, maxSize:255)
 	}
-	
-	
 }

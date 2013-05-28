@@ -65,6 +65,14 @@ Stylesheet
 			            </g:else>
 			        </td>
 				</tr>
+				<tr>
+					<td valign="top"  align="left">
+						<label for="description">Created by</label>
+					</td>
+					<td valign="top" align="left">
+						<g:link action="showUser" id="${item?.createdBy.id}">${item?.createdBy.displayName}</g:link>
+					</td>
+				</tr>
 				<tr class="prop">
 					<td valign="top" class="name">
 						<label for="description">Status</label>

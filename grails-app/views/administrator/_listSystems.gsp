@@ -28,7 +28,7 @@
 			<g:each in="${systems}" status="i" var="group">
 				<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 		     		<td>
-						<g:link action="showGroup" id="${group.id}">
+						<g:link action="showSystem" id="${group.id}">
 		     				${group.name}
 						</g:link>
 		     		</td>
@@ -76,7 +76,7 @@
 								</g:if>
 								<g:elseif test="${group.enabled==true}">
 									<span class="button">
-										<g:actionSubmit class="disable" action="enableSystem" value="${message(code: 'default.button.disable.account.label', default: 'Disable')}" 
+										<g:actionSubmit class="disable" action="disableSystem" value="${message(code: 'default.button.disable.account.label', default: 'Disable')}" 
 											onclick="return confirm('${message(code: 'default.button.disable.account.confirm.message', default: 'Are you sure you want to disable the group: '+group.shortName+' ?')}');" />
 									</span>
 								</g:elseif>

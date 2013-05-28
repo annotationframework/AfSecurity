@@ -39,10 +39,27 @@ Stylesheet
 				</tr>
 				<tr>
 					<td valign="top"  align="left">
+						<label for="description">Created by</label>
+					</td>
+					<td valign="top" align="left">
+						<g:link action="showUser" id="${item?.createdBy.id}">${item?.createdBy.displayName}</g:link>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"  align="left">
 						<label for="status">Status</label>
 					</td>
 					<td valign="top" align="left">
-						<%--${GroupUtils.getStatusLabel(item)} --%>
+						<g:if test="${item?.enabled==true}">Enabled</g:if>
+						<g:else>Disabled</g:else>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"  align="left">
+						<label for="description">API key</label>
+					</td>
+					<td valign="top" align="left">
+						${item?.apikey}
 					</td>
 				</tr>
 				<tr>
@@ -52,7 +69,7 @@ Stylesheet
 								<g:hiddenField name="id" value="${item?.id}" /> 
 								<g:hiddenField name="redirect" value="listGroups" />
 								<span class="button">
-									<g:actionSubmit class="edit" action="editSystem" value="${message(code: 'default.button.edit.account.label', default: 'Edit system api')}" />
+									<g:actionSubmit class="edit" action="editSystem" value="${message(code: 'default.button.edit.account.label', default: 'Edit system')}" />
 								</span>
 							</g:form>
 						</div>

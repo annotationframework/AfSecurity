@@ -23,6 +23,7 @@ package org.mindinformatics.ann.framework.module.dashboard
 import grails.validation.Validateable
 
 import org.mindinformatics.ann.framework.module.security.systems.SystemApi
+import org.mindinformatics.ann.framework.module.security.users.User;
 
 
 /**
@@ -40,7 +41,7 @@ class SystemApiCreateCommand {
 	String name;
 	String shortName;
 	String description;
-
+	
 	boolean enabled;
 	
 	static constraints = {
@@ -56,13 +57,15 @@ class SystemApiCreateCommand {
 	SystemApi createSystem() {
 		// Names and nicknames are supposed to be unique
 		println '-------createSystem'
-		if(SystemApi.findByName(name)!=null || SystemApi.findByShortName(shortName)!=null) return null;
+		if(SystemApi.findByName(name)!=null || SystemApi.findByShortName(shortName)!=null) 
+			return null;
 
 		// If the group does not exist I create a new one
 		else {
 			def key = UUID.randomUUID() as String
-			SystemApi sys = new SystemApi(name:name, shortName:shortName, description:description, 
-			enabled: true, apikey: key);
+			SystemApi sys = new SystemApi(
+				name:name, shortName:shortName, description:description, 
+				enabled:true, apikey:key);
 		}
 	}
 }

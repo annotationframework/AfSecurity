@@ -287,6 +287,50 @@ public class DashboardController {
 			appBaseUrl: request.getContextPath()])
 	}
 	
+	def enableSystem = {
+		def group = SystemApi.findById(params.id)
+		group.enabled = true
+		if(params.redirect)
+			redirect(action:params.redirect)
+		else
+			render (view:'showSystem', model:[item: group])
+	}
+
+	def disableSystem = {
+		def group = SystemApi.findById(params.id)
+		group.enabled = false
+		if(params.redirect)
+			redirect(action:params.redirect)
+		else
+			render (view:'showSystem', model:[item: group])
+	}
+	
+	def editSystem = {
+		def system = SystemApi.findById(params.id)
+		render (view:'editSystem', model:[item: system, action: "edit"])
+	}
+
+	def updateSystem = { SystemApiEditCommand groupEditCmd ->
+		if(groupEditCmd.hasErrors()) {
+			/* groupCreateCmd.errors.allErrors.each { println it } */
+			render(view:'editGroup', model:[item:groupCreateCmd])
+		} else {
+			def group = SystemApi.findById(params.id)
+			group.name = groupEditCmd.name
+			group.shortName = groupEditCmd.shortName
+			group.description = groupEditCmd.description
+
+			if(groupEditCmd.enabled) {
+				group.enabled = true
+			} else  {
+				group.enabled = false
+			}
+
+			render (view:'showSystem', model:[item: group,
+				appBaseUrl: request.getContextPath()])
+		}
+	}
+	
 	def showSystem = {
 		def system = SystemApi.findById(params.id)
 		render (view:'showSystem', model:[item: system,
@@ -303,6 +347,8 @@ public class DashboardController {
 			render(view:'createUser', model:[item:systemCreateCmd])
 		} else {
 			def system = systemCreateCmd.createSystem()
+			def user = injectUserProfile();
+			system.createdBy = user;
 			if(system)  {
 				if(!system.save()) {
 					// Failure in saving
