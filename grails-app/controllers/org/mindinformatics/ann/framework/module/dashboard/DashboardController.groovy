@@ -458,7 +458,9 @@ public class DashboardController {
 	}
 	
 	def createSystem = {
-		render (view:'createSystem',  model:[action: "create", "menuitem" : "createGroup"]);
+		def user = injectUserProfile();
+		
+		render (view:'createSystem',  model:[action: "create", loggedUser: user,  "menuitem" : "createGroup"]);
 	}
 
 	def saveSystem = {SystemApiCreateCommand systemCreateCmd->

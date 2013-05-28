@@ -70,7 +70,12 @@ Stylesheet
 						<label for="description">Created by</label>
 					</td>
 					<td valign="top" align="left">
-						<g:link action="showUser" id="${item?.createdBy.id}">${item?.createdBy.displayName}</g:link>
+						<g:if test="${item?.createdBy!=null}">
+							<g:link action="showUser" id="${item?.createdBy.id}">${item?.createdBy.displayName}</g:link>
+						</g:if>
+						<g:else>
+							<g:link action="showUser" id="${loggedUser.id}">${loggedUser.displayName}</g:link>
+						</g:else>
 					</td>
 				</tr>
 				<tr class="prop">
