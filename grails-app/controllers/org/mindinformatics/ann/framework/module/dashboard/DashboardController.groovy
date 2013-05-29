@@ -179,7 +179,7 @@ public class DashboardController {
 			def userResult = [id:userItem.id, username:userItem.username, name: userItem.firstName + " " + userItem.lastName,
 						displayName: userItem.getDisplayName(),
 						isAdmin: roles.role.authority.contains(DefaultUsersRoles.ADMIN.value()), isManager: roles.role.authority.contains(DefaultUsersRoles.MANAGER.value()), 
-						isUser: roles.role.authority.contains(DefaultUsersRoles.USER.value()),
+						isUser: roles.role.authority.contains(DefaultUsersRoles.USER.value()), email: userItem.getEmail(),
 						status: UserUtils.getStatusLabel(userItem), dateCreated: userItem.dateCreated]
 			usersResults << userResult
 		}
@@ -273,6 +273,12 @@ public class DashboardController {
 			redirect (action:'showUser',id: user.id, model: [
 						msgSuccess: 'Passowrd saved successfully']);
 		}
+	}
+	
+	def addAdministratorsToSystem = {
+		def system = SystemApi.findById(params.id)
+		render (view:'addSystemAdministrators', model:["menuitem" : "searchGroup", system: system,
+			appBaseUrl: request.getContextPath()]);
 	}
 	
 	def addGroupsToSystem = {
@@ -812,6 +818,20 @@ public class DashboardController {
 		render (view:'manageUserGroups', model:["usergroups" : results, "groupsTotal": Group.count(), "menuitem" : "listGroups", "user": user])
 	}
 	
+	def manageUsersInGroup = {
+		def group = Group.findById(params.id)
+		
+		if (!params.max) params.max = 15
+		if (!params.offset) params.offset = 0
+		if (!params.sort) params.sort = "name"
+		if (!params.order) params.order = "asc"
+
+		def results = usersUtilsService.listGroupUsers(group, params.max, params.offset, params.sort, params.order);
+
+		render (view:'manageUsersInGroup', model:["groupusers" : results, "usersTotal": results.size(), "menuitem" : "listGroups", "group": group])
+	}
+	
+	
 	def editGroup = {
 		def group = Group.findById(params.id)
 		render (view:'editGroup', model:[item: group, action: "edit"])
@@ -906,9 +926,10 @@ public class DashboardController {
 		if(usergroup!=null) {
 			usergroup.status = UserStatusInGroup.findByValue(DefaultUserStatusInGroup.LOCKED.value())
 		}
-		if(params.redirect)
-			redirect(action:params.redirect, params: [id: params.user])
-		else
+		if(params.redirect) {
+			if (params.redirectId)redirect(action:params.redirect, params: [id: params.redirectId])
+			else redirect(action:params.redirect, params: [id: params.user])
+		} else
 			render (view:'/shared/showUser', model:[item: user])
 	}
 	
@@ -919,9 +940,10 @@ public class DashboardController {
 		if(usergroup!=null) {
 			usergroup.status = UserStatusInGroup.findByValue(DefaultUserStatusInGroup.ACTIVE.value())
 		}
-		if(params.redirect)
-			redirect(action:params.redirect, params: [id: params.user])
-		else
+		if(params.redirect) {
+			if (params.redirectId)redirect(action:params.redirect, params: [id: params.redirectId])
+			else redirect(action:params.redirect, params: [id: params.user])
+		} else
 			render (view:'/shared/showUser', model:[item: user])
 	}
 	
@@ -932,9 +954,10 @@ public class DashboardController {
 		if(usergroup!=null) {
 			usergroup.status = UserStatusInGroup.findByValue(DefaultUserStatusInGroup.ACTIVE.value())
 		}
-		if(params.redirect)
-			redirect(action:params.redirect, params: [id: params.user])
-		else
+		if(params.redirect) {
+			if (params.redirectId)redirect(action:params.redirect, params: [id: params.redirectId])
+			else redirect(action:params.redirect, params: [id: params.user])
+		} else
 			render (view:'/shared/showUser', model:[item: user])
 	}
 	
@@ -945,9 +968,10 @@ public class DashboardController {
 		if(usergroup!=null) {
 			usergroup.status = UserStatusInGroup.findByValue(DefaultUserStatusInGroup.SUSPENDED.value())
 		}
-		if(params.redirect)
-			redirect(action:params.redirect, params: [id: params.user])
-		else
+		if(params.redirect) {
+			if (params.redirectId)redirect(action:params.redirect, params: [id: params.redirectId])
+			else redirect(action:params.redirect, params: [id: params.user])
+		} else
 			render (view:'/shared/showUser', model:[item: user])
 	}
 	
@@ -958,9 +982,10 @@ public class DashboardController {
 		if(usergroup!=null) {
 			usergroup.delete()
 		}
-		if(params.redirect)
-			redirect(action:params.redirect, params: [id: params.user])
-		else
+		if(params.redirect) {
+			if (params.redirectId)redirect(action:params.redirect, params: [id: params.redirectId])
+			else redirect(action:params.redirect, params: [id: params.user])
+		} else
 			render (view:'/shared/showUser', model:[item: user])
 	}
 	

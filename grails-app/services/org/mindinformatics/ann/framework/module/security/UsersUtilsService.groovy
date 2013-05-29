@@ -433,8 +433,9 @@ class UsersUtilsService {
 	
 	
 	def listGroupUsers(def group, def _max, def _offset, def sort, def _order) {
-		def users = User.list();
-		users
+		
+		def userGroups = UserGroup.findAllByGroup(group);
+		userGroups
 	}
 	
 	def listUserGroups(def user) {

@@ -36,7 +36,7 @@ Stylesheet
 					</g:link>
 					&nbsp;
 					<span class="button">
-						<g:link controller="administrator" action="addSystemUsers" id="${item.id}" style="text-decoration: none;">
+						<g:link controller="administrator" action="addAdministratorsToSystem" id="${item.id}" style="text-decoration: none;">
 						<img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Users" style="display: inline" />Add System Administrators</g:link>
 					</span>
 				</span>
