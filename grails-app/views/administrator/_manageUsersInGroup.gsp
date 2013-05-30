@@ -5,8 +5,7 @@
 
 <div id="request" class="sectioncontainer">
 <div class="dialog">
-	<div class="title">Users for Group ${group.name} - total# ${groupusers.size()}</div>
-
+	
 <div class="list">
 <table class="tablelist">
 		<thead>

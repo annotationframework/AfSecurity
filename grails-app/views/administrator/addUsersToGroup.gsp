@@ -11,8 +11,7 @@
 <html>
   <head>
 	<meta name="layout" content="administrator-dashboard" />
-	
-    <g:javascript library="jquery" plugin="jquery"/>
+	<title>Add Users to Group: ${group.name} :: ${grailsApplication.config.af.shared.title}</title>
     
     <script type="text/javascript">
 	function setDefaultValue() {

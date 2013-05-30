@@ -776,9 +776,9 @@ public class DashboardController {
 		}
 	}
 	
-	def addGroupUsers = {
+	def addUsersToGroup = {
 		def group = Group.findById(params.id)
-		render (view:'addGroupUsers', model:["menuitem" : "searchGroup", 'group': group,
+		render (view:'addUsersToGroup', model:["menuitem" : "searchGroup", 'group': group,
 			appBaseUrl: request.getContextPath()]);
 	}
 

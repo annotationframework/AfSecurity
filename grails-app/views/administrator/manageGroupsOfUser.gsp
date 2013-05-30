@@ -10,7 +10,7 @@
   <body>
   	<div class="title">
   		<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'groups.png',plugin:'users-module')}"/> 
-  			Groups for ${user.displayName} - total# ${usergroups.size()}
+  			Manage Groups for ${user.displayName} - total# ${usergroups.size()}
   	</div>
 	<g:render template="/administrator/manageGroupsOfUser" />
   </body>
