@@ -1,6 +1,6 @@
 <div id="request" class="sectioncontainer">
 <div class="dialog">
-	<div class="title">Groups List for ${user.displayName} - total# ${usergroups.size()}</div>
+	
 
 <div class="list">
 	<g:set var="g" value="${group}"/>
@@ -46,7 +46,7 @@
 							<g:form>
 								<g:hiddenField name="id" value="${usergroup.group?.id}" /> 
 								<g:hiddenField name="user" value="${user.id}" /> 
-								<g:hiddenField name="redirect" value="manageUserGroups" />
+								<g:hiddenField name="redirect" value="manageGroupsOfUser" />
 									<span class="button">
 										<g:actionSubmit class="edit" action="editUserRoleInGroup" value="${message(code: 'default.button.edit.account.label', default: 'Edit Role')}" />
 									</span>

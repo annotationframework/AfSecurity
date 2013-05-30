@@ -8,7 +8,6 @@ Stylesheet
 <div class="sectioncontainer">
 	<div class="dialog" style="width: 560px">
 		<fieldset>
-			<legend><span id="usersTitle">Loading Users</span> <img id="usersSpinner" src="${resource(dir:'images',file:'spinner.gif',plugin:'domeo-dashboard')}" /></legend>
 			<div class="list tablescroll">
 				<table id="usersTable" style="border: 1px solid #ddd;" class="tablelist">
 					<thead>
@@ -19,7 +18,12 @@ Stylesheet
 							<th>${message(code: 'agentPerson.id.label', default: 'Mamber Since')}</th>
 						</tr>
 					</thead>
-					<tbody id="usersContent">
+					<tbody id="groupsContent">
+						<tr>
+							<td>
+								<img style="display: inline;" id="groupsSpinner" src="${resource(dir:'images/shared',file:'spinner.gif',plugin:'af-shared')}" /> Loading System Groups
+							</td>
+						</tr>
 					</tbody>
 				</table>
 				<div class="paginateButtons">
@@ -29,13 +33,13 @@ Stylesheet
 			<div>
 				<span class="button">
 					<g:link class="edit" action="manageUsersInGroup" id="${item.id}" style="text-decoration: none;">
-						<img src="${resource(dir: 'images/dashboard', file: 'edit_group.png')}" alt="Manage Groups" style="display: inline" />Manage Users
+						<img src="${resource(dir: 'images/dashboard', file: 'edit_group.png')}" alt="Manage Groups" style="display: inline" />Manage Group Users
 					</g:link>
 				</span>
 				&nbsp;
 				<span class="button">
 					<g:link class="edit" controller="administrator" action="addGroupUsers" id="${item.id}" style="text-decoration: none;">
-						<img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Users" style="display: inline" />Add Group Users</g:link>
+						<img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Users" style="display: inline" />Enroll Users to Group</g:link>
 				</span>
 			</div>
 		</fieldset> 

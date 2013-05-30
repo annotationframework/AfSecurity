@@ -8,11 +8,10 @@ Parameters list
 <g:form method="post" >
 
 <div class="dialog" >
-<div class="title">Edit ${usergroup.user.displayName} Membership in Group ${usergroup.group.name}</div>
 	<g:hiddenField name="id" value="${usergroup.user.id}" /> 
 	<g:hiddenField name="group" value="${usergroup.group.id}" /> 
 	<g:hiddenField name="user" value="${usergroup.user.id}" /> 
-	<g:hiddenField name="redirect" value="manageUserGroups" /> 
+	<g:hiddenField name="redirect" value="manageGroupsOfUser" /> 
 	<table style="width: 680px" class="simpleTableNoBorder">
 		<tr>
 			<td valign="top" colspan="2">

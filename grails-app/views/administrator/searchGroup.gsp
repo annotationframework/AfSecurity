@@ -11,9 +11,8 @@
 <html>
   <head>
 	<meta name="layout" content="administrator-dashboard" />
-	
-    <g:javascript library="jquery" plugin="jquery"/>
-    
+	<title>Search Groups</title>
+
     <script type="text/javascript">
 	function setDefaultValue() {
 		var eResults = document.getElementById('results');

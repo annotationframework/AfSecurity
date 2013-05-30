@@ -3,12 +3,12 @@
 	     url="[controller:'administrator', action:'performSystemSearch']"
 	     before="setDefaultValue();"
 	     onSuccess="addResults(data)">
-	     <g:hiddenField name="id" value="${item?.id}" />
+		<g:hiddenField name="id" value="${item?.id}" />
 		<div class="dialog" >
-		<div class="title">
-		<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'search.png')}"/> System Search
-	</div>
-				 <div style="padding-left: 5px; padding-top: 10px;">
+			<div class="title">
+				<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'search.png')}"/> System Search
+			</div>
+			<div style="padding-left: 5px; padding-top: 10px;">
 				<table style="width: 900px; border: 1px #ddd solid;" class="simpleTable">
 					<tbody>
 						<tr class="prop">             
@@ -19,11 +19,11 @@
 							<td class="name" valign="top"><input name="hideempty" value="${hideempty}" type="checkbox"> Include empty</td> 
 							<td class="name" valign="top"><input name="onlyactive" value="${onlyactive}" type="checkbox"> Include disabled</td>   
 							<td style="padding-left: 4px;width: 20px; display: block; padding-top:6px;"><span id="ajaxIcon" class="ajaxIcon" style="display:none;"><img src="${resource(dir:'images',file:'spinner.gif')}" alt="${message(code:'spinner.alt',default:'Loading...')}"/></span></td>
-							<td style="padding-left: 4px;"><input type="submit" value="Search" style="width:120px" /></td>
+							<td style="padding-left: 4px;"><input type="submit" value="Search systems" style="width:120px" /></td>
 						</tr>
 					</tbody>	
 				</table>
-		</div>
+			</div>
 		</div>
 	</g:formRemote>
 </div>

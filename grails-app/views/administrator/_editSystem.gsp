@@ -8,7 +8,6 @@ Parameters list
 <g:form method="post" >
 
 <div class="dialog" >
-<div class="title">Edit System</div>
 	<g:hiddenField name="id" value="${item?.id}" /> 
 	<table style="width: 460px" class="simpleTableNoBorder">
 		<tr>

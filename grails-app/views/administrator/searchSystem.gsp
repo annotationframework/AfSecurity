@@ -11,8 +11,7 @@
 <html>
   <head>
 	<meta name="layout" content="administrator-dashboard" />
-	
-    <g:javascript library="jquery" plugin="jquery"/>
+	<title>Search Systems</title>
     
     <script type="text/javascript">
 	function setDefaultValue() {

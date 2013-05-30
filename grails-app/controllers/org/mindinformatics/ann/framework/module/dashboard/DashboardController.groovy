@@ -782,9 +782,10 @@ public class DashboardController {
 			appBaseUrl: request.getContextPath()]);
 	}
 
-	def addUserGroups = {
+	//def addUserToGroups = {
+	def	enrollUserInGroups = {
 		def user = User.findById(params.id)
-		render (view:'addUserGroups', model:["menuitem" : "searchGroup", 'user': user,
+		render (view:'enrollUserInGroups', model:["menuitem" : "searchGroup", 'user': user,
 			appBaseUrl: request.getContextPath()]);
 	}
 	
@@ -805,7 +806,7 @@ public class DashboardController {
 		redirect(action:'showUser', params: [id: params.user]);
 	}
 	
-	def manageUserGroups = {
+	def manageGroupsOfUser = {
 		def user = User.findById(params.id)
 		
 		if (!params.max) params.max = 15
@@ -815,7 +816,7 @@ public class DashboardController {
 
 		def results = usersUtilsService.listUserGroups(user, params.max, params.offset, params.sort, params.order);
 
-		render (view:'manageUserGroups', model:["usergroups" : results, "groupsTotal": Group.count(), "menuitem" : "listGroups", "user": user])
+		render (view:'manageGroupsOfUser', model:["usergroups" : results, "groupsTotal": Group.count(), "menuitem" : "listGroups", "user": user])
 	}
 	
 	def manageUsersInGroup = {
