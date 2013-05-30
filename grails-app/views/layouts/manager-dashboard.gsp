@@ -35,7 +35,7 @@
 				</div>
 			</div>
  			<div id="leftcolumn">
-  				<g:render template="/administrator/administratorMenu" />
+  				<g:render template="/manager/managerMenu" />
   			</div>
   			
   		</div>
