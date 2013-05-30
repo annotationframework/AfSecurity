@@ -444,6 +444,10 @@ class UsersUtilsService {
 		userGroups
 	}
 	
+	def listSystemUsers(def system, def _max, def _offset, def sort, def _order) {
+		system.users
+	}
+	
 	def listUserGroups(def user) {
 		def userGroups = [];
 		def allUserGroups = [];

@@ -655,6 +655,20 @@ public class DashboardController {
 		render (view:'listGroupUsers', model:[group: group, "users" : users, "usersTotal": User.count(), "usersroles": UserRole.list(), "roles" : Role.list(), "menuitem" : "listUsers"])
 	}
 	
+	def listSystemUsers = {
+		def user = injectUserProfile();
+		def system = SystemApi.findById(params.id);
+
+		if (!params.max) params.max = 10
+		if (!params.offset) params.offset = 0
+		if (!params.sort) params.sort = "username"
+		if (!params.order) params.order = "asc"
+		
+		def users = usersUtilsService.listSystemUsers(system, params.max, params.offset, params.sort, params.order);
+
+		render (view:'listGroupUsers', model:[system: system, "users" : users, "usersTotal": User.count(), "usersroles": UserRole.list(), "roles" : Role.list(), "menuitem" : "listUsers"])
+	}
+	
 	def searchGroup = {
 		render (view:'searchGroup', model:["menuitem" : "searchGroup"]);
 	}
@@ -800,6 +814,20 @@ public class DashboardController {
 		}
 	}
 	
+	def addUsersToSystem = {
+		def system = SystemApi.findById(params.id)
+		render (view:'addUsersToSystem', model:["menuitem" : "searchGroup", 'system': system,
+			appBaseUrl: request.getContextPath()]);
+	}
+	
+	def addUserToSystem = {
+		def user = User.findById(params.user)
+		def system = SystemApi.findById(params.system)
+		
+		system.users.add(user);			
+		redirect(action:'showSystem', params: [id: params.system]);
+	}
+	
 	def addUsersToGroup = {
 		def group = Group.findById(params.id)
 		render (view:'addUsersToGroup', model:["menuitem" : "searchGroup", 'group': group,
@@ -854,6 +882,19 @@ public class DashboardController {
 		def results = usersUtilsService.listGroupUsers(group, params.max, params.offset, params.sort, params.order);
 
 		render (view:'manageUsersInGroup', model:["groupusers" : results, "usersTotal": results.size(), "menuitem" : "listGroups", "group": group])
+	}
+	
+	def manageUsersOfSystem = {
+		def system = SystemApi.findById(params.id);
+		
+		if (!params.max) params.max = 15
+		if (!params.offset) params.offset = 0
+		if (!params.sort) params.sort = "name"
+		if (!params.order) params.order = "asc"
+
+		def results = usersUtilsService.listSystemUsers(system, params.max, params.offset, params.sort, params.order);
+		
+		render (view:'manageUsersOfSystem', model:["users" : results, "usersTotal": results.size(), "menuitem" : "listGroups", "system": system])
 	}
 	
 	
@@ -1012,6 +1053,17 @@ public class DashboardController {
 			else redirect(action:params.redirect, params: [id: params.user])
 		} else
 			render (view:'/shared/showUser', model:[item: user])
+	}
+	
+	def removeUserFromSystem = {
+		def user = User.findById(params.user)
+		def system = SystemApi.findById(params.id)
+		
+		system.users.remove(user)
+		if(params.redirect)
+			redirect(action:params.redirect, params: [id: params.system])
+		else
+			render (view:'showSystem', model:[item: system])
 	}
 	
 	def removeAdministratorFromSystem = {

@@ -37,6 +37,32 @@
 				$.ajax({
 			  		type: "GET",
 			  		url: "${appBaseUrl}/ajaxDashboard/systemAdministrators",
+			  	  	context: $("#administratorsContent"),
+			  	  	data: dataToSend,
+			  	    dataType:'json',
+			  	    contentType: 'application/json; charset=utf-8',
+			  	}).done(function( data ) {
+		  			if(data.length>0) {
+		  				var label = data.length == 1 ? data.length + ' Administrator' : data.length + ' Administrators';
+		  				$("#administratorsTitle").html("<b>"+label+"</b>");
+		  				$('#administratorsContent').html('');
+			  			$.each(data, function(i,item){
+			  				$('#administratorsContent').append('<tr><td><a href="${request.getContextPath()}/administrator/showUser/' + 
+					  				item.user.id + '">' + item.user.displayName + '</a></td><td>' + item.user.email +
+					  				'</td></tr>');
+
+					  				//<td>' + 
+					  				//(item.enabled?"enabled":"disabled") + '</td><td>-</td></tr>');
+			  		    });
+		  			} else {
+		  				$("#administratorsTitle").html("<b>0 Users</b>");
+		  				$('#administratorsContent').html('<tr><td colspan="3">No administrators</td></tr>');
+			  		}	  			
+			  	});
+
+				$.ajax({
+			  		type: "GET",
+			  		url: "${appBaseUrl}/ajaxDashboard/systemUsers",
 			  	  	context: $("#usersContent"),
 			  	  	data: dataToSend,
 			  	    dataType:'json',
@@ -48,7 +74,8 @@
 		  				$('#usersContent').html('');
 			  			$.each(data, function(i,item){
 			  				$('#usersContent').append('<tr><td><a href="${request.getContextPath()}/administrator/showUser/' + 
-					  				item.user.id + '">' + item.user.displayName + '</a></td><td>' + item.user.email +
+					  				item.id + '">' + item.displayName + '</a></td><td>' + item.username +
+					  				'</td><td>' + item.email +
 					  				'</td></tr>');
 
 					  				//<td>' + 
@@ -69,13 +96,14 @@
 		<table class="simpleTableNoBorder" style="margin-top: 10px;">
 			<tr>
 				<td valign="top"><g:render template="/administrator/showSystem" /><br/>
-					<div>Administered by <span id="usersTitle" style="display: inline;"></span></div>
+					<div>Managed by <span id="administratorsTitle" style="display: inline;"></span></div>
 					<g:render template="/shared/ajaxShowSystemAdministrators" />
 				</td>
 				<td valign="top">
-					
 					<div>Has access to <span id="groupsTitle" style="display: inline;"></span></div>
     				<g:render template="/shared/ajaxShowSystemGroups" /><br/>
+    				<div>Has access to <span id="usersTitle" style="display: inline;"></span></div>
+    				<g:render template="/shared/ajaxShowSystemUsers" /><br/>
 				</td>
 			</tr>
 		</table>

@@ -37,7 +37,7 @@ Stylesheet
 					&nbsp;
 					<span class="button">
 						<g:link controller="administrator" action="addGroupsToSystem" id="${item.id}" style="text-decoration: none;">
-						<img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Groups" style="display: inline" />Add System Groups</g:link>
+						<img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Groups" style="display: inline" />Add Groups to System</g:link>
 					</span>
 				</span>
 			</div>

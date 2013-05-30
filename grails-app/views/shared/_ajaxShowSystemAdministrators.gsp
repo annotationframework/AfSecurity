@@ -17,10 +17,10 @@ Stylesheet
 							<th>${message(code: 'agentPerson.id.label', default: 'Email')}</th>
 						</tr>
 					</thead>
-					<tbody id="usersContent">
+					<tbody id="administratorsContent">
 						<tr>
 							<td>
-								<span id="usersTitle" style="display: inline;"><img style="display: inline;" id="usersSpinner" src="${resource(dir:'images/shared',file:'spinner.gif',plugin:'af-shared')}" /> Loading System Users</span>
+								<span id="administratorsTitle" style="display: inline;"><img style="display: inline;" id="administratorsSpinner" src="${resource(dir:'images/shared',file:'spinner.gif',plugin:'af-shared')}" /> Loading System Users</span>
 							</td>
 						</tr>
 					</tbody>

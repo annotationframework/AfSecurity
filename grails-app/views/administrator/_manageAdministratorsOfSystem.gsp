@@ -28,9 +28,6 @@
 		     		<td><g:formatDate format="MM/dd/yyyy hh:mm" date="${systemAdministrator.dateCreated}"/></td>
 		     		<td>
 		     			${UserUtils.getStatusLabel(userObject)}
-		     		<%--
-						${user.status}
-					--%>
 					</td>
 		     		<td>
 		     			<div class="buttons">

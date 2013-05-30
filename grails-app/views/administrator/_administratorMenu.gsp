@@ -1,5 +1,5 @@
 <div id="navcontainer">
-
+<h2>Administrator Menu</h2>
 <h3>Manage Users</h3>
 <ul id="navlist">
 	<li id="active"><g:link controller="administrator" action="listUsers">List Users</g:link></li>
