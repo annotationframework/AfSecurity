@@ -37,8 +37,6 @@ public class UserSystemApi implements Serializable {
 	
 	User user
 	SystemApi system
-	
-	static hasMany = [users: User, systems: SystemApi]
 		
 	boolean equals(other) {
 		if (!(other instanceof UserSystemApi)) {

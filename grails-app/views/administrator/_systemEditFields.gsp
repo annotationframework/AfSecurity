@@ -27,7 +27,7 @@ Stylesheet
 							<g:renderErrors bean="${item}" field="name" />
 						</g:if> 
 						<g:else>
-				        	(max 16 chars)
+				        	(max 255 chars)
 				        </g:else>
 				    </td>
 				</tr>
@@ -44,7 +44,7 @@ Stylesheet
 							<g:renderErrors bean="${item}" field="shortName" />
 						</g:if> 
 						<g:else>
-			           		(max 255 chars)
+			           		(max 100 chars)
 			            </g:else>
 			        </td>
 				</tr>
@@ -61,7 +61,7 @@ Stylesheet
 							<g:renderErrors bean="${item}" field="description" />
 						</g:if> 
 						<g:else>
-			           		(max 255 chars)
+			           		(max 1024 chars)
 			            </g:else>
 			        </td>
 				</tr>

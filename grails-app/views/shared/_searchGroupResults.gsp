@@ -9,6 +9,7 @@
 						<g:sortableColumn property="dateCreated" title="${message(code: 'group.id.label', default: 'Created On')}" />
 						<g:sortableColumn property="status" title="${message(code: 'group.id.label', default: 'Status')}" />
 						<g:sortableColumn property="groupsCount" title="${message(code: 'group.id.label', default: '#Members')}" />
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody id="content">

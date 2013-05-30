@@ -431,6 +431,12 @@ class UsersUtilsService {
 		[system.groups, groupsCount]
 	}
 	
+	def listSystemAdministrators(def system, def _max, def _offset, def sort, def _order) {
+		
+		def admins = UserSystemApi.findAllBySystem(system);
+		[admins, admins.size()] ;
+	}
+	
 	
 	def listGroupUsers(def group, def _max, def _offset, def sort, def _order) {
 		

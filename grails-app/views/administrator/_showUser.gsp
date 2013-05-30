@@ -7,16 +7,16 @@ Stylesheet
  1) fieldError | background and font color in erroneous text fields
 --%>
 <div class="sectioncontainer">
-<div class="dialog">
-    <fieldset>
-    	<legend>User Profile </legend>
-		<table class="simpleTable" style="border: 5px solid #fff;">
+<div class="dialog" style="border: 2px solid #ddd; width: 461px; border-radius: 15px; background: #efefef;">
+		<table class="simpleTable" style="width: 460px; border: 5px solid #efefef;margin-top:10px;">
 			<tbody>
+				<%-- 
 				<tr class="sprop">
 					<td valign="top" colspan="2"  style="horizontal-align:center;">
 						<img src="${resource(dir:'images/dashboard',file:'no_image.gif',plugin:'users-module')}" width="200px" />
 					</td>
 				</tr>
+				--%>
 				<tr class="sprop">
 					<td valign="top" width="150px"  align="left">
 						<label for="title">Title</label>
@@ -126,6 +126,5 @@ Stylesheet
 				</tr>
 			</tbody>
 		</table>
-</fieldset>
 </div>
 </div>

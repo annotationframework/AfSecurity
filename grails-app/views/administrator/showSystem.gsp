@@ -48,12 +48,15 @@
 		  				$('#usersContent').html('');
 			  			$.each(data, function(i,item){
 			  				$('#usersContent').append('<tr><td><a href="${request.getContextPath()}/administrator/showUser/' + 
-					  				item.id + '">' + item.name + '</a></td><td>' + 
-					  				(item.enabled?"enabled":"disabled") + '</td><td>-</td></tr>');
+					  				item.user.id + '">' + item.user.displayName + '</a></td><td>' + item.user.email +
+					  				'</td></tr>');
+
+					  				//<td>' + 
+					  				//(item.enabled?"enabled":"disabled") + '</td><td>-</td></tr>');
 			  		    });
 		  			} else {
 		  				$("#usersTitle").html("<b>0 Users</b>");
-		  				$('#usersContent').html('<tr><td colspan="3">No users</td></tr>');
+		  				$('#usersContent').html('<tr><td colspan="3">No administrators</td></tr>');
 			  		}	  			
 			  	});
 		  	});  			  	
@@ -63,12 +66,14 @@
 			<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'computer.png',plugin:'users-module')}"/> 
 				System: ${item?.name}
 		</div>
-		<table class="simpleTableNoBorder">
+		<table class="simpleTableNoBorder" style="margin-top: 10px;">
 			<tr>
-				<td valign="top"><g:render template="/administrator/showSystem" /></td>
-				<td valign="top">
+				<td valign="top"><g:render template="/administrator/showSystem" /><br/>
 					<div>Administered by <span id="usersTitle" style="display: inline;"></span></div>
-					<g:render template="/shared/ajaxShowSystemAdministrators" /><br/>
+					<g:render template="/shared/ajaxShowSystemAdministrators" />
+				</td>
+				<td valign="top">
+					
 					<div>Has access to <span id="groupsTitle" style="display: inline;"></span></div>
     				<g:render template="/shared/ajaxShowSystemGroups" /><br/>
 				</td>

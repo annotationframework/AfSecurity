@@ -28,6 +28,7 @@ import org.mindinformatics.ann.framework.module.security.groups.GroupRole
 import org.mindinformatics.ann.framework.module.security.groups.UserGroup
 import org.mindinformatics.ann.framework.module.security.groups.UserStatusInGroup
 import org.mindinformatics.ann.framework.module.security.systems.SystemApi
+import org.mindinformatics.ann.framework.module.security.systems.UserSystemApi
 import org.mindinformatics.ann.framework.module.security.users.Role
 import org.mindinformatics.ann.framework.module.security.users.User
 import org.mindinformatics.ann.framework.module.security.users.UserRole
@@ -277,8 +278,18 @@ public class DashboardController {
 	
 	def addAdministratorsToSystem = {
 		def system = SystemApi.findById(params.id)
-		render (view:'addSystemAdministrators', model:["menuitem" : "searchGroup", system: system,
+		render (view:'addAdministratorsToSystem', model:["menuitem" : "searchGroup", system: system,
 			appBaseUrl: request.getContextPath()]);
+	}
+	
+	def addAdministratorToSystem = {
+		def system = SystemApi.findById(params.system)
+		def user = User.findById(params.user);
+		
+		if(UserSystemApi.findByUserAndSystem(user, system)==null) 
+			UserSystemApi.create(user, system)
+
+		redirect (action:'showSystem', id: system.id);
 	}
 	
 	def addGroupsToSystem = {
@@ -307,6 +318,19 @@ public class DashboardController {
 		def results = usersUtilsService.listSystemGroups(system, params.max, params.offset, params.sort, params.order);
 
 		render (view:'manageGroupsOfSystem', model:["systemgroups" : results[0], "numbergroups": system.groups.size(), "systemsCount": results[1], "menuitem" : "listGroups", "system": system])
+	}
+	
+	def manageAdministratorsOfSystem = {
+		def system = SystemApi.findById(params.id)
+		
+		if (!params.max) params.max = 15
+		if (!params.offset) params.offset = 0
+		if (!params.sort) params.sort = "name"
+		if (!params.order) params.order = "asc"
+
+		def results = usersUtilsService.listSystemAdministrators(system, params.max, params.offset, params.sort, params.order);
+
+		render (view:'manageAdministratorsOfSystem', model:["systemAdministrators" : results[0], "administratorsCount": results[1], "menuitem" : "listGroups", "system": system])
 	}
 	
 	def regenerateSystemApiKey = {
@@ -988,6 +1012,20 @@ public class DashboardController {
 			else redirect(action:params.redirect, params: [id: params.user])
 		} else
 			render (view:'/shared/showUser', model:[item: user])
+	}
+	
+	def removeAdministratorFromSystem = {
+		def user = User.findById(params.user)
+		def system = SystemApi.findById(params.id)
+		def usersystem = UserSystemApi.findByUserAndSystem(user, system);
+		if(usersystem!=null) {
+			usersystem.delete()
+		}
+		if(params.redirect) {
+			if (params.redirectId)redirect(action:params.redirect, params: [id: params.redirectId])
+			else redirect(action:params.redirect, params: [id: params.user])
+		} else
+			render (view:'/shared/showSystem', model:[item: params.id])
 	}
 	
 	def removeGroupFromSystem = {

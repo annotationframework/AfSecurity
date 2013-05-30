@@ -21,7 +21,7 @@
 		<tbody>
 			<g:if test="${systems.size()==0}">
 				<tr>
-					<td colspan="8">No Groups have been defined</td>
+					<td colspan="8">No Systems have been defined</td>
 				</tr>
 			</g:if>
 			<g:each in="${systems}" status="i" var="group">
@@ -46,15 +46,7 @@
 		     		<td>
 		     			<g:each in="${systemsCount}" var="groupCount">
 		     				<g:if test="${groupCount.key == group.id}">
-		     					
-		     					<g:if test="${groupCount.value>0}">
-			     					<g:link controller="dashboard" action="listGroupUsers" id="${group.id}">
-			     						${groupCount.value}
-			     					</g:link>
-		     					</g:if>
-		     					<g:else>
 		     						${groupCount.value}
-		     					</g:else>
 		     				</g:if>
 		     			</g:each>
 		     		</td>

@@ -8,10 +8,8 @@ Stylesheet
 <%@ page import="org.mindinformatics.ann.framework.module.security.groups.GroupStatus" %>
 <%@ page import="org.mindinformatics.ann.framework.module.security.utils.GroupUtils" %>
 <div class="sectioncontainer">
-<div class="dialog" >
-	<fieldset>
-    	<legend>Group Profile </legend>
-		<table class="simpleTable" style="width: 460px; border: 5px solid #fff;">
+<div class="dialog" style="border: 2px solid #ddd; width: 461px; border-radius: 15px; background: #efefef;">
+		<table class="simpleTable" style="width: 460px; border: 5px solid #efefef;margin-top:10px;">
 			<tbody>
 				<tr>
 					<td valign="top" width="80px"  align="left">
@@ -68,6 +66,5 @@ Stylesheet
 				</tr>
 			</tbody>
 		</table>
-		</fieldset>
 </div>
 </div>

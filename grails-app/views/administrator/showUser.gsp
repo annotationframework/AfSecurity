@@ -47,9 +47,9 @@
 	  		<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'user.png',plugin:'users-module')}"/>
 	  			User: ${user?.displayName} 
 	  	</div>
-		<table class="simpleTableNoBorder"> 
+		<table class="simpleTableNoBorder" style="margin-top: 10px;"> 
 			<tr>
-				<td valign="top" width="400px"><g:render template="/administrator/showUser" /></td>
+				<td valign="top" width="500px"><g:render template="/administrator/showUser" /></td>
 				<td valign="top">
 					<div>Belongs to <span id="groupsTitle" style="display: inline;"></span></div>
     				<g:render template="/shared/ajaxShowUserGroups" />
