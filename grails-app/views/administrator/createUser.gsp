@@ -4,7 +4,7 @@
 <html>
     <head>
 		<meta name="layout" content="administrator-dashboard" /> 
-		<title>Create user - ${grailsApplication.config.af.shared.title}</title>
+		<title>Create user :: ${grailsApplication.config.af.shared.title}</title>
     </head>
 	<body>
 		<div class="title">User Creation </div>

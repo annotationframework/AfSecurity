@@ -4,7 +4,7 @@
 <html>
  	<head>
     	<meta name="layout" content="administrator-dashboard" />
-		<title>Group: ${item.name}</title>
+		<title>Group: ${item.name} :: ${grailsApplication.config.af.shared.title}</title>
   	</head>
 	<body>
 	  	<script type="text/javascript">

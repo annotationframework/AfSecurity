@@ -11,7 +11,7 @@
 <html>
   <head>
 	<meta name="layout" content="administrator-dashboard" />
-	<title>Search Groups - ${grailsApplication.config.af.shared.title}</title>
+	<title>Search Groups :: ${grailsApplication.config.af.shared.title}</title>
 
     <script type="text/javascript">
 	function setDefaultValue() {
@@ -72,6 +72,9 @@
   </head>
 
 	<body>
+		<div class="title">
+			<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'search.png')}"/> Groups Search
+		</div>
 		<g:render template="/shared/searchGroupForm" />
 		<g:render template="/shared/searchGroupResults" />
 	</body>

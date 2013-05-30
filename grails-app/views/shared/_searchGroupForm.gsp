@@ -5,9 +5,6 @@
      	onSuccess="addResults(data)">
      	<g:hiddenField name="id" value="${item?.id}" />
 		<div class="dialog" >
-			<div class="title">
-				<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'search.png')}"/> Groups Search
-			</div>
 			<div style="padding-left: 5px; padding-top: 10px;">
 				<table style="width: 900px; border: 1px #ddd solid;" class="simpleTable">
 					<tbody>

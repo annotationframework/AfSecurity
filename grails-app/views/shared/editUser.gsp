@@ -5,7 +5,8 @@
   	<head>
 	    <meta name="layout" content="administrator-dashboard" />
 	    <title>Edit User: ${item?.firstName} ${item?.lastName} 
-	    	<g:if test="${item?.displayName?.length()>0}">(${item.displayName})</g:if>
+	    	<g:if test="${item?.displayName?.length()>0}">(${item.displayName})</g:if> 
+	    	:: ${grailsApplication.config.af.shared.title}
 	    </title>
   	</head>
 

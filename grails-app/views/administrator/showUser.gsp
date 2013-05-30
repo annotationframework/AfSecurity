@@ -6,6 +6,7 @@
 	    <meta name="layout" content="administrator-dashboard" />
 	    <title>User: ${user?.firstName} ${user?.lastName} 
 	    	<g:if test="${user?.displayName?.length()>0}">(${user.displayName})</g:if>
+	    	:: ${grailsApplication.config.af.shared.title}
 	    </title>	    	
   	</head>
 
@@ -34,6 +35,7 @@
 						  				'</td><td> '+ item.status.label + '</td></tr>');
 				  		    });
 			  			} else {
+			  				$('#groupsContent').html('');
 			  				$('#groupsTable').append('<tr><td>No groups defined</td><td></td><td></td></tr>');
 				  		}		  			
 				  	}

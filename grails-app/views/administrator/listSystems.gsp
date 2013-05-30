@@ -4,7 +4,7 @@
 <html>
   	<head>
     	<meta name="layout" content="administrator-dashboard" />
-    	<title>All Systems List - total# ${systems.size()} - ${grailsApplication.config.af.shared.title}</title>
+    	<title>All Systems List - total# ${systems.size()} :: ${grailsApplication.config.af.shared.title}</title>
   	</head>
   	<body>
   		<div class="title">

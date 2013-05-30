@@ -296,7 +296,7 @@ public class DashboardController {
 		redirect (action:'showSystem', id: system.id);
 	}
 	
-	def manageSystemGroups = {
+	def manageGroupsOfSystem = {
 		def system = SystemApi.findById(params.id)
 		
 		if (!params.max) params.max = 15
@@ -306,7 +306,7 @@ public class DashboardController {
 
 		def results = usersUtilsService.listSystemGroups(system, params.max, params.offset, params.sort, params.order);
 
-		render (view:'manageSystemGroups', model:["systemgroups" : results[0], "numbergroups": system.groups.size(), "systemsCount": results[1], "menuitem" : "listGroups", "system": system])
+		render (view:'manageGroupsOfSystem', model:["systemgroups" : results[0], "numbergroups": system.groups.size(), "systemsCount": results[1], "menuitem" : "listGroups", "system": system])
 	}
 	
 	def regenerateSystemApiKey = {

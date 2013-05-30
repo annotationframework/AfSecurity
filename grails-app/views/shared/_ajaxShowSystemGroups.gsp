@@ -31,7 +31,7 @@ Stylesheet
 			</div>
 			<div>
 				<span class="button">
-					<g:link class="edit" controller="administrator" action="manageSystemGroups"  id="${item.id}" style="text-decoration: none;">
+					<g:link class="edit" controller="administrator" action="manageGroupsOfSystem"  id="${item.id}" style="text-decoration: none;">
 						<img src="${resource(dir: 'images/dashboard', file: 'edit_group.png')}" alt="Manage Groups" style="display: inline" />Manage System Groups
 					</g:link>
 					&nbsp;

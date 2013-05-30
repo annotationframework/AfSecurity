@@ -4,7 +4,7 @@
 <html>
     <head>
 		<meta name="layout" content="administrator-dashboard" /> 
-		<title>Create Group - ${grailsApplication.config.af.shared.title}</title>
+		<title>Create Group :: ${grailsApplication.config.af.shared.title}</title>
     </head>
 	<body>
 		<div class="title">Group Creation </div>

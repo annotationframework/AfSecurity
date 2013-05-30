@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta name="layout" content="administrator-dashboard" />
+    <title>Manage groups for user: ${user.displayName} :: ${grailsApplication.config.af.shared.title}</title>
   </head>
 
   <body>

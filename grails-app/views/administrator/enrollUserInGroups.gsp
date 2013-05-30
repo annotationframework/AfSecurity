@@ -11,8 +11,7 @@
 <html>
   <head>
 	<meta name="layout" content="administrator-dashboard" />
-	
-    <g:javascript library="jquery" plugin="jquery"/>
+	<title>Enroll User ${user.displayName} in Groups</title>
     
     <script type="text/javascript">
 	function setDefaultValue() {
@@ -77,7 +76,7 @@
 
 	<body>
 	<div class="title">
-		Add User ${user.displayName} to Groups
+		Enroll User ${user.displayName} in Groups
 	</div>
 		<g:render template="/shared/searchGroupForm" />
 		<g:render template="/shared/searchGroupResults" />

@@ -7,6 +7,6 @@
   </head>
 
   <body>
-	<g:render template="/administrator/manageSystemGroups" />
+	<g:render template="/administrator/manageGroupsOfSystem" />
   </body>
 </html>

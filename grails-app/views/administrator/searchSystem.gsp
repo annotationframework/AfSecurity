@@ -11,7 +11,7 @@
 <html>
   <head>
 	<meta name="layout" content="administrator-dashboard" />
-	<title>Search Systems - ${grailsApplication.config.af.shared.title}</title>
+	<title>Search Systems :: ${grailsApplication.config.af.shared.title}</title>
     
     <script type="text/javascript">
 	function setDefaultValue() {

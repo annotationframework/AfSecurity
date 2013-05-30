@@ -50,7 +50,7 @@
 							<g:form>
 								<g:hiddenField name="id" value="${systemgroup.id}" /> 
 								<g:hiddenField name="system" value="${system.id}" /> 
-								<g:hiddenField name="redirect" value="manageSystemGroups" />
+								<g:hiddenField name="redirect" value="manageGroupsOfSystem" />
 									<span class="button">
 										<g:actionSubmit class="deleteGroup" action="removeGroupFromSystem" value="${message(code: 'default.button.edit.account.label', default: 'Remove')}" 
 										onclick="return confirm('${message(code: 'default.button.disable.account.confirm.message', default: 'Are you sure you want to remove the user from the group?')}');"/>
