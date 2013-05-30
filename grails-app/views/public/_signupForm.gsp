@@ -71,10 +71,6 @@ table.public-formbox-inner  td {
                 </tr>
                 <g:render template="/public/accountRequestForm"/>
                 <g:render template="/public/accountFields"/>
-                <%--
-                <g:render template="/dashboard/accountRequestForm" plugin="domeo-dashboard" />
-                <g:render template="/public/accountFields" plugin="domeo-dashboard" />
-                --%>
                 <tr>
                     <td valign="top" colspan="2" >
                         <div id='openidLogin' align="center">

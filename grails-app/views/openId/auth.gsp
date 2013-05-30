@@ -1,74 +1,9 @@
 <head>
-<title>${grailsApplication.config.af.shared.logo.title} - Login </title>
+<title>${grailsApplication.config.af.shared.title} - Login </title>
+
+
 <style type='text/css' media='screen'>
 
-/*
-div.openid-loginbox {
-	width: 450px;
-	margin-left: auto;
-	margin-right: auto;
-	background: white;
-	padding: 15px;
-}
-
-.openid-loginbox-inner {
-	width: 450px;
-	border: 0;
-}
-
-.openid-loginbox-inner td {
-	border: 0;
-}
-
-
-td.openid-loginbox-title {
-	background: #FFAE00;
-	color: white;
-	border: 0;
-	padding: 0;
-}
-
-td.openid-loginbox-title table {
-	width: 100%;
-	font-size: 18px;
-	border: 0;
-}
-
-.openid-loginbox-useopenid {
-	font-weight: normal;
-	font-size: 14px;
-}
-td.openid-loginbox-title img {
-	border: 0;
-	vertical-align: middle;
-	padding-right: 3px;
-}
-table.openid-loginbox-userpass {
-	margin: 3px 3px 3px 8px;
-}
-table.openid-loginbox-userpass td {
-	height: 25px;
-}
-input.openid-identifier {
-	background: url(http://stat.livejournal.com/img/openid-inputicon.gif) no-repeat;
-	background-color: #fff;
-	background-position: 0 50%;
-	padding-left: 18px;
-}
-
-input[type='text'],input[type='password'] {
-	font-size: 16px;
-	width: 310px;
-}
-input[type='submit'] {
-	font-size: 14px;
-}
-
-td.openid-submit {
-	padding: 3px;
-}
-
-*/
 
 div.openid-loginbox {
 	width: 450px;
@@ -166,20 +101,96 @@ td.openid-submit {
 
 
 </style>
-<meta name="layout" content="example-layout" />
+<meta name="layout" content="public-layout-wide" />
+<link rel="stylesheet" href="${resource(dir: 'css/jquery', file: 'tabs.css', plugin: 'af-shared')}" type="text/css">
+<link rel="stylesheet" href="${resource(dir: 'css/jquery', file: 'tabs-panes.css', plugin: 'af-shared')}" type="text/css">
+
+<g:javascript library="jquery"/>
 </head>
 
 <body>
+<script>
+$(function() {
+    // setup ul.tabs to work as tabs for each div directly under div.panes
+    $("ul.tabs").tabs("div.panes > div");
+});
+</script>
 <g:render template="/public/navigation" /> 
 
 <div class="wrapper col2">
-  <div id="featured_slide" >
+  <div id="interaction_slide" style="height: 260px;">
    <div class="slider" style="border-top: 0px solid #DC143C;padding-top: 10px;" align="center">
+   
+   <div style="width: 600px">
+   <ul class="tabs" >
+		<li><a href="#">Log in</a></li>
+		<li><a href="#">OpenID</a></li>
+		<li><a href="#">LDAP</a></li>
+	</ul>
+	 
+	<!-- tab "panes" -->
+	<div class="panes" style="height:120px;">
+		<div>
+		<form action='${daoPostUrl}' method='POST' autocomplete='off' name='loginForm'>
+					<table class="openid-loginbox-userpass">
+						<tr>
+							<td>Username:</td>
+							<td><input type="text" name='j_username' id='username' class="username" /></td>
+						</tr>
+						<tr>
+							<td>Password:</td>
+							<td><input type="password" name='j_password' id='password' /></td>
+						</tr>
+						<tr>
+							<td><label for='remember_me'>Remember me</label></td>
+							<td>
+								<input type='checkbox' name='${rememberMeParameter}' id='remember_me'/>
+							</td>
+						</tr>
+						<tr>
+							<td colspan='2' class="openid-submit" align="center">
+								<input type="submit" value="Log in" />
+							</td>
+						</tr>
+					</table>
+					</form>
+		
+		</div>
+		<div>
+		<form action='${openIdPostUrl}' method='POST' autocomplete='off' name='openIdLoginForm'>
+					<table class="openid-loginbox-userpass">
+						<tr>
+							<td>OpenID:</td>
+							<td><input type="text" name="${openidIdentifier}" class="openid-identifier"/></td>
+						</tr>
+						<g:if test='${persistentRememberMe}'>
+						<tr>
+							<td><label for='remember_me'>Remember me</label></td>
+							<td>
+								<input type='checkbox' name='${rememberMeParameter}' id='remember_me'/>
+							</td>
+						</tr>
+						</g:if>
+						<tr>
+							<td colspan='2' class="openid-submit" align="center">
+								<input type="submit" value="Log in" />
+							</td>
+						</tr>
+					</table>
+					</form>
+		</div>
+		<div>
+		
+		</div>
+	</div>
+   </div>
+   
   <div id='openid-loginbox'>
 	<div class='inner'>
 		<g:if test='${flash.message}'>
 				<div class='login_message'>${flash.message}</div>
 		</g:if>
+		<%-- 
 		<table class='openid-loginbox-inner' cellpadding="0" cellspacing="0">
 			<tr>
 				<td class="openid-loginbox-title">
@@ -249,6 +260,7 @@ td.openid-submit {
 				</td>
 			</tr>
 		</table>
+		--%>
 	</div>
 </div>
 </div>
