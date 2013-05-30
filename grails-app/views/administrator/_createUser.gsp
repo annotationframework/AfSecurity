@@ -8,7 +8,6 @@ Parameters list
 <div class="sectioncontainer">
 	<g:form method="post" >
 	 	<div class="dialog" >
-		    <div class="title">User Creation </div>
 			<table style="width: 700px;" class="simpleTable">
 				<tr>
 					<td valign="top" colspan="2">

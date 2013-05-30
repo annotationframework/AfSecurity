@@ -7,7 +7,6 @@ Parameters list
 <div class="sectioncontainer">
 	<g:form method="post" >
 	 	<div class="dialog" >
-		    <div class="title">Group Creation </div>
 			<table style="width: 700px;">
 				<tr>
 					<td valign="top" colspan="2">

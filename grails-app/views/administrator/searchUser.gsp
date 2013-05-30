@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta name="layout" content="administrator-dashboard" /> 
-        <title>Search Users</title>
+        <title>Search Users - ${grailsApplication.config.af.shared.title}</title>
 
     	<script type="text/javascript">
 			function setDefaultValue() {
