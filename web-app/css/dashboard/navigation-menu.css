@@ -21,11 +21,12 @@
 }
 
 #navcontainer li.active {
-	background-color: #CC3300;
+	//background-color: #CC3300;
 }
 
 #navcontainer li.active a {
-	color: #FFCC66;
+	color: #fff;
+	background-color: #CC3300;
 }
 
 #navcontainer #navlist {

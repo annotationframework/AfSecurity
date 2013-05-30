@@ -2,24 +2,53 @@
 <h2>Administrator Menu</h2>
 <h3>Manage Users</h3>
 <ul id="navlist">
-	<li id="active"><g:link controller="administrator" action="listUsers">List Users</g:link></li>
+	<g:if test="${menuitem!=null && menuitem=='listUsers'}">
+		<li class="active"><g:link controller="administrator" action="listUsers">List Users</g:link></li>
+	</g:if>
+	<g:else>
+		<li><g:link controller="administrator" action="listUsers">List Users</g:link></li>
+	</g:else>
 	<li id="active"><g:link controller="administrator" action="listRoles">List Roles</g:link></li>
-	<li><g:link controller="administrator" action="searchUser">Search Users</g:link></li>
-	<li><g:link controller="administrator" action="createUser">Create User</g:link></li>
+	<g:if test="${menuitem!=null && menuitem=='searchUser'}">
+		<li class="active"><g:link controller="administrator" action="searchUser">Search Users</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="searchUser">Search Users</g:link></li></g:else>
+	<g:if test="${menuitem!=null && menuitem=='createUser'}">
+		<li class="active"><g:link controller="administrator" action="createUser">Create User</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="createUser">Create User</g:link></li></g:else>
 </ul>
 
 <h3>Manage Groups</h3>
 <ul id="navlist">
-	<li id="active"><g:link controller="administrator" action="listGroups">List Groups</g:link></li>
-	<li><g:link controller="administrator" action="searchGroup">Search Groups</g:link></li>
-	<li><g:link controller="administrator" action="createGroup">Create Group</g:link></li>
+	<g:if test="${menuitem!=null && menuitem=='listGroups'}">
+		<li class="active"><g:link controller="administrator" action="listGroups">List Groups</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="listGroups">List Groups</g:link></li></g:else>
+	<g:if test="${menuitem!=null && menuitem=='searchGroups'}">
+		<li class="active"><g:link controller="administrator" action="searchGroup">Search Groups</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="searchGroup">Search Groups</g:link></li></g:else>
+	<g:if test="${menuitem!=null && menuitem=='createGroup'}">
+		<li class="active"><g:link controller="administrator" action="createGroup">Create Group</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="createGroup">Create Group</g:link></li></g:else>
 </ul>
 
 <h3>Manage Systems</h3>
 <ul id="navlist">
-	<li id="active"><g:link controller="administrator" action="listSystems">List Systems</g:link></li>
-	<li><g:link controller="administrator" action="searchSystem">Search Systems</g:link></li>
-	<li><g:link controller="administrator" action="createSystem">Create System</g:link></li>
+	<g:if test="${menuitem!=null && menuitem=='listSystems'}">
+		<li class="active"><g:link controller="administrator" action="listSystems">List Systems</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="listSystems">List Systems</g:link></li></g:else>
+	<g:if test="${menuitem!=null && menuitem=='searchSystems'}">
+		<li class="active"><g:link controller="administrator" action="searchSystem">Search Systems</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="searchSystem">Search Systems</g:link></li></g:else>
+	<g:if test="${menuitem!=null && menuitem=='createSystem'}">
+		<li class="active"><g:link controller="administrator" action="createSystem">Create System</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="createSystem">Create System</g:link></li></g:else>
 </ul>
 
 <%--

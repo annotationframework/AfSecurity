@@ -400,7 +400,7 @@ public class DashboardController {
 	}
 	
 	def searchSystem = {
-		render (view:'searchSystem', model:["menuitem" : "searchSystem"]);
+		render (view:'searchSystem', model:["menuitem" : "searchSystems"]);
 	}
 	
 	def performSystemSearch = {
@@ -490,7 +490,7 @@ public class DashboardController {
 	def createSystem = {
 		def user = injectUserProfile();
 		
-		render (view:'createSystem',  model:[action: "create", loggedUser: user,  "menuitem" : "createGroup"]);
+		render (view:'createSystem',  model:[action: "create", loggedUser: user,  "menuitem" : "createSystem"]);
 	}
 
 	def saveSystem = {SystemApiCreateCommand systemCreateCmd->
@@ -670,7 +670,7 @@ public class DashboardController {
 	}
 	
 	def searchGroup = {
-		render (view:'searchGroup', model:["menuitem" : "searchGroup"]);
+		render (view:'searchGroup', model:["menuitem" : "searchGroups"]);
 	}
 	
 	def performGroupSearch = {
