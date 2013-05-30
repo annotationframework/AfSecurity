@@ -43,8 +43,9 @@ public class AdministratorController extends DashboardController {
 	
 	def dashboard = {
 		def loggedUser = injectUserProfile()
-		if(loggedUser!=null) render (view:'/administrator/administratorHome',
-			model:[loggedUser: loggedUser]);
+		
+		if(loggedUser!=null) 
+			render (view:'/administrator/administratorHome',model:[loggedUser: loggedUser]);
 	}
 	 
 	def listUsers = {
