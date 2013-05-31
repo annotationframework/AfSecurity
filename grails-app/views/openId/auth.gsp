@@ -102,7 +102,7 @@ td.openid-submit {
 
 </style>
 <meta name="layout" content="public-layout-wide" />
-<link rel="stylesheet" href="${resource(dir: 'css/jquery', file: 'tabs.css', plugin: 'af-shared')}" type="text/css">
+<link rel="stylesheet" href="${resource(dir: 'css/jquery', file: 'tabs-no-images.css', plugin: 'af-shared')}" type="text/css">
 <link rel="stylesheet" href="${resource(dir: 'css/jquery', file: 'tabs-panes.css', plugin: 'af-shared')}" type="text/css">
 
 <g:javascript library="jquery"/>
@@ -112,9 +112,11 @@ td.openid-submit {
 <script>
 $(function() {
     // setup ul.tabs to work as tabs for each div directly under div.panes
-    $("ul.tabs").tabs("div.panes > div");
+    //$("ul.tabs").tabs("div.panes > div");
+	$(".css-tabs:first").tabs(".css-panes:first > div");
 });
 </script>
+<g:set var="menuitem" value="access"></g:set>
 <g:render template="/public/navigation" /> 
 
 <div class="wrapper col2">
@@ -122,14 +124,13 @@ $(function() {
    <div class="slider" style="border-top: 0px solid #DC143C;padding-top: 10px;" align="center">
    
    <div style="width: 600px">
-   <ul class="tabs" >
+   <ul class="css-tabs" >
 		<li><a href="#">Log in</a></li>
 		<li><a href="#">OpenID</a></li>
-		<li><a href="#">LDAP</a></li>
 	</ul>
 	 
 	<!-- tab "panes" -->
-	<div class="panes" style="height:120px;">
+	<div class="css-panes" style="height:120px;">
 		<div>
 		<form action='${daoPostUrl}' method='POST' autocomplete='off' name='loginForm'>
 					<table class="openid-loginbox-userpass">
@@ -157,27 +158,27 @@ $(function() {
 		
 		</div>
 		<div>
-		<form action='${openIdPostUrl}' method='POST' autocomplete='off' name='openIdLoginForm'>
-					<table class="openid-loginbox-userpass">
-						<tr>
-							<td>OpenID:</td>
-							<td><input type="text" name="${openidIdentifier}" class="openid-identifier"/></td>
-						</tr>
-						<g:if test='${persistentRememberMe}'>
-						<tr>
-							<td><label for='remember_me'>Remember me</label></td>
-							<td>
-								<input type='checkbox' name='${rememberMeParameter}' id='remember_me'/>
-							</td>
-						</tr>
-						</g:if>
-						<tr>
-							<td colspan='2' class="openid-submit" align="center">
-								<input type="submit" value="Log in" />
-							</td>
-						</tr>
-					</table>
-					</form>
+			<form action='${openIdPostUrl}' method='POST' autocomplete='off' name='openIdLoginForm'>
+				<table class="openid-loginbox-userpass">
+					<tr>
+						<td>OpenID:</td>
+						<td><input type="text" name="${openidIdentifier}" class="openid-identifier"/></td>
+					</tr>
+					<g:if test='${persistentRememberMe}'>
+					<tr>
+						<td><label for='remember_me'>Remember me</label></td>
+						<td>
+							<input type='checkbox' name='${rememberMeParameter}' id='remember_me'/>
+						</td>
+					</tr>
+					</g:if>
+					<tr>
+						<td colspan='2' class="openid-submit" align="center">
+							<input type="submit" value="Log in" />
+						</td>
+					</tr>
+				</table>
+			</form>
 		</div>
 		<div>
 		
