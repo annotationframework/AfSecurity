@@ -53,7 +53,7 @@ Stylesheet
 						<label for="description">Description</label>
 					</td>
 					<td valign="top" class="value">
-						<g:textField name="description" style="width: 240px;"
+						<g:textArea name="description" style="width: 240px;"
 							value="${item?.description}"  class="${hasErrors(bean: item, field: 'description', 'fieldError')}"/>
 					</td>
 					<td valign="top" class="caption">
