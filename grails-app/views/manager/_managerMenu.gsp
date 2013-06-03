@@ -1,6 +1,70 @@
 <div id="navcontainer">
-<h2>Manager Menu</h2>
-In progress...
+<h2>Manager</h2>
+<h3>Manage Users</h3>
+<ul id="navlist">
+	<g:if test="${menuitem!=null && menuitem=='listUsers'}">
+		<li class="active"><g:link controller="administrator" action="listUsers">List Users</g:link></li>
+	</g:if>
+	<g:else>
+		<li><g:link controller="manager" action="listUsers">List Users</g:link></li>
+	</g:else>
+	<g:if test="${menuitem!=null && menuitem=='searchUser'}">
+		<li class="active"><g:link controller="administrator" action="searchUser">Search Users</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="searchUser">Search Users</g:link></li></g:else>
+	<g:if test="${menuitem!=null && menuitem=='createUser'}">
+		<li class="active"><g:link controller="administrator" action="createUser">Create User</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="createUser">Create User</g:link></li></g:else>
+</ul>
+<h3>Manage Groups</h3>
+<ul id="navlist">
+	<g:if test="${menuitem!=null && menuitem=='listGroups'}">
+		<li class="active"><g:link controller="administrator" action="listGroups">List Groups</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="listGroups">List Groups</g:link></li></g:else>
+	<g:if test="${menuitem!=null && menuitem=='searchGroups'}">
+		<li class="active"><g:link controller="administrator" action="searchGroup">Search Groups</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="searchGroup">Search Groups</g:link></li></g:else>
+	<g:if test="${menuitem!=null && menuitem=='createGroup'}">
+		<li class="active"><g:link controller="administrator" action="createGroup">Create Group</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="createGroup">Create Group</g:link></li></g:else>
+</ul>
+
+<h3>Manage Systems</h3>
+<ul id="navlist">
+	<g:if test="${menuitem!=null && menuitem=='listSystems'}">
+		<li class="active"><g:link controller="administrator" action="listSystems">List Systems</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="listSystems">List Systems</g:link></li></g:else>
+	<g:if test="${menuitem!=null && menuitem=='searchSystems'}">
+		<li class="active"><g:link controller="administrator" action="searchSystem">Search Systems</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="searchSystem">Search Systems</g:link></li></g:else>
+	<g:if test="${menuitem!=null && menuitem=='createSystem'}">
+		<li class="active"><g:link controller="administrator" action="createSystem">Create System</g:link></li>
+	</g:if>
+	<g:else><li><g:link controller="administrator" action="createSystem">Create System</g:link></li></g:else>
+</ul>
+
+<h3>Moderation Queues</h3>
+<ul id="navlist">
+	<g:if test="${menuitem!=null && menuitem=='pastUserAccountRequests'}">
+		<li class="active"><g:link controller="userAccuntRequest" action="pastAccountsRequests">Past Users Account Requests</g:link></li>
+	</g:if>
+	<g:else>
+		<li><g:link controller="userAccuntRequest" action="pastAccountsRequests">Past Users Account Requests</g:link></li>
+	</g:else>
+	<g:if test="${menuitem!=null && menuitem=='moderateUserAccountRequests'}">
+		<li class="active"><g:link controller="userAccuntRequest" action="moderateUserAccountsRequests">Moderate Users Account Requests</g:link></li>
+	</g:if>
+	<g:else>
+		<li><g:link controller="userAccuntRequest" action="moderateUserAccountsRequests">Moderate Account Requests</g:link></li>
+	</g:else>
+	<%--<li><g:link controller="adminDashboard" action="activateUser">Groups Requests</g:link>--%></li>
+</ul>
 <%-- 
 <h3>Manage Users</h3>
 <ul id="navlist">
