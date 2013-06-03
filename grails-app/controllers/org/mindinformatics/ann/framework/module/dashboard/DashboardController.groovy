@@ -196,7 +196,7 @@ public class DashboardController {
 		if(params.id!=null) {
 			def user = User.findById(params.id);
 			if(user!=null) {
-				render (view:'showUser', model:[user: user,
+				render (view:'/dashboard/showUser', model:[user: user,
 						userRoles: usersUtilsService.getUserRoles(user),
 						userGroups: usersUtilsService.getUserGroups(user),
 						userCircles: usersUtilsService.getUserCircles(user),

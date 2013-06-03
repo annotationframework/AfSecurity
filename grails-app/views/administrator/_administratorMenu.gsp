@@ -51,14 +51,25 @@
 	<g:else><li><g:link controller="administrator" action="createSystem">Create System</g:link></li></g:else>
 </ul>
 
-<%--
-<h3>Moderation Queue</h3>
+
+<h3>Moderation Queues</h3>
 <ul id="navlist">
-	<li><g:link controller="adminDashboard" action="pastAccountsRequests">Past Account Requests</g:link></li>
-	<li><g:link controller="adminDashboard" action="moderateAccountsRequests">Moderate Account Requests</g:link></li>
-	<li><g:link controller="adminDashboard" action="activateUser">Groups Requests</g:link></li>
+	<g:if test="${menuitem!=null && menuitem=='pastUserAccountRequests'}">
+		<li class="active"><g:link controller="userAccuntRequest" action="pastAccountsRequests">Past Users Account Requests</g:link></li>
+	</g:if>
+	<g:else>
+		<li><g:link controller="userAccuntRequest" action="pastAccountsRequests">Past Users Account Requests</g:link></li>
+	</g:else>
+	<g:if test="${menuitem!=null && menuitem=='moderateUserAccountRequests'}">
+		<li class="active"><g:link controller="userAccuntRequest" action="moderateUserAccountsRequests">Moderate Users Account Requests</g:link></li>
+	</g:if>
+	<g:else>
+		<li><g:link controller="userAccuntRequest" action="moderateUserAccountsRequests">Moderate Account Requests</g:link></li>
+	</g:else>
+	<%--<li><g:link controller="adminDashboard" action="activateUser">Groups Requests</g:link>--%></li>
 </ul>
 
+<%--
 <h3>Data dump</h3>
 <ul id="navlist">
 <li><g:link controller="dump" action="dumpAnnotation">Dump annotations</g:link></li>

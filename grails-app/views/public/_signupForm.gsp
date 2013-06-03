@@ -3,7 +3,7 @@
 <div id='public-formbox'>
     <div>
         <g:if test='${flash.message}'><div class='login_message'>${flash.message}</div></g:if>
-        <form method="post" >
+        <g:form method="post" controller="userAccuntRequest">
             <table style="width: 900px;" class='public-formbox-inner'>
                 <tr>
                     <td class="public-formbox-title">
@@ -28,8 +28,9 @@
                         <div id='openidLogin' align="center">
                             <div class="buttons">
                                 <span class="button">
-                                    <g:actionSubmit class="save" action="saveAccountRequest" value="${message(code: 'default.button.edit.account.label', default: 'Sign Up*')}" />
+                                    <g:actionSubmit class="save" action="submitAccountRequest" value="${message(code: 'default.button.edit.account.label', default: 'Sign Up*')}" />
                                 </span>
+                           </div>
                             <div>
                             * Means agreeing with below terms and conditions
                             </div>
@@ -37,7 +38,7 @@
                     </td>
                 </tr>
             </table>
-        </form>
+        </g:form>
     </div>
 </div>
 <!-- End signup form -->

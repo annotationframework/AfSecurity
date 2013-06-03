@@ -129,7 +129,7 @@ public class AdministratorController extends DashboardController {
 
 			updateUserStatus(user, params.status)
 
-			render (view:'showUser', model:[user: user, userRoles: getUserRoles(user),
+			render (view:'/dashboard/showUser', model:[user: user, userRoles: getUserRoles(user),
 				appBaseUrl: request.getContextPath()])
 		}
 	}
