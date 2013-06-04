@@ -1166,7 +1166,7 @@ public class DashboardController {
 		if(params.redirect)
 			redirect(action:params.redirect, params: [id: params.system])
 		else
-			render (view:'showSystem', model:[item: system])
+			render (view:'showSystem', model:[item: system, id:params.id])
 	}
 	
 	def removeAdministratorFromSystem = {
