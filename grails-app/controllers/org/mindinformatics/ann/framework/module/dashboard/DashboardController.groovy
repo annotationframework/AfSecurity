@@ -103,7 +103,7 @@ public class DashboardController {
 	def editUser = {
 		def user = User.findById(params.id)
 
-		render (view:'/shared/editUser', model:[item: user, userRoles: getUserRoles(user), roles: Role.list(), userGroups: getUserGroups(user), action: "edit",
+		render (view:'editUser', model:[item: user, userRoles: getUserRoles(user), roles: Role.list(), userGroups: getUserGroups(user), action: "edit",
 					groupRoles: listOfGroupRoles(), groupStatus: listOfUserGroupStatus()])
 	}
 	

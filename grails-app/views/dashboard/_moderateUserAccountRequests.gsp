@@ -1,6 +1,5 @@
 <div id="request" class="sectioncontainer">
 <div class="dialog">
-	
 	<div class="list">
 	<table class="tablelist">
 		<thead>

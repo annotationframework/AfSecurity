@@ -322,3 +322,10 @@ table.simpleTableNoBorder td {
 table.simpleTable td {
 	border:0;
 }
+
+table.tablelist  tbody td{
+	vertical-align:top;
+	border-collapse:collapse;
+	border-left:1px solid #CCCCCC;
+	border-right:1px solid #CCCCCC;
+}

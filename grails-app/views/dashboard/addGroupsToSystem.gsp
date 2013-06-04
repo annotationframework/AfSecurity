@@ -81,7 +81,7 @@
 		<div class="title">
 			Add Groups to System ${system.name}
 		</div>
-		<g:render template="/shared/addGroupForm" />
-		 <g:render template="/shared/addGroupResults" />
+		<g:render template="addGroupForm" />
+		<g:render template="addGroupResults" />
 	</body>
 </html>

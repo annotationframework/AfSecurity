@@ -17,7 +17,7 @@
 		</div>
 		<table class="simpleTableNoBorder">
 			<tr>
-				<td valign="top"><g:render template="/shared/editUser" /></td>
+				<td valign="top"><g:render template="editUser" /></td>
 			</tr>
 		</table>
 	</body>
