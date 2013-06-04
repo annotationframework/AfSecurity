@@ -107,7 +107,7 @@ class UserAccuntRequestController {
 		if (!params.order) params.order = "asc"
 	
 		def users = userAccountRequestService.moderateAccountRequests(user, params.max, params.offset, params.sort, params.order);
-		render (view:'/administrator/moderateUserAccountRequests', model:[user: user, "users" : users, "accountRequestsTotal": UserAccountRequest.count(), "usersroles": UserRole.list(), "roles" : Role.list(), "menuitem" : "moderateUserAccountRequests"])
+		render (view:'/dashboard/moderateUserAccountRequests', model:[user: user, "users" : users, "accountRequestsTotal": UserAccountRequest.count(), "usersroles": UserRole.list(), "roles" : Role.list(), "menuitem" : "moderateUserAccountRequests"])
 	}
 	
 	def signupConfirmation = {
@@ -166,7 +166,7 @@ class UserAccuntRequestController {
 	
 		def users = userAccountRequestService.pastAccountRequests(user, params.max, params.offset, params.sort, params.order);
 	
-		render (view:'/administrator/pastAccountRequests', model:[user: user, "users" : users, "accountRequestsTotal": UserAccountRequest.count(), "usersroles": UserRole.list(), "roles" : Role.list(), "menuitem" : "pastUserAccountRequests"])
+		render (view:'/dashboard/pastAccountRequests', model:[user: user, "users" : users, "accountRequestsTotal": UserAccountRequest.count(), "usersroles": UserRole.list(), "roles" : Role.list(), "menuitem" : "pastUserAccountRequests"])
 	}
 	
 	def declineAccountRequest = {

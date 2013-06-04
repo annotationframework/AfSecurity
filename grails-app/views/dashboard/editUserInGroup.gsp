@@ -8,6 +8,6 @@
   	</head>
 	<body>
 		<div class="title">Edit ${usergroup.user.displayName} Membership in Group ${usergroup.group.name}</div>
-		<g:render template="/administrator/editUserInGroup" />
+		<g:render template="editUserInGroup" />
 	</body>
 </html>

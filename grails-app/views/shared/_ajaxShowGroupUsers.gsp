@@ -38,7 +38,7 @@ Stylesheet
 				</span>
 				&nbsp;
 				<span class="button">
-					<g:link class="edit" controller="administrator" action="addUsersToGroup" id="${item.id}" style="text-decoration: none;">
+					<g:link class="edit" controller="dashboard" action="addUsersToGroup" id="${item.id}" style="text-decoration: none;">
 						<img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Users" style="display: inline" />Enroll Users to Group</g:link>
 				</span>
 			</div>

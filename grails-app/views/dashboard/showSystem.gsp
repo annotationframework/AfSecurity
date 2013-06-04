@@ -95,7 +95,7 @@
 		</div>
 		<table class="simpleTableNoBorder" style="margin-top: 10px;">
 			<tr>
-				<td valign="top"><g:render template="/administrator/showSystem" /><br/>
+				<td valign="top"><g:render template="showSystem" /><br/>
 					<div>Managed by <span id="administratorsTitle" style="display: inline;"></span></div>
 					<g:render template="/shared/ajaxShowSystemAdministrators" />
 				</td>

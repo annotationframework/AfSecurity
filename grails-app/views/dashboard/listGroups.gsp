@@ -11,6 +11,16 @@
   			<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'groups.png',plugin:'af-security')}"/> 
   				Groups List - total# ${groups.size()}
   		</div>
-		<g:render template="/administrator/listGroups" />
+		<sec:access expression="hasRole('ROLE_ADMIN')">
+			<g:render template="/administrator/listGroups" />
+		</sec:access>
+		<sec:ifNotGranted roles="ROLE_ADMIN">
+			<sec:access expression="hasRole('ROLE_MANAGER')">
+				<g:render template="/manager/listGroups" />
+			</sec:access>
+		</sec:ifNotGranted>
+		<sec:ifNotGranted roles="ROLE_ADMIN, ROLE_MANAGER">
+			---
+		</sec:ifNotGranted>
   	</body>
 </html>

@@ -9,6 +9,6 @@
 
   	<body>
   		<div class="title">Manage Administrators of System: ${system.name} - total# ${administratorsCount}</div>
-		<g:render template="/administrator/manageAdministratorsOfSystem" />
+		<g:render template="manageAdministratorsOfSystem" />
   	</body>
 </html>

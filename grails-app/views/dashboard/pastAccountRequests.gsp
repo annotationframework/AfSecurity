@@ -11,6 +11,6 @@
   	<div class="title">
 		Past Users account requests List - total# ${accountRequestsTotal}
 	</div>
-	<g:render template="/administrator/pastAccountRequests" />
+	<g:render template="/dashboard/pastAccountRequests" />
   </body>
 </html>

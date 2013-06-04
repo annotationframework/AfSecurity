@@ -22,7 +22,7 @@
 	<r:layoutResources />
 </head>
 <body>
-	<g:render template="/shared/administration" /> 
+	<g:render template="/shared/administration" />
 	<br/><br/>
 
 	<div class="wrapper col3">
@@ -35,7 +35,17 @@
 				</div>
 			</div>
  			<div id="leftcolumn">
-  				<g:render template="/administrator/administratorMenu" />
+ 				<sec:access expression="hasRole('ROLE_ADMIN')">
+  					<g:render template="/administrator/administratorMenu" />
+  				</sec:access>
+  				<sec:ifNotGranted roles="ROLE_ADMIN">
+  					<sec:access expression="hasRole('ROLE_MANAGER')">
+	  					<g:render template="/manager/managerMenu" />
+	  				</sec:access>
+  				</sec:ifNotGranted>
+  				<sec:ifNotGranted roles="ROLE_ADMIN, ROLE_MANAGER">
+					<g:render template="/user/userMenu" />
+				</sec:ifNotGranted>
   			</div>
   			
   		</div>

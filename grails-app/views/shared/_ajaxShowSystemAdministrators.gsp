@@ -31,12 +31,12 @@ Stylesheet
 			</div>
 			<div>
 				<span class="button">
-					<g:link class="edit"  controller="administrator" action="manageAdministratorsOfSystem" id="${item.id}" style="text-decoration: none;">
+					<g:link class="edit"  controller="dashboard" action="manageAdministratorsOfSystem" id="${item.id}" style="text-decoration: none;">
 						<img src="${resource(dir: 'images/dashboard', file: 'edit_group.png')}" alt="Manage Groups" style="display: inline" />Manage System Administrators
 					</g:link>
 					&nbsp;
 					<span class="button">
-						<g:link controller="administrator" action="addAdministratorsToSystem" id="${item.id}" style="text-decoration: none;">
+						<g:link controller="dashboard" action="addAdministratorsToSystem" id="${item.id}" style="text-decoration: none;">
 						<img src="${resource(dir: 'images/dashboard', file: 'add_group.png')}" alt="Add Users" style="display: inline" />Add System Administrators</g:link>
 					</span>
 				</span>

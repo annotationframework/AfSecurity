@@ -11,6 +11,6 @@
   	<div class="title">
 		User account requests List - total# ${accountRequestsTotal}
 	</div>
-	<g:render template="/administrator/moderateAccountRequests" />
+	<g:render template="/dashboard/moderateAccountRequests" />
   </body>
 </html>

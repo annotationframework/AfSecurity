@@ -3,52 +3,52 @@
 <h3>Administer Users</h3>
 <ul id="navlist">
 	<g:if test="${menuitem!=null && menuitem=='listUsers'}">
-		<li class="active"><g:link controller="administrator" action="listUsers">List Users</g:link></li>
+		<li class="active"><g:link controller="dashboard" action="listUsers">List Users</g:link></li>
 	</g:if>
 	<g:else>
-		<li><g:link controller="administrator" action="listUsers">List Users</g:link></li>
+		<li><g:link controller="dashboard" action="listUsers">List Users</g:link></li>
 	</g:else>
-	<li id="active"><g:link controller="administrator" action="listRoles">List Roles</g:link></li>
+	<li id="active"><g:link controller="dashboard" action="listRoles">List Roles</g:link></li>
 	<g:if test="${menuitem!=null && menuitem=='searchUser'}">
-		<li class="active"><g:link controller="administrator" action="searchUser">Search Users</g:link></li>
+		<li class="active"><g:link controller="dashboard" action="searchUser">Search Users</g:link></li>
 	</g:if>
-	<g:else><li><g:link controller="administrator" action="searchUser">Search Users</g:link></li></g:else>
+	<g:else><li><g:link controller="dashboard" action="searchUser">Search Users</g:link></li></g:else>
 	<g:if test="${menuitem!=null && menuitem=='createUser'}">
-		<li class="active"><g:link controller="administrator" action="createUser">Create User</g:link></li>
+		<li class="active"><g:link controller="dashboard" action="createUser">Create User</g:link></li>
 	</g:if>
-	<g:else><li><g:link controller="administrator" action="createUser">Create User</g:link></li></g:else>
+	<g:else><li><g:link controller="dashboard" action="createUser">Create User</g:link></li></g:else>
 </ul>
 
 <h3>Administer Groups</h3>
 <ul id="navlist">
 	<g:if test="${menuitem!=null && menuitem=='listGroups'}">
-		<li class="active"><g:link controller="administrator" action="listGroups">List Groups</g:link></li>
+		<li class="active"><g:link controller="dashboard" action="listGroups">List Groups</g:link></li>
 	</g:if>
-	<g:else><li><g:link controller="administrator" action="listGroups">List Groups</g:link></li></g:else>
+	<g:else><li><g:link controller="dashboard" action="listGroups">List Groups</g:link></li></g:else>
 	<g:if test="${menuitem!=null && menuitem=='searchGroups'}">
-		<li class="active"><g:link controller="administrator" action="searchGroup">Search Groups</g:link></li>
+		<li class="active"><g:link controller="dashboard" action="searchGroup">Search Groups</g:link></li>
 	</g:if>
-	<g:else><li><g:link controller="administrator" action="searchGroup">Search Groups</g:link></li></g:else>
+	<g:else><li><g:link controller="dashboard" action="searchGroup">Search Groups</g:link></li></g:else>
 	<g:if test="${menuitem!=null && menuitem=='createGroup'}">
-		<li class="active"><g:link controller="administrator" action="createGroup">Create Group</g:link></li>
+		<li class="active"><g:link controller="dashboard" action="createGroup">Create Group</g:link></li>
 	</g:if>
-	<g:else><li><g:link controller="administrator" action="createGroup">Create Group</g:link></li></g:else>
+	<g:else><li><g:link controller="dashboard" action="createGroup">Create Group</g:link></li></g:else>
 </ul>
 
 <h3>Administer Systems</h3>
 <ul id="navlist">
 	<g:if test="${menuitem!=null && menuitem=='listSystems'}">
-		<li class="active"><g:link controller="administrator" action="listSystems">List Systems</g:link></li>
+		<li class="active"><g:link controller="dashboard" action="listSystems">List Systems</g:link></li>
 	</g:if>
-	<g:else><li><g:link controller="administrator" action="listSystems">List Systems</g:link></li></g:else>
+	<g:else><li><g:link controller="dashboard" action="listSystems">List Systems</g:link></li></g:else>
 	<g:if test="${menuitem!=null && menuitem=='searchSystems'}">
-		<li class="active"><g:link controller="administrator" action="searchSystem">Search Systems</g:link></li>
+		<li class="active"><g:link controller="dashboard" action="searchSystem">Search Systems</g:link></li>
 	</g:if>
-	<g:else><li><g:link controller="administrator" action="searchSystem">Search Systems</g:link></li></g:else>
+	<g:else><li><g:link controller="dashboard" action="searchSystem">Search Systems</g:link></li></g:else>
 	<g:if test="${menuitem!=null && menuitem=='createSystem'}">
-		<li class="active"><g:link controller="administrator" action="createSystem">Create System</g:link></li>
+		<li class="active"><g:link controller="dashboard" action="createSystem">Create System</g:link></li>
 	</g:if>
-	<g:else><li><g:link controller="administrator" action="createSystem">Create System</g:link></li></g:else>
+	<g:else><li><g:link controller="dashboard" action="createSystem">Create System</g:link></li></g:else>
 </ul>
 
 

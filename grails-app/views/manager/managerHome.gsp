@@ -10,6 +10,9 @@
 	<title>Home :: ${grailsApplication.config.af.shared.title}</title>
 </head>
 <body>
-	Welcome manager,
+	<div class="title">
+		Welcome ${loggedUser.displayName}
+	</div>
+	<br/>This is your management dashboard.
 </body>
 </html>

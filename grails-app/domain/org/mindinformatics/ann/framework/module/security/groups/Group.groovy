@@ -22,6 +22,8 @@ package org.mindinformatics.ann.framework.module.security.groups
 
 import java.util.Date;
 
+import org.mindinformatics.ann.framework.module.security.users.User;
+
 
 /**
 * @author Paolo Ciccarese <paolo.ciccarese@gmail.com>
@@ -40,6 +42,7 @@ class Group {
 	 
 	int membersCounter;
 
+	User createdBy;
 	Date dateCreated, lastUpdated
 	
 	/*

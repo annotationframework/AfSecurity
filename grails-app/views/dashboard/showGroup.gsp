@@ -45,7 +45,7 @@
 		</div>
 		<table class="simpleTableNoBorder" style="margin-top: 10px;">
 			<tr>
-				<td valign="top"><g:render template="/administrator/showGroup" /></td>
+				<td valign="top"><g:render template="showGroup" /></td>
 				<td valign="top">
 					<div>Enrolls <span id="usersTitle" style="display: inline;"></span></div>
     				<g:render template="/shared/ajaxShowGroupUsers" />

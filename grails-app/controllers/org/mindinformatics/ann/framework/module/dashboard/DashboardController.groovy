@@ -65,6 +65,48 @@ public class DashboardController {
 		}
 	}
 	
+	/**
+	 * Sends to the main dashboard page that is similar for all the available roles.
+	 * The page displays the different tools available to the different roles.
+	 * Pushes
+	 * - loggedUser: used for passing the current user in a uniform way
+	 */
+	def index = {
+		def loggedUser = injectUserProfile();	
+		if(loggedUser!=null) {
+			render (view:'home', model:[loggedUser: loggedUser]);
+		} else {
+			render (view:'error', model:[message: "Logged user not found"]);
+		}
+	}	 
+	
+	// =======================================================================
+	//   USERS MANAGEMENT
+	// =======================================================================
+	def listUsers = {
+		def user = injectUserProfile()
+
+		if (!params.max) params.max = 10
+		if (!params.offset) params.offset = 0
+		if (!params.sort) params.sort = "username"
+		if (!params.order) params.order = "asc"
+
+		def users = usersUtilsService.listUsers(user, params.max, params.offset, params.sort, params.order);
+		render (view:'listUsers', model:[user: user, "users" : users, "usersTotal": User.count(), "usersroles": UserRole.list(), "roles" : Role.list(), "menuitem" : "listUsers"])
+	}
+	
+	def createUser = {
+		def user = injectUserProfile()
+		render (view:'createUser',  model:[action: "create", roles: Role.list(), defaultRole: DefaultUsersRoles.USER, "menuitem" : "createUser"]);
+	}
+	
+	def editUser = {
+		def user = User.findById(params.id)
+
+		render (view:'/shared/editUser', model:[item: user, userRoles: getUserRoles(user), roles: Role.list(), userGroups: getUserGroups(user), action: "edit",
+					groupRoles: listOfGroupRoles(), groupStatus: listOfUserGroupStatus()])
+	}
+	
 	def listRoles = {
 		def user = injectUserProfile()
 
@@ -294,7 +336,7 @@ public class DashboardController {
 	
 	def addGroupsToSystem = {
 		def system = SystemApi.findById(params.id)
-		render (view:'addSystemGroups', model:["menuitem" : "searchGroup", system: system,
+		render (view:'addGroupsToSystem', model:["menuitem" : "searchGroup", system: system,
 			appBaseUrl: request.getContextPath()]);
 	}
 	
@@ -505,7 +547,7 @@ public class DashboardController {
 				if(!system.save()) {
 					// Failure in saving
 					system.errors.allErrors.each { println it }
-					render(view:'/administrator/createSystem', model:[item:systemCreateCmd,
+					render(view:'createSystem', model:[item:systemCreateCmd,
 								msgError: 'The system has not been saved successfully'])
 				} else {
 					redirect (action:'showSystem', id: system.id, model: [
@@ -513,7 +555,7 @@ public class DashboardController {
 				}
 			} else {
 				// User already existing
-				render(view:'/administrator/createSystem', model:[item:systemCreateCmd,
+				render(view:'createSystem', model:[item:systemCreateCmd,
 							msgError: 'A system with this name is already existing'])
 			}
 		}
@@ -521,8 +563,10 @@ public class DashboardController {
 	
 	def showGroup = {
 		def group = Group.findById(params.id)
-		render (view:'showGroup', model:[item: group,
-			appBaseUrl: request.getContextPath()])
+		if(group!=null) {
+			render (view:'showGroup', model:[item: group,
+				appBaseUrl: request.getContextPath()])
+		} else redirect(controller: "dashboard", action: "index");
 	}
 	
 	def createGroup = {
@@ -537,6 +581,8 @@ public class DashboardController {
 		} else {
 			def group = groupCreateCmd.createGroup()
 			if(group)  {
+				def user = injectUserProfile();
+				group.createdBy = user;
 				updateGroupPrivacy(group, groupCreateCmd.privacy);
 				updateGroupStatus(group, groupCreateCmd.status);
 				println 'lllllll ' + group.id + group.name + group.description + group.privacy+"--"+group.enabled
@@ -639,6 +685,63 @@ public class DashboardController {
 
 		render (view:'listGroups', model:["groups" : results[0], "groupsTotal": Group.count(), "groupsCount": results[1], "menuitem" : "listGroups",
 			appBaseUrl: request.getContextPath()])
+	}
+	
+	def saveUser = {UserCreateCommand userCreateCmd->
+		if(userCreateCmd.hasErrors()) {
+			userCreateCmd.errors.allErrors.each { println it }
+			render(view:'createUser', model:[item:userCreateCmd, roles: Role.list(),
+						defaultRole: Role.findByAuthority("ROLE_USER")])
+		} else {
+			def user = userCreateCmd.createUser()
+			if(user)  {
+				if(!user.save()) {
+					// Failure in saving
+					user.errors.allErrors.each { println it }
+					render(view:'createUser', model:[item:userCreateCmd, roles: Role.list(),
+								msgError: 'The user has not been saved successfully'])
+				} else {
+					updateUserRole(user, Role.findByAuthority(DefaultUsersRoles.ADMIN.value()), params.Administrator)
+					updateUserRole(user, Role.findByAuthority(DefaultUsersRoles.MANAGER.value()), params.Manager)
+					updateUserRole(user, Role.findByAuthority(DefaultUsersRoles.USER.value()), params.User)
+					redirect (action:'showUser',id: user.id, model: [
+								msgSuccess: 'The user has not been saved successfully']);
+				}
+			} else {
+				// User already existing
+				render(view:'createUser', model:[item:userCreateCmd, roles: Role.list(),
+							msgError: 'A user with this name is already existing'])
+			}
+		}
+	}
+	
+	
+	
+	def updateUser = { UserEditCommand userEditCmd ->
+		if(userEditCmd.hasErrors()) {
+			userEditCmd.errors.allErrors.each { println it }
+			render(view:'/shared/editUser', model:[item:userEditCmd])
+		} else {
+			def user = User.findById(params.id)
+			user.title = userEditCmd.title
+			user.firstName = userEditCmd.firstName
+			user.middleName = userEditCmd.middleName
+			user.lastName = userEditCmd.lastName
+			user.displayName = userEditCmd.displayName
+			user.email = userEditCmd.email
+			user.affiliation = userEditCmd.affiliation
+			user.country = userEditCmd.country
+			
+
+			updateUserRole(user, Role.findByAuthority(DefaultUsersRoles.ADMIN.value()), params.Administrator)
+			updateUserRole(user, Role.findByAuthority(DefaultUsersRoles.MANAGER.value()), params.Manager)
+			updateUserRole(user, Role.findByAuthority(DefaultUsersRoles.USER.value()), params.User)
+
+			updateUserStatus(user, params.status)
+
+			render (view:'/dashboard/showUser', model:[user: user, userRoles: getUserRoles(user),
+				appBaseUrl: request.getContextPath()])
+		}
 	}
 	
 	def listGroupUsers = {
