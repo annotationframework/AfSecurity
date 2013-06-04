@@ -66,7 +66,7 @@
 			eContent.appendChild(eTr);
 
 			var eLink = document.createElement('a');
-			eLink.href =  '${appBaseUrl}/administrator/addUserToSystem?user=' +response.users[i].id + '&system=' + '${system.id}';
+			eLink.href =  '${appBaseUrl}/dashboard/addUserToSystem?user=' +response.users[i].id + '&system=' + '${system.id}';
 			eLink.innerHTML = "Add user"
 			var eImg = document.createElement('img');
 			//eImg.src = '/DomeoDashboard/static/images/dashboard/add_user.png';

@@ -29,7 +29,7 @@
 								for(var i=0; i<item.roles.length; i++) {
 									roles+=item.roles[i].label
 								}
-				  				$('#groupsTable').append('<tr><td><a href="${request.getContextPath()}/administrator/showGroup/' + 
+				  				$('#groupsTable').append('<tr><td><a href="${request.getContextPath()}/dashboard/showGroup/' + 
 						  				item.group.id + '">' + item.group.name + '</a></td><td>' + 
 						  				item.dateCreated + '</td><td>'+ roles +
 						  				'</td><td> '+ item.status.label + '</td></tr>');

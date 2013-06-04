@@ -61,7 +61,7 @@
 			eTr.appendChild(eCnt);
 
 			var eLink = document.createElement('a');
-			eLink.href =  '${appBaseUrl}/administrator/addGroupToSystem?group=' +response.groups[i].id + '&system=' + '${system.id}';
+			eLink.href =  '${appBaseUrl}/dashboard/addGroupToSystem?group=' +response.groups[i].id + '&system=' + '${system.id}';
 			eLink.innerHTML = "Add to system"
 			var eImg = document.createElement('img');
 			//eImg.src = '/DomeoDashboard/static/images/dashboard/add_user.png';

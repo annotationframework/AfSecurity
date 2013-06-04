@@ -9,6 +9,6 @@
 
   	<body>
   		<div class="title">Manage Users in Group: ${group.name} - total# ${groupusers.size()}</div>
-		<g:render template="/administrator/manageUsersInGroup" />
+		<g:render template="manageUsersInGroup" />
   	</body>
 </html>

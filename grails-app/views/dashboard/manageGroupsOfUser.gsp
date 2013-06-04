@@ -12,6 +12,6 @@
   		<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'groups.png',plugin:'users-module')}"/> 
   			Manage Groups for ${user.displayName} - total# ${usergroups.size()}
   	</div>
-	<g:render template="/administrator/manageGroupsOfUser" />
+	<g:render template="manageGroupsOfUser" />
   </body>
 </html>
