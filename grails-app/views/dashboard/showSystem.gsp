@@ -24,7 +24,7 @@
 		  				$("#groupsTitle").html("<b>"+label+"</b>");
 		  				$('#groupsContent').html('');
 			  			$.each(data, function(i,item){
-			  				$('#groupsContent').append('<tr><td><a href="${request.getContextPath()}/administrator/showUser/' + 
+			  				$('#groupsContent').append('<tr><td><a href="${request.getContextPath()}/dashboard/showUser/' + 
 					  				item.id + '">' + item.name + '</a></td><td>' + 
 					  				(item.enabled?"enabled":"disabled") + '</td><td>-</td></tr>');
 			  		    });
@@ -47,7 +47,7 @@
 		  				$("#administratorsTitle").html("<b>"+label+"</b>");
 		  				$('#administratorsContent').html('');
 			  			$.each(data, function(i,item){
-			  				$('#administratorsContent').append('<tr><td><a href="${request.getContextPath()}/administrator/showUser/' + 
+			  				$('#administratorsContent').append('<tr><td><a href="${request.getContextPath()}/dashboard/showUser/' + 
 					  				item.user.id + '">' + item.user.displayName + '</a></td><td>' + item.user.email +
 					  				'</td></tr>');
 
@@ -73,7 +73,7 @@
 		  				$("#usersTitle").html("<b>"+label+"</b>");
 		  				$('#usersContent').html('');
 			  			$.each(data, function(i,item){
-			  				$('#usersContent').append('<tr><td><a href="${request.getContextPath()}/administrator/showUser/' + 
+			  				$('#usersContent').append('<tr><td><a href="${request.getContextPath()}/dashboard/showUser/' + 
 					  				item.id + '">' + item.displayName + '</a></td><td>' + item.username +
 					  				'</td><td>' + item.email +
 					  				'</td></tr>');
@@ -83,7 +83,7 @@
 			  		    });
 		  			} else {
 		  				$("#usersTitle").html("<b>0 Users</b>");
-		  				$('#usersContent').html('<tr><td colspan="3">No administrators</td></tr>');
+		  				$('#usersContent').html('<tr><td colspan="3">No users</td></tr>');
 			  		}	  			
 			  	});
 		  	});  			  	

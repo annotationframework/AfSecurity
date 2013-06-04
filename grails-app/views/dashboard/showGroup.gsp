@@ -19,7 +19,7 @@
 			  			var label = data.length == 1 ? data.length + ' User' : data.length + ' Users';
 			  			$("#usersTitle").html("<b>"+label+"</b>");
 			  			$.each(data, function(i,item){
-			  				$('#usersTable').append('<tr><td><a href="${request.getContextPath()}/administrator/showUser/' + 
+			  				$('#usersTable').append('<tr><td><a href="${request.getContextPath()}/dashboard/showUser/' + 
 					  				item.user.id + '">' + item.user.displayName + '</a></td><td>' + 
 					  				item.user.email + '</td><td>'+ 
 					  				getRoles(item.roles) + '</td><td>'+ 

@@ -37,7 +37,7 @@
 			var eTr = document.createElement('tr');
 			var eUsername = document.createElement('td');
 			var eLink = document.createElement('a');
-			eLink.href = "showUser/" + response.users[i].id;
+			eLink.href = "${appBaseUrl}/dashboard/showUser/" + response.users[i].id;
 			eLink.innerHTML = response.users[i].username;
 			eUsername.appendChild(eLink);
 			eTr.appendChild(eUsername);

@@ -37,7 +37,7 @@
 			var eTr = document.createElement('tr');
 			var eUsername = document.createElement('td');
 			var eLink = document.createElement('a');
-			eLink.href = "showGroup/" + response.groups[i].id;
+			eLink.href = "${appBaseUrl}/dashboard/showGroup/" + response.groups[i].id;
 			eLink.innerHTML = response.groups[i].name;
 			eUsername.appendChild(eLink);
 			eTr.appendChild(eUsername);
@@ -59,7 +59,7 @@
 			eTr.appendChild(eCnt);
 
 			var eLink = document.createElement('a');
-			eLink.href =  '${appBaseUrl}/administrator/enrollUserInGroup?group=' +response.groups[i].id + '&user=' + '${user.id}';
+			eLink.href =  '${appBaseUrl}/dashboard/enrollUserInGroup?group=' +response.groups[i].id + '&user=' + '${user.id}';
 			eLink.innerHTML = "Enroll"
 			var eImg = document.createElement('img');
 			//eImg.src = '/DomeoDashboard/static/images/dashboard/add_user.png';

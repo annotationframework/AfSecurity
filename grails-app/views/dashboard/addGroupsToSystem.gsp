@@ -39,7 +39,7 @@
 			var eTr = document.createElement('tr');
 			var eUsername = document.createElement('td');
 			var eLink = document.createElement('a');
-			eLink.href = "showGroup/" + response.groups[i].id;
+			eLink.href = "${appBaseUrl}/dashboard/showGroup/" + response.groups[i].id;
 			eLink.innerHTML = response.groups[i].name;
 			eUsername.appendChild(eLink);
 			eTr.appendChild(eUsername);

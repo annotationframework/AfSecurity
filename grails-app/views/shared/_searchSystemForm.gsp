@@ -1,6 +1,6 @@
 <div id="request" class="sectioncontainer">
 	<g:formRemote name="from_form"
-	     url="[controller:'administrator', action:'performSystemSearch']"
+	     url="[controller:'dashboard', action:'performSystemSearch']"
 	     before="setDefaultValue();"
 	     onSuccess="addResults(data)">
 		<g:hiddenField name="id" value="${item?.id}" />
