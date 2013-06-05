@@ -50,16 +50,20 @@ public class DashboardController {
 	def springSecurityService
 	def usersUtilsService
 	
+	/*
+	 * Loading by primary key is usually more efficient because it takes 
+	 * advantage of Hibernate's first-level and second-level caches 
+	 */
 	protected def injectUserProfile() {
 		def principal = springSecurityService.principal
 		if(principal.equals("anonymousUser")) {
 			redirect(controller: "login", action: "index");
 		} else {
-			String username = principal.username
-			def user = User.findByUsername(username);
+			String userId = principal.id
+			def user = User.findById(userId);
 			if(user==null) {
-				log.error "Error:User not found for username: " + username
-				render (view:'error', model:[message: "User not found for username: "+username]);
+				log.error "Error:User not found for id: " + userId
+				render (view:'error', model:[message: "User not found for id: "+userId]);
 			}
 			user
 		}

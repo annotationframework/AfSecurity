@@ -55,7 +55,7 @@ class UserAccuntRequestController {
 			if(userSignupCommand.hasErrors()) {
 				println 'errors'
 				userSignupCommand.errors.allErrors.each { println it }
-				render(view:'public/signup', model:[item:userSignupCommand])
+				render(view:'/public/signup', model:[item:userSignupCommand])
 			} else {
 				if(userSignupCommand.isPasswordValid()) {
 					if(userSignupCommand.isUsernameAvailable()) {
@@ -82,18 +82,18 @@ class UserAccuntRequestController {
 							} else {
 								// User already existing
 								println ' User already existing'
-								render(view:'signup', model:[item:userSignupCommand, errorCode: "2"])
+								render(view:'/public/signup', model:[item:userSignupCommand, errorCode: "2"])
 							}
 						} else {
 							println 'Email in use ' + userSignupCommand.email
-							render(view:'public/signup', model:[item:userSignupCommand, errorCode: "3"])
+							render(view:'/public/signup', model:[item:userSignupCommand, errorCode: "3"])
 						}
 					} else {
 						println 'Username in use'
-						render(view:'signup', model:[item:userSignupCommand, errorCode: "2"])
+						render(view:'/public/signup', model:[item:userSignupCommand, errorCode: "2"])
 					}
 				} else {
-					render(view:'signup', model:[item:userSignupCommand, errorCode: "1"])
+					render(view:'/public/signup', model:[item:userSignupCommand, errorCode: "1"])
 				}
 		}
 	}

@@ -135,7 +135,7 @@ $(function() {
 		<form action='${daoPostUrl}' method='POST' autocomplete='off' name='loginForm'>
 					<table class="openid-loginbox-userpass">
 						<tr>
-							<td>Username:</td>
+							<td>Username/Email:</td>
 							<td><input type="text" name='j_username' id='username' class="username" /></td>
 						</tr>
 						<tr>
