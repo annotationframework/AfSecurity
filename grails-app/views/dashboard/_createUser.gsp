@@ -16,8 +16,8 @@ Parameters list
 						</g:if>
 					</td>
 				</tr>
-				<g:render template="/shared/personFields"/>
-				<g:render template="/shared/accountFields" />
+				<g:render template="personFields"/>
+				<g:render template="accountFields" />
 				<tr>
 					<td valign="top" colspan="2" >
 						<div class="buttons">
