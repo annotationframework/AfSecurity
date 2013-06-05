@@ -37,6 +37,14 @@ Stylesheet
 				</tr>
 				<tr>
 					<td valign="top"  align="left">
+						<label for="description">Created by</label>
+					</td>
+					<td valign="top" align="left">
+						<g:link action="showUser" id="${item?.createdBy.id}">${item?.createdBy.displayName}</g:link>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"  align="left">
 						<label for="privacy">Privacy</label>
 					</td>
 					<td valign="top" align="left">

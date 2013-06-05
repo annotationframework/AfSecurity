@@ -23,6 +23,7 @@ package org.mindinformatics.ann.framework.module.dashboard
 
 import grails.converters.JSON
 
+import org.mindinformatics.ann.framework.module.security.OpenID
 import org.mindinformatics.ann.framework.module.security.groups.Group
 import org.mindinformatics.ann.framework.module.security.groups.UserGroup
 import org.mindinformatics.ann.framework.module.security.systems.SystemApi
@@ -57,6 +58,16 @@ class AjaxDashboardController {
 		render userGroups as JSON;
 	}
 	
+	def userAdministeredSystems() {
+		return getUserAdministeredSystems(User.findById(params.id));
+	}
+	
+	def getUserAdministeredSystems(def user) {
+		def systems = UserSystemApi.findAllByUser(user);
+		JSON.use("deep")
+		render systems as JSON;
+	}
+	
 	def groupUsers = {
 		return getGroupUsers(Group.findById(params.id));
 	}
@@ -66,6 +77,16 @@ class AjaxDashboardController {
 		groupUsers = UserGroup.findAllByGroup(group)
 		JSON.use("deep")
 		render groupUsers as JSON;
+	}
+	
+	def userOpenIds = {
+		getUserOpenIds(User.findById(params.id));
+	}
+	
+	def getUserOpenIds(def user) {
+		def ids = OpenID.findAllByUser(user);
+		JSON.use("deep")
+		render ids as JSON;
 	}
 	
 	// SYSTEMS

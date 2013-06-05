@@ -11,6 +11,6 @@
 			<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'computer-edit.png',plugin:'af-security')}"/>
 				Edit System: ${item?.name}
 		</div>
-		<g:render template="/administrator/editSystem" />
+		<g:render template="editSystem" />
 	</body>
 </html>
