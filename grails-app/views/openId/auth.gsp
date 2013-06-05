@@ -135,15 +135,15 @@ $(function() {
 		<form action='${daoPostUrl}' method='POST' autocomplete='off' name='loginForm'>
 					<table class="openid-loginbox-userpass">
 						<tr>
-							<td>Username/Email:</td>
+							<td style="vertical-align:middle">Username/Email:</td>
 							<td><input type="text" name='j_username' id='username' class="username" /></td>
 						</tr>
 						<tr>
-							<td>Password:</td>
+							<td style="vertical-align:middle">Password:</td>
 							<td><input type="password" name='j_password' id='password' /></td>
 						</tr>
 						<tr>
-							<td><label for='remember_me'>Remember me</label></td>
+							<td style="vertical-align:middle"><label for='remember_me'>Remember me</label></td>
 							<td>
 								<input type='checkbox' name='${rememberMeParameter}' id='remember_me'/>
 							</td>
@@ -161,13 +161,13 @@ $(function() {
 			<form action='${openIdPostUrl}' method='POST' autocomplete='off' name='openIdLoginForm'>
 				<table class="openid-loginbox-userpass">
 					<tr>
-						<td>OpenID:</td>
-						<td><input type="text" name="${openidIdentifier}" class="openid-identifier"/></td>
+						<td style="vertical-align:middle">OpenID:</td>
+						<td style="vertical-align:middle"><input type="text" name="${openidIdentifier}" class="openid-identifier"/></td>
 					</tr>
 					<g:if test='${persistentRememberMe}'>
 					<tr>
-						<td><label for='remember_me'>Remember me</label></td>
-						<td>
+						<td style="vertical-align:middle"><label for='remember_me'>Remember me</label></td>
+						<td style="vertical-align:middle">
 							<input type='checkbox' name='${rememberMeParameter}' id='remember_me'/>
 						</td>
 					</tr>

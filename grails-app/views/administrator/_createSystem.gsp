@@ -15,7 +15,7 @@ Parameters list
 						</g:if>
 					</td>
 				</tr>
-				<g:render template="/administrator/systemEditFields"  />
+				<g:render template="/dashboard/systemEditFields"  />
 				<tr>
 					<td valign="top" colspan="2" >
 						<div class="buttons">
