@@ -66,7 +66,7 @@
 			eContent.appendChild(eTr);
 
 			var eLink = document.createElement('a');
-			eLink.href =  '${appBaseUrl}/administrator/enrollUserInGroup?user=' +response.users[i].id + '&group=' + '${group.id}';
+			eLink.href =  '${appBaseUrl}/dashboard/enrollUserInGroup?user=' +response.users[i].id + '&group=' + '${group.id}';
 			eLink.innerHTML = "Enroll"
 			var eImg = document.createElement('img');
 			//eImg.src = '/DomeoDashboard/static/images/dashboard/add_user.png';

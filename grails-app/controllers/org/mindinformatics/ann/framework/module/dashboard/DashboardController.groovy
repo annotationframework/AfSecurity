@@ -239,6 +239,7 @@ public class DashboardController {
 	}
 	
 	def showUser = {
+		def msg = params.msg;
 		if(params.id!=null) {
 			def user = User.findById(params.id);
 			if(user!=null) {
@@ -247,13 +248,14 @@ public class DashboardController {
 						userGroups: usersUtilsService.getUserGroups(user),
 						userCircles: usersUtilsService.getUserCircles(user),
 						userCommunities: usersUtilsService.getUserCommunities(user),
-						appBaseUrl: request.getContextPath()
+						appBaseUrl: request.getContextPath(),
+						msg: msg
 					]);
 			} else {
-				render (view:'/error', model:[message: "User not found for id: "+params.id]);
+				render (view:'/error', model:[msg: "User not found for id: "+params.id]);
 			}
 		} else {
-			render (view:'/error', model:[message: "User id not defined!"]);
+			render (view:'/error', model:[msg: "User id not defined!"]);
 		}
 	}
 	
@@ -952,17 +954,22 @@ public class DashboardController {
 		def user = User.findById(params.user)
 		def group = Group.findById(params.group)
 		
-		def ug = new UserGroup(user:user, group:group,
-			status: UserStatusInGroup.findByValue(DefaultUserStatusInGroup.ACTIVE.value()));
 		
-		if(!ug.save(flush: true)) {
-			ug.errors.allErrors.each { println it }
-		} else {
-			ug.roles = []
-			ug.roles.add GroupRole.findByAuthority(DefaultGroupRoles.USER.value())
-		}
+		if(!UserGroup.findByUserAndGroup(user, group)) {
+			def ug = new UserGroup(user:user, group:group,
+				status: UserStatusInGroup.findByValue(DefaultUserStatusInGroup.ACTIVE.value()));
 			
-		redirect(action:'showUser', params: [id: params.user]);
+			if(!ug.save(flush: true)) {
+				ug.errors.allErrors.each { println it }
+			} else {
+				ug.roles = []
+				ug.roles.add GroupRole.findByAuthority(DefaultGroupRoles.USER.value())
+			}
+			redirect(action:'showUser', params: [id: params.user]);
+		} else {
+			log.warn('User ' + user.displayName + ' already enrolled in the group: ' + group.name);
+			redirect(action:'showUser', params: [id: params.user, msg: user.displayName + ' already enrolled in the group: ' + group.name]);
+		}
 	}
 	
 	def manageGroupsOfUser = {

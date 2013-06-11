@@ -1,6 +1,6 @@
 <div id="request" class="sectioncontainer">
 	<g:formRemote name="from_form"
-	     url="[controller:'administrator', action:'performSarchUser']"
+	     url="[controller:'dashboard', action:'performSarchUser']"
 	     before="setDefaultValue();"
 	     onSuccess="addResults(data)">
 	     

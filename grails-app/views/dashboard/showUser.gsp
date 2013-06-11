@@ -90,6 +90,7 @@
 	  		<img style="display: inline; vertical-align: middle;" src="${resource(dir:'images/dashboard',file:'user.png',plugin:'users-module')}"/>
 	  			User: ${user?.displayName} 
 	  	</div>
+		<g:render template="message" />
 		<table class="simpleTableNoBorder" style="margin-top: 10px;"> 
 			<tr>
 				<td valign="top" width="500px">
