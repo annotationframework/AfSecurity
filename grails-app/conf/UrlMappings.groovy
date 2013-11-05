@@ -16,7 +16,7 @@ class UrlMappings {
 			action = 'createAccount'
 		 }
 
-		"/"(view:"/index")
+		"/"(view:"/info")
 		"500"(view:'/error')
 	}
 }

@@ -1,14 +1,14 @@
 package org.mindinformatics.ann.framework.module.security
 
-import org.codehaus.groovy.grails.plugins.springsecurity.GrailsUser
-import org.codehaus.groovy.grails.plugins.springsecurity.GrailsUserDetailsService
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.userdetails.GrailsUser
+import grails.plugin.springsecurity.userdetails.GrailsUserDetailsService
+import grails.plugin.springsecurity.SpringSecurityUtils
 import org.mindinformatics.ann.framework.module.security.users.User
 import org.springframework.security.core.authority.GrantedAuthorityImpl
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 
-class CustomUserDetailsService implements GrailsUserDetailsService {
+class CustomUserDetailsService {// implements GrailsUserDetailsService {
  
     static final List NO_ROLES = [new GrantedAuthorityImpl(SpringSecurityUtils.NO_ROLE)]
  

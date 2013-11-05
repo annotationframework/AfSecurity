@@ -37,7 +37,7 @@ Brief summary/description of the plugin.
 
     // Online location of the plugin's browseable source code.
 //    def scm = [ url: "http://svn.grails-plugins.codehaus.org/browse/grails-plugins/" ]
-
+	
     def doWithWebDescriptor = { xml ->
         // TODO Implement additions to web.xml (optional), this event occurs before
     }

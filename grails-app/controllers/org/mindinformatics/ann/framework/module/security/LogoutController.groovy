@@ -19,7 +19,8 @@
  * under the License.
  */
 package org.mindinformatics.ann.framework.module.security
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+
+import grails.plugin.springsecurity.SpringSecurityUtils
 
 
 /**

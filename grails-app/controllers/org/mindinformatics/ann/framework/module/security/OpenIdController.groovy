@@ -20,8 +20,8 @@
  */
 package org.mindinformatics.ann.framework.module.security
 
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
-import org.codehaus.groovy.grails.plugins.springsecurity.openid.OpenIdAuthenticationFailureHandler as OIAFH
+import grails.plugin.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.openid.OpenIdAuthenticationFailureHandler as OIAFH
 import org.mindinformatics.ann.framework.module.security.users.Role
 import org.mindinformatics.ann.framework.module.security.users.User
 import org.mindinformatics.ann.framework.module.security.users.UserRole
