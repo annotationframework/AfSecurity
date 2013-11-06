@@ -1,8 +1,8 @@
 package org.mindinformatics.ann.framework.module.security
 
-import grails.plugin.springsecurity.userdetails.GrailsUser
-import grails.plugin.springsecurity.userdetails.GrailsUserDetailsService
 import grails.plugin.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.userdetails.GrailsUser
+
 import org.mindinformatics.ann.framework.module.security.users.User
 import org.springframework.security.core.authority.GrantedAuthorityImpl
 import org.springframework.security.core.userdetails.UserDetails
