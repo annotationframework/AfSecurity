@@ -54,10 +54,18 @@ Stylesheet
 				</tr>
 				<tr>
 					<td valign="top"  align="left">
-						<label for="description">API key</label>
+						<label for="apikey">API key</label>
 					</td>
 					<td valign="top" align="left">
 						${item?.apikey}
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"  align="left">
+						<label for="secretKey">Secret key</label>
+					</td>
+					<td valign="top" align="left">
+						${item?.secretKey}
 					</td>
 				</tr>
 				<tr>
@@ -70,8 +78,12 @@ Stylesheet
 									<g:actionSubmit class="edit" action="editSystem" value="${message(code: 'default.button.edit.account.label', default: 'Edit system')}" />
 								</span>
 								<span class="button">
-									<g:actionSubmit class="reload" action="regenerateSystemApiKey" value="${message(code: 'default.button.edit.account.label', default: 'Regenerate key')}"
+									<g:actionSubmit class="reload" action="regenerateSystemApiKey" value="${message(code: 'default.button.edit.account.label', default: 'Regenerate API key')}"
 										onclick="return confirm('${message(code: 'default.button.disable.account.confirm.message', default: 'Are you sure you want to regenerate the API key? All clients will have to update the API access key.')}');" />
+								</span>
+								<span class="button">
+									<g:actionSubmit class="reload" action="regenerateSystemSecretKey" value="${message(code: 'default.button.edit.account.label', default: 'Regenerate secret key')}"
+													onclick="return confirm('${message(code: 'default.button.disable.account.confirm.message', default: 'Are you sure you want to regenerate the secret key? All clients will have to update the secret key.')}');" />
 								</span>
 							</g:form>
 						</div>

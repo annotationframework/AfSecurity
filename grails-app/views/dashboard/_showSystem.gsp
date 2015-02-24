@@ -37,7 +37,7 @@ Stylesheet
 				</tr>
 				<tr>
 					<td valign="top"  align="left">
-						<label for="description">Created by</label>
+						<label for="createdBy">Created by</label>
 					</td>
 					<td valign="top" align="left">
 						<g:link action="showUser" id="${item?.createdBy.id}">${item?.createdBy.displayName}</g:link>
@@ -54,24 +54,52 @@ Stylesheet
 				</tr>
 				<tr>
 					<td valign="top"  align="left">
-						<label for="description">API key</label>
+						<label for="apikey">API key</label>
 					</td>
 					<td valign="top" align="left">
 						${item?.apikey}
 					</td>
 				</tr>
 				<tr>
+					<td valign="top"  align="left">
+						<label for="secretKey">Secret key</label>
+					</td>
+					<td valign="top" align="left">
+						${item?.secretKey}
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"  align="left">
+						<label for="dateCreated">Date created</label>
+					</td>
+					<td valign="top" align="left">
+						${item?.dateCreated.format("d MMM yyyy hh:mma")}
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"  align="left">
+						<label for="lastUpdated">Last updated</label>
+					</td>
+					<td valign="top" align="left">
+						${item?.lastUpdated.format("d MMM yyyy hh:mma")}
+					</td>
+				</tr>
+
+
+			<tr>
 					<td colspan="2">
 						<div class="buttons">
 							<g:form>
-								<g:hiddenField name="id" value="${item?.id}" /> 
+								<g:hiddenField name="id" value="${item?.id}" />
+								<g:hiddenField name="version" value="${item?.version}" />
 								<g:hiddenField name="redirect" value="listGroups" />
-								<span class="button">
-									<g:actionSubmit class="edit" action="editSystem" value="${message(code: 'default.button.edit.account.label', default: 'Edit system')}" />
-								</span>
-								<span class="button">
+									<g:link class="edit" action="editSystem" id="${item?.id}">${message(code: 'default.button.edit.account.label', default: 'Edit system')}</g:link>
+
 									<g:actionSubmit class="reload" action="regenerateSystemApiKey" value="${message(code: 'default.button.edit.account.label', default: 'Regenerate key')}"
 										onclick="return confirm('${message(code: 'default.button.disable.account.confirm.message', default: 'Are you sure you want to regenerate the API key? All clients will have to update the API access key.')}');" />
+
+									<g:actionSubmit class="reload" action="regenerateSystemSecretKey" value="${message(code: 'default.button.edit.account.label', default: 'Regenerate secret key')}"
+													onclick="return confirm('${message(code: 'default.button.disable.account.confirm.message', default: 'Are you sure you want to regenerate the secret key? All clients will have to update the secret key.')}');" />
 								</span>
 							</g:form>
 						</div>

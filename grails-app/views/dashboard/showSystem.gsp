@@ -17,7 +17,7 @@
 			  	  	context: $("#groupsContent"),
 			  	  	data: dataToSend,
 			  	    dataType:'json',
-			  	    contentType: 'application/json; charset=utf-8',
+			  	    contentType: 'application/json; charset=utf-8'
 			  	}).done(function( data ) {
 		  			if(data.length>0) {
 		  				var label = data.length == 1 ? data.length + ' Group' : data.length + ' Groups';
@@ -40,7 +40,7 @@
 			  	  	context: $("#administratorsContent"),
 			  	  	data: dataToSend,
 			  	    dataType:'json',
-			  	    contentType: 'application/json; charset=utf-8',
+			  	    contentType: 'application/json; charset=utf-8'
 			  	}).done(function( data ) {
 		  			if(data.length>0) {
 		  				var label = data.length == 1 ? data.length + ' Administrator' : data.length + ' Administrators';
@@ -66,7 +66,7 @@
 			  	  	context: $("#usersContent"),
 			  	  	data: dataToSend,
 			  	    dataType:'json',
-			  	    contentType: 'application/json; charset=utf-8',
+			  	    contentType: 'application/json; charset=utf-8'
 			  	}).done(function( data ) {
 		  			if(data.length>0) {
 		  				var label = data.length == 1 ? data.length + ' User' : data.length + ' Users';
@@ -95,9 +95,11 @@
 		</div>
 		<table class="simpleTableNoBorder" style="margin-top: 10px;">
 			<tr>
-				<td valign="top"><g:render template="showSystem" /><br/>
+				<td valign="top">
+					<g:render template="showSystem" /><br/>
 					<div>Managed by <span id="administratorsTitle" style="display: inline;"></span></div>
-					<g:render template="/shared/ajaxShowSystemAdministrators" />
+					<g:render template="/shared/ajaxShowSystemAdministrators" /><br/>
+
 				</td>
 				<td valign="top">
 					<div>Has access to <span id="groupsTitle" style="display: inline;"></span></div>

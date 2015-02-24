@@ -63,9 +63,10 @@ class SystemApiCreateCommand {
 		// If the group does not exist I create a new one
 		else {
 			def key = UUID.randomUUID() as String
+			def secretKey = UUID.randomUUID() as String
 			SystemApi sys = new SystemApi(
 				name:name, shortName:shortName, description:description, 
-				enabled:true, apikey:key);
+				enabled:true, apikey:key, secretKey: secretKey);
 		}
 	}
 }

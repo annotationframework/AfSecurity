@@ -17,7 +17,7 @@ Parameters list
 				</g:if>
 			</td>
 		</tr>
-		<g:render template="systemEditFields" plugin="domeo-dashboard" />
+		<g:render template="systemEditFields" />
 		<tr>
 			<td valign="top" colspan="2">
 				<div class="buttons">

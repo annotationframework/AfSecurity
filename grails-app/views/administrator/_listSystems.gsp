@@ -58,7 +58,7 @@
 								<g:hiddenField name="id" value="${group?.id}" /> 
 								<g:hiddenField name="redirect" value="listSystems" />
 								<span class="button">
-									<g:actionSubmit class="edit" action="editSystem" value="${message(code: 'default.button.edit.account.label', default: 'Edit')}" />
+									<g:link class="edit" action="editSystem">${message(code: 'default.button.edit.account.label', default: 'Edit')}</g:link>
 								</span>
 								<g:if test="${group.enabled!=true}">
 									<span class="button">
@@ -73,8 +73,9 @@
 								</g:elseif>
 								<g:if test="${systemsCount[group.id] == 0}">
 									<span class="button">
-										<g:actionSubmit class="delete" action="deleteSystem" value="${message(code: 'default.button.edit.account.label', default: 'Delete')}"
-											onclick="return confirm('${message(code: 'default.button.disable.account.confirm.message', default: 'Are you sure you want to delete the group: '+group.shortName+' ?')}');" />
+										<g:link class="delete" action="deleteSystem" id="${group?.id}"
+											onclick="return confirm('${message(code: 'default.button.delete.account.confirm.message', default: 'Are you sure you want to delete the group: '+group.shortName+' ?')}');">
+											${message(code: 'default.button.delete.account.label', default: 'Delete')}</g:link>
 									</span>
 								</g:if>
 								<%-- 

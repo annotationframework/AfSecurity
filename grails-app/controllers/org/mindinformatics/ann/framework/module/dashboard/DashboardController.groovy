@@ -315,7 +315,7 @@ public class DashboardController {
 		if(userResetPasswordCommand.hasErrors()) {
 			userResetPasswordCommand.errors.allErrors.each { println it }
 			render(view:'resetUserPassword', model:[user: user, item:userResetPasswordCommand,
-				,msgError: 'The password has not been saved successfully'])
+				msgError: 'The password has not been saved successfully'])
 		} else {
 			user.password = springSecurityService.encodePassword(userResetPasswordCommand.password);
 			
@@ -380,17 +380,40 @@ public class DashboardController {
 
 		render (view:'manageAdministratorsOfSystem', model:["systemAdministrators" : results[0], "administratorsCount": results[1], "menuitem" : "listGroups", "system": system])
 	}
-	
+
 	def regenerateSystemApiKey = {
-		def system = SystemApi.findById(params.id)
-		
-		def key = UUID.randomUUID() as String
-		system.apikey = key;
-		
-		render (view:'showSystem', model:[item: system,
-			appBaseUrl: request.getContextPath()])
+		println "regenerate system api key " + params
+
+		SystemApi.withTransaction {
+			def system = SystemApi.findById(params.id)
+			def key = UUID.randomUUID() as String
+			system.apikey = key;
+			system.save(flush: true)
+			//render (view:'showSystem', model:[item: system,
+			//  appBaseUrl: request.getContextPath()])
+
+			redirect(action: "showSystem", id: system.id)
+		}
+
 	}
-	
+
+	def regenerateSystemSecretKey = {
+		println "regenerate system secret key " + params
+
+		SystemApi.withTransaction {
+			def system = SystemApi.findById(params.id)
+
+			system.secretKey = UUID.randomUUID() as String;
+			system.save(flush: true)
+
+			//render(view: 'showSystem', model: [item      : system,
+			//								   appBaseUrl: request.getContextPath()])
+
+			redirect(action: "showSystem", id: system.id)
+
+		}
+	}
+
 	def listSystems = {
 		if (!params.max) params.max = 15
 		if (!params.offset) params.offset = 0
@@ -426,23 +449,26 @@ public class DashboardController {
 		render (view:'editSystem', model:[item: system, action: "edit"])
 	}
 
-	def updateSystem = { SystemApiEditCommand groupEditCmd ->
-		if(groupEditCmd.hasErrors()) {
-			/* groupCreateCmd.errors.allErrors.each { println it } */
-			render(view:'editGroup', model:[item:groupCreateCmd])
-		} else {
-			def group = SystemApi.findById(params.id)
-			group.name = groupEditCmd.name
-			group.shortName = groupEditCmd.shortName
-			group.description = groupEditCmd.description
+	def updateSystem = { SystemApiEditCommand command ->
 
-			if(groupEditCmd.enabled) {
-				group.enabled = true
+		log.info "Update system " + command.properties
+
+		if(command.hasErrors()) {
+			/* groupCreateCmd.errors.allErrors.each { println it } */
+			render(view:'editGroup', model:[item:command])
+		} else {
+			def system = SystemApi.findById(params.id)
+			system.name = command.name
+			system.shortName = command.shortName
+			system.description = command.description
+
+			if(command.enabled) {
+				system.enabled = true
 			} else  {
-				group.enabled = false
+				system.enabled = false
 			}
 
-			render (view:'showSystem', model:[item: group,
+			render (view:'showSystem', model:[item: system,
 				appBaseUrl: request.getContextPath()])
 		}
 	}
@@ -530,10 +556,23 @@ public class DashboardController {
 	}
 	
 	def showSystem = {
-		def system = SystemApi.findById(params.id)
-		render (view:'showSystem', model:[item: system,
-			appBaseUrl: request.getContextPath()])
+
+		SystemApi.withTransaction {
+			def system = SystemApi.findById(params.id)
+
+			render(view: 'showSystem', model: [item      : system,
+											   appBaseUrl: request.getContextPath()])
+		}
 	}
+
+	def deleteSystem = {
+		SystemApi.withTransaction {
+			def system = SystemApi.findById(params.id)
+			system.delete(flush:true)
+			redirect(action: "listSystems")
+		}
+	}
+
 	
 	def createSystem = {
 		def user = injectUserProfile();

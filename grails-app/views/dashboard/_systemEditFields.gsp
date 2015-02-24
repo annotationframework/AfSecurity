@@ -80,21 +80,18 @@ Stylesheet
 				</tr>
 				<tr class="prop">
 					<td valign="top" class="name">
-						<label for="description">Status</label>
+						<label for="description">Enabled?</label>
 					</td>
 					<td valign="top" colspan="2" class="value">
+
+						${item?.enabled}
+
 						<g:if test="${action=='create'}">
-							<g:radio name="status" value="${DefaultGroupStatus.ACTIVE.value()}" checked="checked"/> Enabled
+							<g:radio name="enabled" value="${DefaultGroupStatus.ACTIVE.value()}" checked="checked"/> Enabled
 						</g:if>
 						<g:else>
-							<g:if test="${item?.enabled==true}">
-								<g:radio name="status" value="item?.enabled" checked="checked"/> Enabled
-								<g:radio name="status" value="item?.enabled" /> Disabled
-							</g:if>
-							<g:else>
-								<g:radio name="status" value="item?.enabled"/> Enabled
-								<g:radio name="status" value="item?.enabled" checked="checked"/> Disabled
-							</g:else>
+
+							<g:checkBox name="enabled" value="${item?.enabled}" />
 						</g:else>
 			        </td>
 				</tr>

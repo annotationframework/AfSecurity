@@ -44,6 +44,9 @@ class SystemApi {
 	 * annotation framework node data.
 	 */
 	String apikey;
+
+	String secretKey
+
 	/**
 	 * System access can be disabled.
 	 */
@@ -72,7 +75,7 @@ class SystemApi {
 		id maxSize: 36
 		
 		apikey (nullable:false, blank: false, unique: true, maxSize:255)
-		
+		secretKey (nullable:true, maxSize: 255)
 		name (nullable:false, blank: false, maxSize:255)
 		shortName  (nullable:true, blank: true, maxSize:100)
 		description (nullable:false, blank:true, maxSize:1024)
