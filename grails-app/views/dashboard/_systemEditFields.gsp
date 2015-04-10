@@ -70,11 +70,13 @@ Stylesheet
 						<label for="description">Created by</label>
 					</td>
 					<td valign="top" align="left">
-						<g:if test="${item?.createdBy!=null}">
-							<g:link action="showUser" id="${item?.createdBy.id}">${item?.createdBy.displayName}</g:link>
+						<g:if test="${item?.createdBy}">
+							<g:link action="showUser" id="${item?.createdBy?.id}">${item?.createdBy?.displayName}</g:link>
+							<g:hiddenField name="createdBy.id" value="${item?.createdBy?.id}"/>
 						</g:if>
 						<g:else>
-							<g:link action="showUser" id="${loggedUser.id}">${loggedUser.displayName}</g:link>
+							<g:link action="showUser" id="${loggedUser?.id}">${loggedUser?.displayName}</g:link>
+							<g:hiddenField name="createdBy.id" value="${loggedUser?.id}"/>
 						</g:else>
 					</td>
 				</tr>
@@ -84,10 +86,8 @@ Stylesheet
 					</td>
 					<td valign="top" colspan="2" class="value">
 
-						${item?.enabled}
-
 						<g:if test="${action=='create'}">
-							<g:radio name="enabled" value="${DefaultGroupStatus.ACTIVE.value()}" checked="checked"/> Enabled
+							<g:checkBox name="enabled" value="${item?.enabled?:true}" />
 						</g:if>
 						<g:else>
 

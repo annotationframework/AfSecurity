@@ -41,13 +41,16 @@ class SystemApiCreateCommand {
 	String name;
 	String shortName;
 	String description;
-	
+
+	User createdBy;
+
 	boolean enabled;
 	
 	static constraints = {
 		name (nullable:false, blank: false, maxSize:NAME_MAX_SIZE)
 		shortName (nullable:false, blank: false, maxSize:SHORTNAME_MAX_SIZE)
 		description (nullable:false, blank:true, maxSize:DESCRIPION_MAX_SIZE)
+
 	}
 	
 	boolean isEnabled() {

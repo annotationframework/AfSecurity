@@ -5,7 +5,7 @@ Parameters list
  2) error | errors in text format
 --%>
 <div class="sectioncontainer">
-	<g:form method="post" >
+	<g:form method="post">
 	 	<div class="dialog" >
 			<table style="width: 700px;" class="simpleTableNoBorder">
 				<tr>

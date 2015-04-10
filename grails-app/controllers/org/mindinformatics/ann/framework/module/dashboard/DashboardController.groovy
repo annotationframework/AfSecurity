@@ -583,7 +583,7 @@ public class DashboardController {
 	def saveSystem = {SystemApiCreateCommand systemCreateCmd->
 		if(systemCreateCmd.hasErrors()) {
 			systemCreateCmd.errors.allErrors.each { println it }
-			render(view:'createUser', model:[item:systemCreateCmd])
+			render(view:'createSystem', model:[item:systemCreateCmd])
 		} else {
 			def system = systemCreateCmd.createSystem()
 			def user = injectUserProfile();
