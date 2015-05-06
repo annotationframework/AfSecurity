@@ -913,12 +913,16 @@ public class DashboardController {
 		render results as JSON
 	}
 	
-	protected def updateUserRole(def user, def role, def value) {
+	protected def updateUserRole(User user, Role role, def value) {
+
+        def ur = UserRole.findByUserAndRole(user, role)
 		if(value=='on') {
-			UserRole ur = UserRole.create(user, role)
-			ur.save(flush:true)
+            if (!ur) {
+                ur = UserRole.create(user, role)
+                ur.save(flush: true)
+            }
 		} else {
-			def ur = UserRole.findByUserAndRole(user, role)
+
 			if(ur!=null) {
 				ur.delete(flush:true)
 			}
