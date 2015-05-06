@@ -18,7 +18,7 @@ Stylesheet
 					</td>
 					<td valign="top" width="255px" class="value">
 						<div>
-							<g:textField name="name" style="width: 240px;"
+							<g:textField name="name" size="100"
 								value="${item?.name}" class="${hasErrors(bean: item, field: 'name', 'fieldError')}"/>
 						</div>
 					</td>
@@ -36,7 +36,7 @@ Stylesheet
 						<label for="shortName">Short Name</label>
 					</td>
 					<td valign="top" class="value">
-						<g:textField name="shortName" style="width: 240px;"
+						<g:textField name="shortName" size="100"
 							value="${item?.shortName}" class="${hasErrors(bean: item, field: 'shortName', 'fieldError')}"/>
 					</td>
 					<td valign="top" class="caption">
@@ -50,10 +50,46 @@ Stylesheet
 				</tr>
 				<tr class="prop">
 					<td valign="top" class="name">
+						<label for="apikey">API key</label>
+					</td>
+					<td valign="top" class="value">
+						<g:textField name="apikey" size="100"
+									 value="${item?.apikey}" class="${hasErrors(bean: item, field: 'apikey', 'fieldError')}"/>
+					</td>
+					<td valign="top" class="caption">
+						<g:if test="${item?.apikey!=null}">
+							<g:renderErrors bean="${item}" field="apikey" />
+						</g:if>
+						<g:else>
+							(max 100 chars)
+						</g:else>
+					</td>
+				</tr>
+				<tr class="prop">
+					<td valign="top" class="name">
+						<label for="shortName">Secret Key</label>
+					</td>
+					<td valign="top" class="value">
+						<g:textField name="secretKey" size="100"
+									 value="${item?.secretKey}" class="${hasErrors(bean: item, field: 'secretKey', 'fieldError')}"/>
+					</td>
+					<td valign="top" class="caption">
+						<g:if test="${item?.shortName!=null}">
+							<g:renderErrors bean="${item}" field="secretKey" />
+						</g:if>
+						<g:else>
+							(max 100 chars)
+						</g:else>
+					</td>
+				</tr>
+
+
+				<tr class="prop">
+					<td valign="top" class="name">
 						<label for="description">Description</label>
 					</td>
 					<td valign="top" class="value">
-						<g:textArea name="description" style="width: 240px;"
+						<g:textArea name="description" cols="100" rows="6"
 							value="${item?.description}"  class="${hasErrors(bean: item, field: 'description', 'fieldError')}"/>
 					</td>
 					<td valign="top" class="caption">

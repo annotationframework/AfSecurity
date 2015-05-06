@@ -84,9 +84,7 @@ Stylesheet
 						${item?.lastUpdated.format("d MMM yyyy hh:mma")}
 					</td>
 				</tr>
-
-
-			<tr>
+			    <tr>
 					<td colspan="2">
 						<div class="buttons">
 							<g:form>
@@ -95,6 +93,9 @@ Stylesheet
 								<g:hiddenField name="redirect" value="listGroups" />
 									<g:link class="edit" action="editSystem" id="${item?.id}">${message(code: 'default.button.edit.account.label', default: 'Edit system')}</g:link>
 
+									<g:link class="lock" action="generateToken" id="${item?.id}">${message(code: 'default.button.generate.token.label', default: 'Generate token')}</g:link>
+
+                                    <br/>
 									<g:actionSubmit class="reload" action="regenerateSystemApiKey" value="${message(code: 'default.button.edit.account.label', default: 'Regenerate key')}"
 										onclick="return confirm('${message(code: 'default.button.disable.account.confirm.message', default: 'Are you sure you want to regenerate the API key? All clients will have to update the API access key.')}');" />
 

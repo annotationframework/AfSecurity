@@ -49,6 +49,7 @@ public class DashboardController {
 
 	def springSecurityService
 	def usersUtilsService
+    def annotatorService
 	
 	/*
 	 * Loading by primary key is usually more efficient because it takes 
@@ -294,6 +295,18 @@ public class DashboardController {
 			redirect(action:'showUser', params:[id: params.id])
 	}
 
+
+    def generateToken = {
+        def token
+        def system = SystemApi.get(params.id)
+        User user = springSecurityService.getCurrentUser();
+        if (request.method=="POST") {
+            token = annotatorService.getToken(system.apikey, params?.username, params?.ttl as int)
+            flash.message = "Generated token: " + token
+        }
+        render (view:'generateToken', model:[system: system, token: token, user: user, action: "edit"])
+    }
+
 	def disableUser = {
 		def user = User.findById(params.id)
 		user.enabled = false
@@ -445,20 +458,23 @@ public class DashboardController {
 	}
 	
 	def editSystem = {
-		def system = SystemApi.findById(params.id)
+		def system = SystemApi.get(params.id)
 		render (view:'editSystem', model:[item: system, action: "edit"])
 	}
 
-	def updateSystem = { SystemApiEditCommand command ->
+	def updateSystem(SystemApiEditCommand command) {
 
-		log.info "Update system " + command.properties
+		log.info "Update system command.properties = " + command.properties
+        log.info "Update system params = " + params
 
 		if(command.hasErrors()) {
-			/* groupCreateCmd.errors.allErrors.each { println it } */
-			render(view:'editGroup', model:[item:command])
+            log.info ("Update system errors " + command.errors)
+			render(view:'editSystem', model:[item:command])
 		} else {
-			def system = SystemApi.findById(params.id)
+			def system = SystemApi.get(params.id)
 			system.name = command.name
+            system.apikey = command.apikey
+            system.secretKey = command.secretKey
 			system.shortName = command.shortName
 			system.description = command.description
 
@@ -558,7 +574,7 @@ public class DashboardController {
 	def showSystem = {
 
 		SystemApi.withTransaction {
-			def system = SystemApi.findById(params.id)
+			def system = SystemApi.get(params.id)
 
 			render(view: 'showSystem', model: [item      : system,
 											   appBaseUrl: request.getContextPath()])
@@ -567,7 +583,7 @@ public class DashboardController {
 
 	def deleteSystem = {
 		SystemApi.withTransaction {
-			def system = SystemApi.findById(params.id)
+			def system = SystemApi.get(params.id)
 			system.delete(flush:true)
 			redirect(action: "listSystems")
 		}
