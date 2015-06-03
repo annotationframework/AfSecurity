@@ -7,7 +7,7 @@ Parameters list
 <div class="sectioncontainer">
 	<g:form method="post">
 	 	<div class="dialog" >
-			<table style="width: 700px;" class="simpleTableNoBorder">
+			<table style="" class="simpleTableNoBorder">
 				<tr>
 					<td valign="top" colspan="2">
 						<g:if test="${msgError!=null}">

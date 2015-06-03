@@ -603,8 +603,9 @@ public class DashboardController {
 		} else {
 			def system = systemCreateCmd.createSystem()
 			def user = injectUserProfile();
-			system.createdBy = user;
+
 			if(system)  {
+				system.createdBy = user;
 				if(!system.save()) {
 					// Failure in saving
 					system.errors.allErrors.each { println it }
@@ -612,15 +613,15 @@ public class DashboardController {
 								msgError: 'The system has not been saved successfully'])
 				} else {
 					redirect (action:'showSystem', id: system.id, model: [
-								msgSuccess: 'System saved successfully']);
+								msgSuccess: 'The system has been saved successfully']);
 				}
 			} else {
 				// User already existing
 				render(view:'createSystem', model:[item:systemCreateCmd,
-							msgError: 'A system with this name is already existing'])
+							msgError: 'A system with this name already exists'])
 			}
 		}
-	}
+    }
 	
 	def showGroup = {
 		def group = Group.findById(params.id)
